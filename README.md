@@ -1,8 +1,8 @@
 # skiba
 
 
-[![image](https://img.shields.io/pypi/v/skiba.svg)](https://pypi.python.org/pypi/skiba)
-[![image](https://img.shields.io/conda/vn/conda-forge/skiba.svg)](https://anaconda.org/conda-forge/skiba)
+[![image](https://img.shields.io/pypi/v/skiba.svg)](https://pypi.python.org/pypi/gispackageskiba)
+[![image](https://img.shields.io/conda/vn/conda-forge/skiba.svg)](https://anaconda.org/conda-forge/gispackageskiba)
 
 
 **A python package for a class**
