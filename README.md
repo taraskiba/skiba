@@ -10,7 +10,7 @@
 
 -   Free software: MIT License
 -   Documentation: https://taraskiba.github.io/skiba
-    
+
 
 ## Features
 
