@@ -81,6 +81,7 @@ nav:
     - Report Issues: https://github.com/taraskiba/skiba/issues
     - Examples:
         - examples/intro.ipynb
+        - examples/map.ipynb
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md

@@ -5,6 +5,7 @@
 
 
 **A python package for a class**
+**Please do not use; this is a test package**
 
 
 -   Free software: MIT License
