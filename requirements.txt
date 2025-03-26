@@ -1,1 +1,4 @@
 numpy
+geopandas
+folium
+ipyleaflet
