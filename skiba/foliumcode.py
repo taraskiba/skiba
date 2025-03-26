@@ -13,10 +13,10 @@ class Map(folium.Map):
 
     def add_basemap(self, basemap="OpenStreetMap"):
         """Add basemap to the map.
-        
+
         Args:
             basemap (str, optional): Basemap name. Starts with "OpenStreetMap".
-         """
+        """
 
         url = eval(f"folium.basemaps.{basemap}").build_url()
         layer = folium.TileLayer(url=url, name=basemap)
