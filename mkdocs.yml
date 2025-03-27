@@ -83,8 +83,8 @@ nav:
         - examples/intro.ipynb
         - examples/map.ipynb
     - Skiba:
-        - folium: skiba/folium.py
-        - ipyleaflet: skiba/ipyleafletcode.py
+        - folium: foliumcode.md
+        - ipyleaflet: ipyleafletcode.md
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md
