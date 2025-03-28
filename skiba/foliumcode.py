@@ -6,11 +6,8 @@ import folium.plugins
 
 
 class Map(folium.Map):
-    def __init__(self, center=[40, 100], zoom=4, height="600px", **kwargs):
-
+    def __init__(self, center=[40, 100], zoom=4, **kwargs):
         super().__init__(location=center, zoom_start=zoom, **kwargs)
-        self.layout.height = height
-        self.scroll_wheel_zoom = True
 
     def add_basemap(self, basemap="OpenStreetMap"):
         """Add basemap to the map.
