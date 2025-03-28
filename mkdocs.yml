@@ -82,9 +82,11 @@ nav:
     - Examples:
         - examples/intro.ipynb
         - examples/map.ipynb
-    - Skiba:
-        - folium: foliumcode.md
-        - ipyleaflet: ipyleafletcode.md
+        - examples/demo.ipynb
+        - examples/folium.ipynb
+        - examples/ipyleafletcode.ipynb
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md
+          - folium: foliumcode.md
+          - ipyleaflet: ipyleafletcode.md
