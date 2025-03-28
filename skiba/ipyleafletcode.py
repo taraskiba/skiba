@@ -5,7 +5,7 @@ import ipyleaflet
 
 
 class Map(ipyleaflet.Map):
-    def __init__(self, center=[-100, 0], zoom=4, height="500px", **kwargs):
+    def __init__(self, center=[40, 100], zoom=4, height="500px", **kwargs):
         super().__init__(center=center, zoom=zoom, height=height, **kwargs)
         self.layout.height = height
         self.scroll_wheel_zoom = True
