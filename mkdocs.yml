@@ -82,9 +82,8 @@ nav:
     - Examples:
         - examples/intro.ipynb
         - examples/map.ipynb
-        - examples/demo.ipynb
-        - examples/folium.ipynb
-        - examples/ipyleafletcode.ipynb
+        - examples/folium_demo.ipynb
+        - examples/ipyleaflet_demo.ipynb
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md
