@@ -2,4 +2,4 @@
 
 __author__ = """Tara Skiba"""
 __email__ = "tskiba@vols.utk.edu"
-__version__ = "0.1.0"
+__version__ = "1.0.0"
