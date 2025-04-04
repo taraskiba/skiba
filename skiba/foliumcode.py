@@ -99,14 +99,15 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def add_split_map(self, left="openstreetmap", right="cartodbpositron", **kwargs):
-        from localtileserver import TileClient, get_folium_tile_layer
-
         """Add a split map to the folium map.
 
         Args:
             left (str, optional): basemap for left side. Defaults to "openstreetmap".
             right (str, optional): basemap for right side. Defaults to "cartodbpositron".
         """
+
+        from localtileserver import TileClient, get_folium_tile_layer
+
         # map_types = {
         #     "ROADMAP": "m",
         #     "SATELLITE": "s",
