@@ -1091,7 +1091,7 @@ Map            (<span title="folium.folium.Map">Map</span>)
         <span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">add_split_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s2">&quot;openstreetmap&quot;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s2">&quot;cartodbpositron&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a split map to the folium map.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a split map to the folium map. Can handle TIF files.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            left (str, optional): basemap for left side. Defaults to &quot;openstreetmap&quot;.</span>
@@ -1481,7 +1481,7 @@ Map            (<span title="folium.folium.Map">Map</span>)
 
     <div class="doc doc-contents ">
 
-      <p>Add a split map to the folium map.</p>
+      <p>Add a split map to the folium map. Can handle TIF files.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -1511,7 +1511,7 @@ Map            (<span title="folium.folium.Map">Map</span>)
         <details class="quote">
           <summary>Source code in <code>skiba/foliumcode.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_split_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="s2">&quot;openstreetmap&quot;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s2">&quot;cartodbpositron&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a split map to the folium map.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a split map to the folium map. Can handle TIF files.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        left (str, optional): basemap for left side. Defaults to &quot;openstreetmap&quot;.</span>
