@@ -99,6 +99,8 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def add_split_map(self, left="openstreetmap", right="cartodbpositron", **kwargs):
+        from localtileserver import TileClient, get_folium_tile_layer
+
         """Add a split map to the folium map.
 
         Args:
@@ -117,9 +119,18 @@ class Map(folium.Map):
         # url = (
         #     f"https://mt1.google.com/vt/lyrs={map_type.lower()}&x={{x}}&y={{y}}&z={{z}}"
         # )
+        def _create_layer(source, **kwargs):
+            if str(source).lower().endswith((".tif", ".tiff")):
+                # Create a TileClient for the raster file
+                tile_client = TileClient(source)
+                # Generate a Folium tile layer from the TileClient
+                return get_folium_tile_layer(tile_client, **kwargs)
+            else:
+                # Create a standard Folium TileLayer for basemaps
+                return folium.TileLayer(source, **kwargs)
 
-        layer_right = folium.TileLayer(right, **kwargs)
-        layer_left = folium.TileLayer(left, **kwargs)
+        layer_right = _create_layer(right, **kwargs)
+        layer_left = _create_layer(left, **kwargs)
 
         sbs = folium.plugins.SideBySideLayers(
             layer_left=layer_left, layer_right=layer_right
