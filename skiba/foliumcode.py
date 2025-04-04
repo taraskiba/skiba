@@ -99,7 +99,12 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def add_split_map(self, left="openstreetmap", right="cartodbpositron", **kwargs):
+        """Add a split map to the folium map.
 
+        Args:
+            left (str, optional): basemap for left side. Defaults to "openstreetmap".
+            right (str, optional): basemap for right side. Defaults to "cartodbpositron".
+        """
         # map_types = {
         #     "ROADMAP": "m",
         #     "SATELLITE": "s",
@@ -113,8 +118,8 @@ class Map(folium.Map):
         #     f"https://mt1.google.com/vt/lyrs={map_type.lower()}&x={{x}}&y={{y}}&z={{z}}"
         # )
 
-        layer_right = folium.TileLayer(left, **kwargs)
-        layer_left = folium.TileLayer(right, **kwargs)
+        layer_right = folium.TileLayer(right, **kwargs)
+        layer_left = folium.TileLayer(left, **kwargs)
 
         sbs = folium.plugins.SideBySideLayers(
             layer_left=layer_left, layer_right=layer_right
