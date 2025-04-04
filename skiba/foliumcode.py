@@ -99,7 +99,7 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def add_split_map(self, left="openstreetmap", right="cartodbpositron", **kwargs):
-        """Add a split map to the folium map.
+        """Add a split map to the folium map. Can handle TIF files.
 
         Args:
             left (str, optional): basemap for left side. Defaults to "openstreetmap".
