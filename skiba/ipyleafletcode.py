@@ -130,7 +130,11 @@ class Map(ipyleaflet.Map):
         self.add_control(control)
 
     def add_raster(self, filepath, **kwargs):
+        """Add GeoTIFF raster to the map.
 
+        Args:
+            filepath (_type_): _description_
+        """
         from localtileserver import TileClient, get_leaflet_tile_layer
 
         client = TileClient(filepath)
@@ -178,6 +182,9 @@ class Map(ipyleaflet.Map):
             layers (str): The layers to display.
             **kwargs: Additional keyword arguments for the ipyleaflet.WMSLayer layer.
         """
+
+        from ipyleaflet import WMSLayer, Map, basemaps
+
         layer = ipyleaflet.WMSLayer(
             url=url, layers=layers, format=format, transparent=transparent, **kwargs
         )
