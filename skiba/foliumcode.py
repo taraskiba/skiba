@@ -130,8 +130,8 @@ class Map(folium.Map):
                 # Create a standard Folium TileLayer for basemaps
                 return folium.TileLayer(source, **kwargs)
 
-        layer_right = _create_layer(right, **kwargs)
-        layer_left = _create_layer(left, **kwargs)
+        layer_right = _create_layer(right, overlay=False, **kwargs)
+        layer_left = _create_layer(left, overlay=False, **kwargs)
 
         sbs = folium.plugins.SideBySideLayers(
             layer_left=layer_left, layer_right=layer_right
