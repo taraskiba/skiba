@@ -8,7 +8,7 @@ import os
 
 class Map(ipyleaflet.Map):
 
-    def __init__(self, center=[37.5, -95], zoom=7, height="600px", **kwargs):
+    def __init__(self, center=[37.5, -95], zoom=4, height="600px", **kwargs):
 
         super().__init__(center=center, zoom=zoom, **kwargs)
         self.layout.height = height
@@ -28,7 +28,6 @@ class Map(ipyleaflet.Map):
     def add_geojson(
         self,
         data,
-        zoom_to_layer=True,
         hover_style=None,
         **kwargs,
     ):
@@ -46,19 +45,55 @@ class Map(ipyleaflet.Map):
         import geopandas as gpd
 
         if hover_style is None:
-            hover_style = {"color": "yellow", "fillOpacity": 0.2}
+            hover_style = {"color": "gray", "fillOpacity": 0.2}
 
         if isinstance(data, str):
             gdf = gpd.read_file(data)
             geojson = gdf.__geo_interface__
         elif isinstance(data, dict):
             geojson = data
-        layer = ipyleaflet.GeoJSON(data=geojson, hover_style=hover_style, **kwargs)
+
+        style = {"color": "black", "weight": 1, "opacity": 1}
+
+        layer = ipyleaflet.GeoJSON(
+            data=geojson, hover_style=hover_style, style=style, **kwargs
+        )
         self.add_layer(layer)
 
-        if zoom_to_layer:
-            bounds = gdf.total_bounds
-            self.fit_bounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]])
+    def add_points(self, data, **kwargs):
+        """Adds points to the map.
+
+        Args:
+            data (str or dict): The GeoJSON data. Can be a file path (str) or a dictionary.
+            **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
+        """
+        import geopandas as gpd
+        import pandas as pd
+
+        # Load data with safety checks
+        if isinstance(data, str):
+            coordinates = pd.read_csv(data)
+            gdf = gpd.GeoDataFrame(
+                coordinates,
+                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
+                crs="EPSG:4326",  # Directly set CRS during creation
+            )
+        else:
+            gdf = data.to_crs(epsg=4326)  # Ensure WGS84
+
+        point_style = {
+            "radius": 5,
+            "fillOpacity": 1,
+            "fillColor": "white",
+            "weight": 1,
+        }  # 'color': 'white',
+
+        geo_data = ipyleaflet.GeoData(
+            geo_dataframe=gdf,
+            point_style=point_style,
+        )
+
+        self.add(geo_data)
 
     def add_shp(self, data, **kwargs):
         """Adds a shapefile to the map.
@@ -93,7 +128,7 @@ class Map(ipyleaflet.Map):
 
         # date_picker = widgets.DatePicker(description="Pick a Date", disabled=False)
         opacity_slider = widgets.FloatSlider(
-            value=0.5,
+            value=1,
             min=0,
             max=1.0,
             step=0.01,
@@ -107,10 +142,12 @@ class Map(ipyleaflet.Map):
 
         basemap_layer = self.layers[1]
         jslink((opacity_slider, "value"), (basemap_layer, "opacity"))
-        # jslink((date_picker, "value"), (self, "date"))
-
         opacity_control = WidgetControl(widget=opacity_slider, position="topright")
+
+        # jslink((date_picker, "value"), (self, "date"))
         # date_control = WidgetControl(widget = date_picker, position="bottomright")
 
         self.add(opacity_control)
         # self.add(date_control)
+
+    # Using geemap, ipyleaflet, and ipywidgets create a map with a dropdown menu that has any Google Earth Engine dataset
