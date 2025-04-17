@@ -189,3 +189,70 @@ class Map(ipyleaflet.Map):
             url=url, layers=layers, format=format, transparent=transparent, **kwargs
         )
         self.add(layer)
+
+    def change_basemap(self, **kwargs):
+        """Changes the basemap of the map using a dropdown selector."""
+        from ipywidgets import Dropdown, ToggleButton, HBox, Layout
+        from ipyleaflet import WidgetControl, basemap_to_tiles, basemaps
+
+        # Map dropdown names to actual basemap objects
+        BASEMAP_LOOKUP = {
+            "OpenStreetMap": basemaps.OpenStreetMap.Mapnik,
+            "OpenTopoMap": basemaps.OpenTopoMap,
+            "Esri.WorldImagery": basemaps.Esri.WorldImagery,
+            "CartoDB.DarkMatter": basemaps.CartoDB.DarkMatter,
+        }
+
+        # Create widgets
+        toggle = ToggleButton(
+            value=True,
+            tooltip="Toggle basemap selector",
+            icon="map",
+            layout=Layout(width="38px", height="38px"),
+        )
+
+        dropdown = Dropdown(
+            options=list(BASEMAP_LOOKUP.keys()),
+            value="OpenStreetMap",
+            description="Basemap:",
+            style={"description_width": "initial"},
+            layout=Layout(width="250px", height="38px"),
+        )
+
+        # Store reference to current basemap layer
+        if not hasattr(self, "current_basemap"):
+            self.current_basemap = self.layers[0]
+
+        def on_dropdown_change(change):
+            """Handle basemap selection changes"""
+            if change["new"]:
+                new_basemap = basemap_to_tiles(BASEMAP_LOOKUP[change["new"]])
+                self.substitute_layer(self.current_basemap, new_basemap)
+                self.current_basemap = new_basemap
+
+        # def on_toggle_change(change):
+        #     """Toggle visibility of dropdown"""
+        #     if change["new"]:
+        #         dropdown.layout.visibility = 'visible'  # Show dropdown
+        #     else:
+        #         dropdown.layout.visibility = 'hidden'   # Hide dropdown
+
+        # Set up event handlers
+        dropdown.observe(on_dropdown_change, names="value")
+
+        # Assemble and add control
+        widget_box = HBox([toggle, dropdown])
+
+        is_open = [True]
+
+        def on_toggle_change(change):
+            """Toggle visibility of dropdown"""
+            if is_open[0] and change["new"]:
+                widget_box.children = (toggle, dropdown)
+            else:
+                widget_box.children = (toggle,)
+
+        toggle.observe(on_toggle_change, names="value")
+
+        control = WidgetControl(widget=widget_box, position="topright")
+        self.add_control(control)
