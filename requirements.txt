@@ -1,6 +1,10 @@
 folium
+geemap
 geopandas
 ipyleaflet
+ipywidgets
 localtileserver
 matplotlib
 numpy
+pandas
+requests
