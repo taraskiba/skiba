@@ -140,3 +140,36 @@ class Map(folium.Map):
         layer_left.add_to(self)
         layer_right.add_to(self)
         sbs.add_to(self)
+
+    def change_basemap(self, **kwargs):
+        """Changes the basemap of the map.
+
+        Args:
+            **kwargs: Additional keyword arguments for the folium.TileLayer class.
+        """
+        from ipywidgets import jslink, Dropdown
+        from ipyleaflet import WidgetControl
+
+        # Step 4: Create the dropdown
+        data_dict = {
+            "OpenStreetMap": "openstreetmap",
+            "CartoDB Positron": "cartodbpositron",
+            "Stamen Terrain": "stamenterrain",
+            "Stamen Toner": "stamentoner",
+            "Stamen Watercolor": "stamenwatercolor",
+        }
+        dropdown = Dropdown(
+            options=data_dict,  # keys shown, values returned
+            description="Dataset:",
+            disabled=False,
+        )
+
+        basemap_layer = self.layers[1]
+        jslink((dropdown, "value"), (basemap_layer, "basemap"))
+        dropdown = WidgetControl(widget=dropdown, position="topright")
+
+        self.add(dropdown)
+
+    def on_dropdown_change(change):
+        if change["new"]:
+            m.add_basemap(change["new"])
