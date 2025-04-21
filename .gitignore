@@ -27,8 +27,7 @@ wheels/
 .installed.cfg
 *.egg
 *.geojson
-*.json
-*.csv
+ignore/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

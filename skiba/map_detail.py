@@ -1,6 +1,9 @@
 import geemap as gm
 import ipyleaflet
 import ipywidgets as widgets
+import geopandas as gpd
+import pandas as pd
+
 import os
 
 # This code adds various widgets to the map for user interaction.
@@ -67,8 +70,6 @@ class Map(ipyleaflet.Map):
             data (str or dict): The GeoJSON data. Can be a file path (str) or a dictionary.
             **kwargs: Additional keyword arguments for the ipyleaflet.GeoJSON layer.
         """
-        import geopandas as gpd
-        import pandas as pd
 
         # Load data with safety checks
         if isinstance(data, str):
@@ -102,7 +103,6 @@ class Map(ipyleaflet.Map):
             data (str): The file path to the shapefile.
             **kwargs: Additional keyword arguments for the GeoJSON layer.
         """
-        import geopandas as gpd
 
         gdf = gpd.read_file(data)
         gdf = gdf.to_crs(epsg=4326)

@@ -85,8 +85,12 @@ nav:
         - examples/folium_demo.ipynb
         - examples/ipyleaflet_demo.ipynb
         - examples/map_demo.ipynb
+        - examples/map_detail.ipynb
+        - examples/data_process_demo.ipynb
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md
           - folium: foliumcode.md
           - ipyleaflet: ipyleafletcode.md
+          - map: map_detail.md
+          - data_process: data_process.md

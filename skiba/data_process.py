@@ -127,11 +127,14 @@ class data_process:
         # Load the GEE dataset as an image
         geeimage = data_process.load_gee_as_image(geedata)
 
+        name = geedata
+        file_name = name.replace("/", "_")
+
+        out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+        output_file = f"{file_name}.csv"
+        out_path = os.path.join(out_dir, output_file)
+
         # Retrieve data from the image using sampleRegions
-        sampled_data = geeimage.sampleRegions(
-            collection=fc,
-            scale=geeimage.projection().nominalScale(),  # Adjust scale based on dataset resolution
-            geometries=True,  # Include geometry in the output
-        )
+        sampled_data = gm.extract_values_to_points(fc, geeimage, out_path)
 
         return sampled_data
