@@ -4,7 +4,7 @@ import ipywidgets as widgets
 import geopandas as gpd
 import pandas as pd
 
-import os
+# import os
 
 # This code adds various widgets to the map for user interaction.
 

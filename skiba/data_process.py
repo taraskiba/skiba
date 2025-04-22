@@ -1,4 +1,3 @@
-import requests
 import json
 import ipywidgets as widgets
 import geopandas as gpd
@@ -7,8 +6,8 @@ import geemap as gm
 import ee
 import os
 
-ee.Initialize(project="ee-forestplotvariables")
-ee.Authenticate()
+# ee.Initialize(project="ee-forestplotvariables")
+# ee.Authenticate()
 
 
 class data_process:
