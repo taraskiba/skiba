@@ -6,8 +6,8 @@ import geemap as gm
 import ee
 import os
 
-# ee.Initialize(project="ee-forestplotvariables")
-# ee.Authenticate()
+ee.Initialize()
+ee.Authenticate()
 
 
 class data_process:
