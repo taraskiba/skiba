@@ -7,7 +7,6 @@ import ee
 import os
 
 ee.Initialize()
-ee.Authenticate()
 
 
 class data_process:
