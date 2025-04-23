@@ -1,0 +1,26 @@
+- name: Set up Earth Engine
+  uses: google-github-actions/auth@v2
+  with:
+    workload_identity_provider: 'projects/YOUR_PROJECT/locations/global/workloadIdentityPools/YOUR_POOL/providers/YOUR_PROVIDER'
+    service_account: 'YOUR_SERVICE_ACCOUNT@YOUR_PROJECT.iam.gserviceaccount.com'
+
+- name: Initialize Earth Engine
+  env:
+    EARTHENGINE_TOKEN: ${{ secrets.EARTHENGINE_TOKEN }}
+  run: |
+    python -c "
+    import ee, os, json
+    from google.oauth2.credentials import Credentials
+
+    creds = json.loads(os.getenv('EARTHENGINE_TOKEN'))
+    credentials = Credentials(
+        None,
+        token_uri='https://oauth2.googleapis.com/token',
+        client_id=creds['client_id'],
+        client_secret=creds['client_secret'],
+        refresh_token=creds['refresh_token'],
+        quota_project_id=creds['project']
+    )
+    ee.Initialize(credentials=credentials, project=creds['project'])
+    "
+    echo "Earth Engine initialized successfully."
