@@ -79,14 +79,21 @@ nav:
     - FAQ: faq.md
     - Changelog: changelog.md
     - Report Issues: https://github.com/taraskiba/skiba/issues
+    - Paper:
+        - Paper: paper.md
+        - Bibliography: paper.bib
     - Examples:
         - examples/intro.ipynb
         - examples/map.ipynb
         - examples/folium_demo.ipynb
         - examples/ipyleaflet_demo.ipynb
         - examples/map_demo.ipynb
+        - examples/data_process_demo.ipynb
+        - examples/map_detail.ipynb
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md
           - folium: foliumcode.md
           - ipyleaflet: ipyleafletcode.md
+          - data_process: data_process.md
+          - map_detail: map_detail.md
