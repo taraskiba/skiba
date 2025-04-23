@@ -65,7 +65,7 @@ The `skiba` package is built upon `@ipyleaflet` and `@geemap`, while also utiliz
     ```
     *Note: latitude and longitude column names must match example format*
 - **Step 2:**   A map will appear with provided coordinates plotted.
-    ![Example output map](../docs/files/map_image_cropped.png) *Example of `map_details` module with sample dataset.*
+    ![Example output map](../files/map_image_cropped.png) *Example of `map_details` module with sample dataset.*
 - **Step 3:**	User selects a Google Earth Engine dataset from the dropdown.
   - **Step 3.b (Optional):**   User selects desired time frame.
 - **Step 4:**	Package returns a csv file with point values from all bands of provided coordinates within selected GEE dataset. The csv file will be automatically saved in the user's local `~/Downloads` folder.
