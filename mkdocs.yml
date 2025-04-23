@@ -47,10 +47,10 @@ plugins:
     - mkdocs-jupyter:
           include_source: True
           ignore_h1_titles: True
-          execute: True
+          execute: False
           allow_errors: false
           ignore: ["conf.py"]
-          execute_ignore: ["*ignore.ipynb"]
+          execute_ignore: ["*ignore.ipynb", "data_process_demo.ipynb", "changelog_update.py"]
 
 markdown_extensions:
     - admonition
