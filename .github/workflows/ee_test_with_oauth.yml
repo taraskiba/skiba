@@ -11,7 +11,7 @@
     python -c "
     import ee, os, json
     from google.oauth2.credentials import Credentials
-    
+
     creds = json.loads(os.getenv('EARTHENGINE_TOKEN'))
     credentials = Credentials(
         None,
