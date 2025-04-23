@@ -6,8 +6,6 @@ import geemap as gm
 import ee
 import os
 
-ee.Initialize()
-
 
 class data_process:
     def __init__(self, data, **kwargs):

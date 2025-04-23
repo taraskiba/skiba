@@ -50,7 +50,7 @@ plugins:
           execute: True
           allow_errors: false
           ignore: ["conf.py"]
-          execute_ignore: ["*ignore.ipynb"]
+          execute_ignore: ["*ignore.ipynb", "data_process_demo.ipynb", "data_process.py"]
 
 markdown_extensions:
     - admonition
