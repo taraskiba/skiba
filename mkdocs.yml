@@ -79,7 +79,7 @@ nav:
     - FAQ: faq.md
     - Changelog: changelog.md
     - Report Issues: https://github.com/taraskiba/skiba/issues
-    - Paper:
+    - Publication:
         - Paper: paper.md
         - Bibliography: paper.bib
     - Examples:
