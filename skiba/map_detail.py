@@ -1,4 +1,3 @@
-import geemap as gm
 import ipyleaflet
 import ipywidgets as widgets
 import geopandas as gpd
@@ -27,6 +26,11 @@ class Map(ipyleaflet.Map):
         url = eval(f"ipyleaflet.basemaps.{basemap}").build_url()
         layer = ipyleaflet.TileLayer(url=url, name=basemap)
         self.add(layer)
+
+    def add_layer_control(self):
+        """Adds a layer control widget to the map."""
+        control = ipyleaflet.LayersControl(position="topright")
+        self.add_control(control)
 
     def add_geojson(
         self,
@@ -123,7 +127,7 @@ class Map(ipyleaflet.Map):
     def add_widgets(self):
         """Creates and displays widgets for user interaction."""
 
-        from ipywidgets import jslink, FloatSlider
+        from ipywidgets import jslink
         from ipyleaflet import WidgetControl
 
         # date_picker = widgets.DatePicker(description="Pick a Date", disabled=False)
@@ -144,10 +148,74 @@ class Map(ipyleaflet.Map):
         jslink((opacity_slider, "value"), (basemap_layer, "opacity"))
         opacity_control = WidgetControl(widget=opacity_slider, position="topright")
 
-        # jslink((date_picker, "value"), (self, "date"))
-        # date_control = WidgetControl(widget = date_picker, position="bottomright")
-
         self.add(opacity_control)
         # self.add(date_control)
+
+    def change_basemap(self, **kwargs):
+        """Changes the basemap of the map using a dropdown selector."""
+        from ipywidgets import Dropdown, ToggleButton, HBox, Layout
+        from ipyleaflet import WidgetControl, basemap_to_tiles, basemaps
+
+        # Map dropdown names to actual basemap objects
+        BASEMAP_LOOKUP = {
+            "OpenStreetMap": basemaps.OpenStreetMap.Mapnik,
+            "OpenTopoMap": basemaps.OpenTopoMap,
+            "Esri.WorldImagery": basemaps.Esri.WorldImagery,
+            "CartoDB.DarkMatter": basemaps.CartoDB.DarkMatter,
+        }
+
+        # Create widgets
+        toggle = ToggleButton(
+            value=True,
+            tooltip="Toggle basemap selector",
+            icon="map",
+            layout=Layout(width="38px", height="38px"),
+        )
+
+        dropdown = Dropdown(
+            options=list(BASEMAP_LOOKUP.keys()),
+            value="OpenStreetMap",
+            description="Basemap:",
+            style={"description_width": "initial"},
+            layout=Layout(width="250px", height="38px"),
+        )
+
+        # Store reference to current basemap layer
+        if not hasattr(self, "current_basemap"):
+            self.current_basemap = self.layers[0]
+
+        def on_dropdown_change(change):
+            """Handle basemap selection changes"""
+            if change["new"]:
+                new_basemap = basemap_to_tiles(BASEMAP_LOOKUP[change["new"]])
+                self.substitute_layer(self.current_basemap, new_basemap)
+                self.current_basemap = new_basemap
+
+        # def on_toggle_change(change):
+        #     """Toggle visibility of dropdown"""
+        #     if change["new"]:
+        #         dropdown.layout.visibility = 'visible'  # Show dropdown
+        #     else:
+        #         dropdown.layout.visibility = 'hidden'   # Hide dropdown
+
+        # Set up event handlers
+        dropdown.observe(on_dropdown_change, names="value")
+
+        # Assemble and add control
+        widget_box = HBox([toggle, dropdown])
+
+        is_open = [True]
+
+        def on_toggle_change(change):
+            """Toggle visibility of dropdown"""
+            if is_open[0] and change["new"]:
+                widget_box.children = (toggle, dropdown)
+            else:
+                widget_box.children = (toggle,)
+
+        toggle.observe(on_toggle_change, names="value")
+
+        control = WidgetControl(widget=widget_box, position="topright")
+        self.add_control(control)
 
     # Using geemap, ipyleaflet, and ipywidgets create a map with a dropdown menu that has any Google Earth Engine dataset
