@@ -1,5 +1,5 @@
 site_name: skiba
-site_description: A python package for a class
+site_description: A python package for a foresters to query Google Earth Engine data
 site_author: taraskiba
 site_url: https://taraskiba.github.io/skiba
 repo_url: https://github.com/taraskiba/skiba
@@ -8,13 +8,13 @@ copyright: "Copyright &copy; 2024 - 2024 Tara Skiba"
 
 theme:
     palette:
-        - scheme: default
+        - scheme: iceberg
           #   primary: blue
           #   accent: indigo
           toggle:
               icon: material/toggle-switch-off-outline
               name: Switch to dark mode
-        - scheme: slate
+        - scheme: iceberg
           primary: indigo
           accent: indigo
           toggle:

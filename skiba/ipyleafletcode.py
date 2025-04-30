@@ -182,12 +182,10 @@ class Map(ipyleaflet.Map):
             layers (str): The layers to display.
             **kwargs: Additional keyword arguments for the ipyleaflet.WMSLayer layer.
         """
-
-        from ipyleaflet import WMSLayer, Map, basemaps
-
         layer = ipyleaflet.WMSLayer(
             url=url, layers=layers, format=format, transparent=transparent, **kwargs
         )
+
         self.add(layer)
 
     def change_basemap(self, **kwargs):
@@ -256,3 +254,21 @@ class Map(ipyleaflet.Map):
 
         control = WidgetControl(widget=widget_box, position="topright")
         self.add_control(control)
+
+    def add_search_marker(self, **kwargs):
+        """Adds a search marker to the map."""
+
+        from ipyleaflet import Map, SearchControl, Marker, AwesomeIcon
+
+        search_marker = Marker(
+            icon=AwesomeIcon(name="search", marker_color="blue", icon_color="white")
+        )
+
+        search_control = SearchControl(
+            position="topleft",
+            url="https://nominatim.openstreetmap.org/search?format=json&q={s}",
+            zoom=10,
+            marker=search_marker,
+        )
+
+        self.add(search_control)
