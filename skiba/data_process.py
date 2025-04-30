@@ -1,4 +1,4 @@
-import json
+import requests
 import ipywidgets as widgets
 import geopandas as gpd
 import pandas as pd
@@ -6,12 +6,29 @@ import geemap as gm
 import ee
 import os
 
+# ee.Authenticate()
+# ee.Initialize(project="ee-forestplotvariables")
+
 
 class data_process:
     def __init__(self, data, **kwargs):
         self.data = data
         for key, value in kwargs.items():
             setattr(self, key, value)
+
+    def fetch_geojson(url):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Raises an exception for HTTP errors
+            geojson_data = response.json()  # Parse the JSON response
+            return geojson_data
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err}")
+        except requests.exceptions.ConnectionError as conn_err:
+            print(f"Error connecting to the server: {conn_err}")
+        except Exception as err:
+            print(f"An error occurred: {err}")
+        return None
 
     def create_dropdown():
         """
@@ -24,11 +41,9 @@ class data_process:
             ipywidgets.Dropdown: A dropdown widget with the names from the catalog.
         """
 
-        url = "https://github.com/opengeos/geospatial-data-catalogs/blob/master/gee_catalog.json"
+        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
 
-        data = "../data/gee_catalog.json"
-        with open(data, "r") as file:
-            data = json.load(file)
+        data = data_process.fetch_geojson(url)
 
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
 
