@@ -969,6 +969,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#skiba.map_detail.Map.add_layer_control" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_layer_control()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#skiba.map_detail.Map.add_points" class="md-nav__link">
     <span class="md-ellipsis">
       add_points()
@@ -990,6 +999,15 @@
   <a href="#skiba.map_detail.Map.add_widgets" class="md-nav__link">
     <span class="md-ellipsis">
       add_widgets()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.map_detail.Map.change_basemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      change_basemap()
     </span>
   </a>
   
@@ -1089,6 +1107,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#skiba.map_detail.Map.add_layer_control" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_layer_control()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#skiba.map_detail.Map.add_points" class="md-nav__link">
     <span class="md-ellipsis">
       add_points()
@@ -1110,6 +1137,15 @@
   <a href="#skiba.map_detail.Map.add_widgets" class="md-nav__link">
     <span class="md-ellipsis">
       add_widgets()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.map_detail.Map.change_basemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      change_basemap()
     </span>
   </a>
   
@@ -1197,6 +1233,11 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
         <span class="n">url</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ipyleaflet.basemaps.</span><span class="si">{</span><span class="n">basemap</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
         <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">basemap</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_layer_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a layer control widget to the map.&quot;&quot;&quot;</span>
+        <span class="n">control</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">LayersControl</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">add_geojson</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1293,7 +1334,7 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
     <span class="k">def</span><span class="w"> </span><span class="nf">add_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates and displays widgets for user interaction.&quot;&quot;&quot;</span>
 
-        <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">jslink</span><span class="p">,</span> <span class="n">FloatSlider</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">jslink</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">WidgetControl</span>
 
         <span class="c1"># date_picker = widgets.DatePicker(description=&quot;Pick a Date&quot;, disabled=False)</span>
@@ -1314,11 +1355,75 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
         <span class="n">jslink</span><span class="p">((</span><span class="n">opacity_slider</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">basemap_layer</span><span class="p">,</span> <span class="s2">&quot;opacity&quot;</span><span class="p">))</span>
         <span class="n">opacity_control</span> <span class="o">=</span> <span class="n">WidgetControl</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">opacity_slider</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
 
-        <span class="c1"># jslink((date_picker, &quot;value&quot;), (self, &quot;date&quot;))</span>
-        <span class="c1"># date_control = WidgetControl(widget = date_picker, position=&quot;bottomright&quot;)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">opacity_control</span><span class="p">)</span>
         <span class="c1"># self.add(date_control)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">change_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Changes the basemap of the map using a dropdown selector.&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">ToggleButton</span><span class="p">,</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">Layout</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">WidgetControl</span><span class="p">,</span> <span class="n">basemap_to_tiles</span><span class="p">,</span> <span class="n">basemaps</span>
+
+        <span class="c1"># Map dropdown names to actual basemap objects</span>
+        <span class="n">BASEMAP_LOOKUP</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span>
+            <span class="s2">&quot;OpenTopoMap&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">OpenTopoMap</span><span class="p">,</span>
+            <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">Esri</span><span class="o">.</span><span class="n">WorldImagery</span><span class="p">,</span>
+            <span class="s2">&quot;CartoDB.DarkMatter&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">DarkMatter</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Create widgets</span>
+        <span class="n">toggle</span> <span class="o">=</span> <span class="n">ToggleButton</span><span class="p">(</span>
+            <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Toggle basemap selector&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;map&quot;</span><span class="p">,</span>
+            <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;38px&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;38px&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="n">dropdown</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span>
+            <span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">BASEMAP_LOOKUP</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="n">value</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Basemap:&quot;</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
+            <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;250px&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;38px&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Store reference to current basemap layer</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;current_basemap&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_basemap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">on_dropdown_change</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Handle basemap selection changes&quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
+                <span class="n">new_basemap</span> <span class="o">=</span> <span class="n">basemap_to_tiles</span><span class="p">(</span><span class="n">BASEMAP_LOOKUP</span><span class="p">[</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">substitute_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_basemap</span><span class="p">,</span> <span class="n">new_basemap</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">current_basemap</span> <span class="o">=</span> <span class="n">new_basemap</span>
+
+        <span class="c1"># def on_toggle_change(change):</span>
+        <span class="c1">#     &quot;&quot;&quot;Toggle visibility of dropdown&quot;&quot;&quot;</span>
+        <span class="c1">#     if change[&quot;new&quot;]:</span>
+        <span class="c1">#         dropdown.layout.visibility = &#39;visible&#39;  # Show dropdown</span>
+        <span class="c1">#     else:</span>
+        <span class="c1">#         dropdown.layout.visibility = &#39;hidden&#39;   # Hide dropdown</span>
+
+        <span class="c1"># Set up event handlers</span>
+        <span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Assemble and add control</span>
+        <span class="n">widget_box</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">toggle</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">])</span>
+
+        <span class="n">is_open</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">]</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">on_toggle_change</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Toggle visibility of dropdown&quot;&quot;&quot;</span>
+            <span class="k">if</span> <span class="n">is_open</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
+                <span class="n">widget_box</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">(</span><span class="n">toggle</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">widget_box</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">(</span><span class="n">toggle</span><span class="p">,)</span>
+
+        <span class="n">toggle</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">on_toggle_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+        <span class="n">control</span> <span class="o">=</span> <span class="n">WidgetControl</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">widget_box</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
 
     <span class="c1"># Using geemap, ipyleaflet, and ipywidgets create a map with a dropdown menu that has any Google Earth Engine dataset</span>
 </code></pre></div>
@@ -1563,6 +1668,34 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
 
 
 
+<h3 id="skiba.map_detail.Map.add_layer_control" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_layer_control</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#skiba.map_detail.Map.add_layer_control" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds a layer control widget to the map.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>skiba/map_detail.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_layer_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds a layer control widget to the map.&quot;&quot;&quot;</span>
+    <span class="n">control</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">LayersControl</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 id="skiba.map_detail.Map.add_points" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">add_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
@@ -1720,7 +1853,7 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates and displays widgets for user interaction.&quot;&quot;&quot;</span>
 
-    <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">jslink</span><span class="p">,</span> <span class="n">FloatSlider</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">jslink</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">WidgetControl</span>
 
     <span class="c1"># date_picker = widgets.DatePicker(description=&quot;Pick a Date&quot;, disabled=False)</span>
@@ -1741,11 +1874,98 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
     <span class="n">jslink</span><span class="p">((</span><span class="n">opacity_slider</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">basemap_layer</span><span class="p">,</span> <span class="s2">&quot;opacity&quot;</span><span class="p">))</span>
     <span class="n">opacity_control</span> <span class="o">=</span> <span class="n">WidgetControl</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">opacity_slider</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
 
-    <span class="c1"># jslink((date_picker, &quot;value&quot;), (self, &quot;date&quot;))</span>
-    <span class="c1"># date_control = WidgetControl(widget = date_picker, position=&quot;bottomright&quot;)</span>
-
     <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">opacity_control</span><span class="p">)</span>
     <span class="c1"># self.add(date_control)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="skiba.map_detail.Map.change_basemap" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">change_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#skiba.map_detail.Map.change_basemap" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Changes the basemap of the map using a dropdown selector.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>skiba/map_detail.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">change_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Changes the basemap of the map using a dropdown selector.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">ToggleButton</span><span class="p">,</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">Layout</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">WidgetControl</span><span class="p">,</span> <span class="n">basemap_to_tiles</span><span class="p">,</span> <span class="n">basemaps</span>
+
+    <span class="c1"># Map dropdown names to actual basemap objects</span>
+    <span class="n">BASEMAP_LOOKUP</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="p">,</span>
+        <span class="s2">&quot;OpenTopoMap&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">OpenTopoMap</span><span class="p">,</span>
+        <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">Esri</span><span class="o">.</span><span class="n">WorldImagery</span><span class="p">,</span>
+        <span class="s2">&quot;CartoDB.DarkMatter&quot;</span><span class="p">:</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">DarkMatter</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Create widgets</span>
+    <span class="n">toggle</span> <span class="o">=</span> <span class="n">ToggleButton</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Toggle basemap selector&quot;</span><span class="p">,</span>
+        <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;map&quot;</span><span class="p">,</span>
+        <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;38px&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;38px&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">dropdown</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span>
+        <span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">BASEMAP_LOOKUP</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+        <span class="n">value</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Basemap:&quot;</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
+        <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s2">&quot;250px&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;38px&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Store reference to current basemap layer</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;current_basemap&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_basemap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_dropdown_change</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Handle basemap selection changes&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
+            <span class="n">new_basemap</span> <span class="o">=</span> <span class="n">basemap_to_tiles</span><span class="p">(</span><span class="n">BASEMAP_LOOKUP</span><span class="p">[</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">substitute_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_basemap</span><span class="p">,</span> <span class="n">new_basemap</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_basemap</span> <span class="o">=</span> <span class="n">new_basemap</span>
+
+    <span class="c1"># def on_toggle_change(change):</span>
+    <span class="c1">#     &quot;&quot;&quot;Toggle visibility of dropdown&quot;&quot;&quot;</span>
+    <span class="c1">#     if change[&quot;new&quot;]:</span>
+    <span class="c1">#         dropdown.layout.visibility = &#39;visible&#39;  # Show dropdown</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         dropdown.layout.visibility = &#39;hidden&#39;   # Hide dropdown</span>
+
+    <span class="c1"># Set up event handlers</span>
+    <span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Assemble and add control</span>
+    <span class="n">widget_box</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">toggle</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">])</span>
+
+    <span class="n">is_open</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_toggle_change</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Toggle visibility of dropdown&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_open</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
+            <span class="n">widget_box</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">(</span><span class="n">toggle</span><span class="p">,</span> <span class="n">dropdown</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">widget_box</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">(</span><span class="n">toggle</span><span class="p">,)</span>
+
+    <span class="n">toggle</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">on_toggle_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+    <span class="n">control</span> <span class="o">=</span> <span class="n">WidgetControl</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">widget_box</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
