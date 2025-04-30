@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A python package for a class">
+        <meta name="description" content="A python package for a foresters to query Google Earth Engine data">
       
       
         <meta name="author" content="taraskiba">
@@ -73,7 +73,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="iceberg" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -131,7 +131,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="iceberg" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
@@ -141,7 +141,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="iceberg" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
@@ -961,6 +961,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#skiba.ipyleafletcode.Map.add_search_marker" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_search_marker()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#skiba.ipyleafletcode.Map.add_shp" class="md-nav__link">
     <span class="md-ellipsis">
       add_shp()
@@ -1175,6 +1184,15 @@
   <a href="#skiba.ipyleafletcode.Map.add_raster" class="md-nav__link">
     <span class="md-ellipsis">
       add_raster()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.ipyleafletcode.Map.add_search_marker" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_search_marker()
     </span>
   </a>
   
@@ -1468,12 +1486,10 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
 <span class="sd">            layers (str): The layers to display.</span>
 <span class="sd">            **kwargs: Additional keyword arguments for the ipyleaflet.WMSLayer layer.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">WMSLayer</span><span class="p">,</span> <span class="n">Map</span><span class="p">,</span> <span class="n">basemaps</span>
-
         <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">WMSLayer</span><span class="p">(</span>
             <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">layers</span><span class="o">=</span><span class="n">layers</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="n">transparent</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">change_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1542,6 +1558,24 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
 
         <span class="n">control</span> <span class="o">=</span> <span class="n">WidgetControl</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">widget_box</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_search_marker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a search marker to the map.&quot;&quot;&quot;</span>
+
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">Map</span><span class="p">,</span> <span class="n">SearchControl</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">AwesomeIcon</span>
+
+        <span class="n">search_marker</span> <span class="o">=</span> <span class="n">Marker</span><span class="p">(</span>
+            <span class="n">icon</span><span class="o">=</span><span class="n">AwesomeIcon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;search&quot;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">icon_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">search_control</span> <span class="o">=</span> <span class="n">SearchControl</span><span class="p">(</span>
+            <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topleft&quot;</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://nominatim.openstreetmap.org/search?format=json&amp;q=</span><span class="si">{s}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">search_marker</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">search_control</span><span class="p">)</span>
 </code></pre></div>
         </details>
 
@@ -1999,6 +2033,47 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
 
 
 
+<h3 id="skiba.ipyleafletcode.Map.add_search_marker" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_search_marker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#skiba.ipyleafletcode.Map.add_search_marker" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds a search marker to the map.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>skiba/ipyleafletcode.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_search_marker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds a search marker to the map.&quot;&quot;&quot;</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">Map</span><span class="p">,</span> <span class="n">SearchControl</span><span class="p">,</span> <span class="n">Marker</span><span class="p">,</span> <span class="n">AwesomeIcon</span>
+
+    <span class="n">search_marker</span> <span class="o">=</span> <span class="n">Marker</span><span class="p">(</span>
+        <span class="n">icon</span><span class="o">=</span><span class="n">AwesomeIcon</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;search&quot;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">icon_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">search_control</span> <span class="o">=</span> <span class="n">SearchControl</span><span class="p">(</span>
+        <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topleft&quot;</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://nominatim.openstreetmap.org/search?format=json&amp;q=</span><span class="si">{s}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">zoom</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">search_marker</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">search_control</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 id="skiba.ipyleafletcode.Map.add_shp" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">add_shp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
@@ -2267,12 +2342,10 @@ Map            (<span title="ipyleaflet.leaflet.Map">Map</span>)
 <span class="sd">        layers (str): The layers to display.</span>
 <span class="sd">        **kwargs: Additional keyword arguments for the ipyleaflet.WMSLayer layer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="kn">from</span><span class="w"> </span><span class="nn">ipyleaflet</span><span class="w"> </span><span class="kn">import</span> <span class="n">WMSLayer</span><span class="p">,</span> <span class="n">Map</span><span class="p">,</span> <span class="n">basemaps</span>
-
     <span class="n">layer</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">WMSLayer</span><span class="p">(</span>
         <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">layers</span><span class="o">=</span><span class="n">layers</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">,</span> <span class="n">transparent</span><span class="o">=</span><span class="n">transparent</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span>
+
     <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </code></pre></div>
         </details>
