@@ -3,6 +3,7 @@ geemap
 geopandas
 ipyleaflet
 ipywidgets
+leafmap
 localtileserver
 matplotlib
 numpy
