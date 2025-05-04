@@ -5,6 +5,7 @@ tags:
     - forestry
     - natural resources
     - Google Earth Engine
+
 authors:
     - name: Tara Skiba
         orcid: 0009-0002-5354-3319
@@ -30,7 +31,7 @@ bibliography: paper.bib
 ---
 
 # Summary
-`skiba` is a python package deployed on hugging face to allow natural resource professionals such as foresters or wildlife managers to access and retrieve data from Google Earth Engine. This purpose of this package is designed to extract values for a list of provided coordinate points.
+`skiba` is a python package deployed on hugging face to allow natural resource professionals such as foresters or wildlife managers to access and retrieve data from Google Earth Engine. This purpose of this package is designed to extract values for a list of provided coordinate points with .
 
 # Introduction
 
