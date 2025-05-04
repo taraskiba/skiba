@@ -80,8 +80,8 @@ nav:
     - Changelog: changelog.md
     - Report Issues: https://github.com/taraskiba/skiba/issues
     - Publication:
-        - Paper: paper.md
-        - Bibliography: paper.bib
+        - Paper: paper/paper.md
+        - Bibliography: paper/paper.bib
     - Examples:
         - examples/intro.ipynb
         - examples/map.ipynb
