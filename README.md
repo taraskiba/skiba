@@ -12,6 +12,7 @@
 -   Documentation: https://taraskiba.github.io/skiba
 
 
+
 ## Features
 
 -   Create a map with provided coordinates
