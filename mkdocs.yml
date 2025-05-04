@@ -22,8 +22,8 @@ theme:
               name: Switch to light mode
     name: material
     icon:
-        repo: files/logo.png
-    # logo: assets/logo.png
+        repo: fontawesome/brands/github
+    logo: files/logo.png
     # favicon: assets/favicon.png
     features:
         - navigation.instant

@@ -10,7 +10,7 @@
 -   Free software: MIT License
 -   Documentation: <https://taraskiba.github.io/skiba>
 
-![GeoSoft Design](https://github.com/taraskiba/skiba/tree/main/docs/files/logo.png)
+![ForestSPOT](https://github.com/taraskiba/skiba/tree/main/docs/files/logo.png)
 ## Features
 
 -   Create a map with provided coordinates
