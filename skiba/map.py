@@ -166,7 +166,7 @@ class Map(ipyleaflet.Map):
             disabled=False,
             button_style="",  # 'success', 'info', 'warning', 'danger' or ''
             tooltip="Click me",
-            icon="gear",  # (FontAwesome names without the `fa-` prefix)
+            icon="regular circle dot",  # (FontAwesome names without the `fa-` prefix)
         )
 
         self.file_upload = FileUpload(
