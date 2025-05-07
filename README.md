@@ -6,10 +6,14 @@
 
 
 **A python package for foresters to query Google Earth Engine data**
+## Streamlining the process to bring remotely sensed data to foresters
 
 
 -   Free software: MIT License
 -   Documentation: https://taraskiba.github.io/skiba
+
+
+[![ForestSPOT](https://github.com/taraskiba/skiba/tree/main/docs/files/logo.png)](https://github.com/taraskiba/skiba)
 
 
 
@@ -17,3 +21,5 @@
 
 -   Create a map with provided coordinates
 -   Access and retrieve band values from Google Earth Engine for provided coordinates.
+-   Further developments to come!
+-   Please understand the limitations of confidentiality before use.

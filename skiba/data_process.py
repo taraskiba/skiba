@@ -11,10 +11,134 @@ import os
 
 
 class data_process:
-    def __init__(self, data, **kwargs):
-        self.data = data
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+    def __init__(self):
+        # File Upload
+        self.file_upload = widgets.FileUpload(
+            accept=".csv, .txt",  # Accepted file extension e.g. '.txt', '.pdf', 'image/*', 'image/*,.pdf'
+            multiple=False,  # True to accept multiple files upload else False
+        )
+        # Dropdown
+        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
+        data = data_process.fetch_geojson(url)
+        data_dict = {item["title"]: item["id"] for item in data if "title" in item}
+        self.dropdown = widgets.Dropdown(
+            options=data_dict,  # keys shown, values returned
+            description="Dataset:",
+            disabled=False,
+        )
+
+        self.start_date = widgets.DatePicker(description="Start Date", disabled=False)
+        self.end_date = widgets.DatePicker(description="End Date", disabled=False)
+
+        self.run_button = widgets.Button(
+            description="Run Query",
+            disabled=False,
+            button_style="",  # 'success', 'info', 'warning', 'danger' or ''
+            tooltip="Click me",
+            icon="check",  # (FontAwesome names without the `fa-` prefix)
+        )
+
+        self.output = widgets.Output()
+
+        self.run_button.on_click(self.on_button_clicked)
+        self.dropdown.observe(self.on_dropdown_change, names="value")
+
+        self.hbox = widgets.HBox(
+            [
+                self.file_upload,
+                self.dropdown,
+                self.start_date,
+                self.end_date,
+                self.run_button,
+            ]
+        )
+        self.vbox = widgets.VBox([self.hbox, self.output])
+
+    def on_dropdown_change(self, change):
+        if change["new"]:
+            with self.output:
+                self.output.clear_output()
+                catalog = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
+                data = data_process.fetch_geojson(catalog)
+                data_dict = {item["id"]: item["url"] for item in data if "id" in item}
+                change_value = str(change["new"])
+                url = data_dict.get(change_value)
+                print(f"Selected dataset: {change['new']}")
+                print(f"URL: {url}")
+
+    def on_button_clicked(self, b):
+        with self.output:
+            self.output.clear_output()
+            print(
+                f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
+            )
+
+            import io
+
+            if self.file_upload.value:
+                # For the first file (if multiple=False)
+                file_info = self.file_upload.value[0]
+                content_bytes = file_info["content"].tobytes()  # file content as bytes
+                filename = file_info["name"]
+                print(f"Filename: {filename}")
+                points = pd.read_csv(io.BytesIO(content_bytes))
+            else:
+                print("Please upload a CSV file.")
+
+            geedata = self.dropdown.value
+            start_date = self.start_date.value
+            end_date = self.end_date.value
+
+            self.get_coordinate_data(
+                data=points, geedata=geedata, start_date=start_date, end_date=end_date
+            )
+
+    def get_coordinate_data(self, data, geedata, start_date, end_date, **kwargs):
+        """
+        Pull data from provided coordinates from GEE.
+
+        Args:
+            data (str): The data to get the coordinate data from.
+
+        Returns:
+            data (str): CSV file contained GEE data.
+        """
+
+        # Load data with safety checks
+        if isinstance(data, str):
+            coordinates = pd.read_csv(data)
+            gdf = gpd.GeoDataFrame(
+                coordinates,
+                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
+                crs="EPSG:4326",  # Directly set CRS during creation
+            )
+        elif isinstance(data, pd.DataFrame):
+            coordinates = data
+            gdf = gpd.GeoDataFrame(
+                coordinates,
+                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
+                crs="EPSG:4326",  # Directly set CRS during creation
+            )
+        else:
+            gdf = data.to_crs(epsg=4326)  # Ensure WGS84
+
+        geojson = gdf.__geo_interface__
+        fc = gm.geojson_to_ee(geojson)
+
+        # Load the GEE dataset as an image
+        geeimage = data_process.load_gee_as_image(geedata, start_date, end_date)
+
+        name = geedata
+        file_name = name.replace("/", "_")
+
+        out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+        output_file = f"{file_name}.csv"
+        out_path = os.path.join(out_dir, output_file)
+
+        # Retrieve data from the image using sampleRegions
+        sampled_data = gm.extract_values_to_points(fc, geeimage, out_path)
+
+        return sampled_data
 
     def fetch_geojson(url):
         try:
@@ -47,7 +171,6 @@ class data_process:
 
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
 
-        # Step 4: Create the dropdown
         dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
@@ -109,43 +232,3 @@ class data_process:
             raise ValueError(
                 "Dataset ID is not a valid Image, ImageCollection, or FeatureCollection."
             )
-
-    def get_coordinate_data(data, geedata, **kwargs):
-        """
-        Pull data from provided coordinates from GEE.
-
-        Args:
-            data (str): The data to get the coordinate data from.
-
-        Returns:
-            data (str): CSV file contained GEE data.
-        """
-
-        # Load data with safety checks
-        if isinstance(data, str):
-            coordinates = pd.read_csv(data)
-            gdf = gpd.GeoDataFrame(
-                coordinates,
-                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            )
-        else:
-            gdf = data.to_crs(epsg=4326)  # Ensure WGS84
-
-        geojson = gdf.__geo_interface__
-        fc = gm.geojson_to_ee(geojson)
-
-        # Load the GEE dataset as an image
-        geeimage = data_process.load_gee_as_image(geedata)
-
-        name = geedata
-        file_name = name.replace("/", "_")
-
-        out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
-        output_file = f"{file_name}.csv"
-        out_path = os.path.join(out_dir, output_file)
-
-        # Retrieve data from the image using sampleRegions
-        sampled_data = gm.extract_values_to_points(fc, geeimage, out_path)
-
-        return sampled_data
