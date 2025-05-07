@@ -21,7 +21,7 @@
         <link rel="next" href="../map_detail/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../files/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
@@ -573,12 +573,104 @@
   
   
     <li class="md-nav__item">
+      <a href="../examples/data_process_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data process demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/data_process_full_walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data process full walkthrough
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples/map/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/map_demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map demo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/map_happy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Map happy
     
   </span>
   
@@ -625,75 +717,6 @@
   
   <span class="md-ellipsis">
     Ipyleaflet demo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/map_demo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Map demo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/data_process_demo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Data process demo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/map_detail/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Map detail
     
   </span>
   
@@ -982,6 +1005,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    map
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1125,10 +1171,134 @@ data_process        </code>
         <details class="quote">
           <summary>Source code in <code>skiba/data_process.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">data_process</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># File Upload</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FileUpload</span><span class="p">(</span>
+            <span class="n">accept</span><span class="o">=</span><span class="s2">&quot;.csv, .txt&quot;</span><span class="p">,</span>  <span class="c1"># Accepted file extension e.g. &#39;.txt&#39;, &#39;.pdf&#39;, &#39;image/*&#39;, &#39;image/*,.pdf&#39;</span>
+            <span class="n">multiple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># True to accept multiple files upload else False</span>
+        <span class="p">)</span>
+        <span class="c1"># Dropdown</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data_process</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+            <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
+            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;End Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Run Query&quot;</span><span class="p">,</span>
+            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">button_style</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Click me&quot;</span><span class="p">,</span>
+            <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;check&quot;</span><span class="p">,</span>  <span class="c1"># (FontAwesome names without the `fa-` prefix)</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_dropdown_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+                <span class="n">catalog</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data_process</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span>
+                <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
+                <span class="n">change_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">change_value</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected dataset: </span><span class="si">{</span><span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">on_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">. CSV file will be saved to Downloads folder under this name.&quot;</span>
+            <span class="p">)</span>
+
+            <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="c1"># For the first file (if multiple=False)</span>
+                <span class="n">file_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>  <span class="c1"># file content as bytes</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content_bytes</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a CSV file.&quot;</span><span class="p">)</span>
+
+            <span class="n">geedata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">value</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_coordinate_data</span><span class="p">(</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">geedata</span><span class="o">=</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Pull data from provided coordinates from GEE.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (str): The data to get the coordinate data from.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            data (str): CSV file contained GEE data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Load data with safety checks</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+                <span class="n">coordinates</span><span class="p">,</span>
+                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
+                <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">coordinates</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+                <span class="n">coordinates</span><span class="p">,</span>
+                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
+                <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
+
+        <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
+        <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
+
+        <span class="c1"># Load the GEE dataset as an image</span>
+        <span class="n">geeimage</span> <span class="o">=</span> <span class="n">data_process</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="n">geedata</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+        <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+        <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+
+        <span class="c1"># Retrieve data from the image using sampleRegions</span>
+        <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">sampled_data</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1161,7 +1331,6 @@ data_process        </code>
 
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
 
-        <span class="c1"># Step 4: Create the dropdown</span>
         <span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
             <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
@@ -1223,46 +1392,6 @@ data_process        </code>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Dataset ID is not a valid Image, ImageCollection, or FeatureCollection.&quot;</span>
             <span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Pull data from provided coordinates from GEE.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            data (str): The data to get the coordinate data from.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            data (str): CSV file contained GEE data.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="c1"># Load data with safety checks</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-                <span class="n">coordinates</span><span class="p">,</span>
-                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-                <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
-
-        <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
-        <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
-
-        <span class="c1"># Load the GEE dataset as an image</span>
-        <span class="n">geeimage</span> <span class="o">=</span> <span class="n">data_process</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">)</span>
-
-        <span class="n">name</span> <span class="o">=</span> <span class="n">geedata</span>
-        <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
-
-        <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
-        <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
-        <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
-
-        <span class="c1"># Retrieve data from the image using sampleRegions</span>
-        <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">sampled_data</span>
 </code></pre></div>
         </details>
 
@@ -1347,7 +1476,6 @@ data_process        </code>
 
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
 
-    <span class="c1"># Step 4: Create the dropdown</span>
     <span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
         <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
@@ -1369,7 +1497,7 @@ data_process        </code>
 
 
 <h3 id="skiba.data_process.data_process.get_coordinate_data" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_coordinate_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#skiba.data_process.data_process.get_coordinate_data" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -1414,7 +1542,7 @@ data_process        </code>
 </table>
         <details class="quote">
           <summary>Source code in <code>skiba/data_process.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Pull data from provided coordinates from GEE.</span>
 
@@ -1433,6 +1561,13 @@ data_process        </code>
             <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
             <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
         <span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="n">coordinates</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+            <span class="n">coordinates</span><span class="p">,</span>
+            <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
+            <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
+        <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
 
@@ -1440,7 +1575,7 @@ data_process        </code>
     <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
 
     <span class="c1"># Load the GEE dataset as an image</span>
-    <span class="n">geeimage</span> <span class="o">=</span> <span class="n">data_process</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">)</span>
+    <span class="n">geeimage</span> <span class="o">=</span> <span class="n">data_process</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="n">geedata</span>
     <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
@@ -1577,6 +1712,8 @@ Optionally filters by start and end date if applicable.</p>
     </div>
 
   </div>
+
+
 
 
 
