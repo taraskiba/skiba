@@ -5,8 +5,8 @@
 [![image](https://img.shields.io/conda/vn/conda-forge/skiba.svg)](https://anaconda.org/conda-forge/skiba)
 
 
-**A python package for foresters to query Google Earth Engine data**
-## Streamlining the process to bring remotely sensed data to foresters
+### A python package for foresters to query Google Earth Engine data
+** Streamlining the process to bring remotely sensed data to foresters **
 
 
 -   Free software: MIT License
@@ -23,3 +23,6 @@
 -   Access and retrieve band values from Google Earth Engine for provided coordinates.
 -   Further developments to come!
 -   Please understand the limitations of confidentiality before use.
+
+### Logo Credit
+-   Logo was designed by HiDream-I1-Dev (https://huggingface.co/spaces/HiDream-ai/HiDream-I1-Dev)
