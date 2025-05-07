@@ -13,7 +13,7 @@
 -   Documentation: https://taraskiba.github.io/skiba
 
 
-[![ForestSPOT](https://github.com/taraskiba/skiba/tree/main/docs/files/logo.png)](https://github.com/taraskiba/skiba)
+[![ForestSPOT](docs/files/logo.png)](https://github.com/taraskiba/skiba)
 
 
 
