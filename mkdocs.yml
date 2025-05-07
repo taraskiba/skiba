@@ -24,7 +24,7 @@ theme:
     icon:
         repo: fontawesome/brands/github
     logo: files/logo.png
-    # favicon: assets/favicon.png
+    favicon: files/logo.png
     features:
         - navigation.instant
         - navigation.tracking
@@ -84,12 +84,14 @@ nav:
         - Bibliography: paper/paper.bib
     - Examples:
         - examples/intro.ipynb
+        - examples/data_process_demo.ipynb
+        - examples/data_process_full_walkthrough.ipynb
         - examples/map.ipynb
+        - examples/map_demo.ipynb
+        - examples/map_happy.ipynb
         - examples/folium_demo.ipynb
         - examples/ipyleaflet_demo.ipynb
-        - examples/map_demo.ipynb
-        - examples/data_process_demo.ipynb
-        - examples/map_detail.ipynb
+
     - API Reference:
           - skiba module: skiba.md
           - common module: common.md
@@ -97,3 +99,4 @@ nav:
           - ipyleaflet: ipyleafletcode.md
           - data_process: data_process.md
           - map_detail: map_detail.md
+          - map: map.md
