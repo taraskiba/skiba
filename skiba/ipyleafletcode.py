@@ -124,6 +124,12 @@ class Map(ipyleaflet.Map):
         else:
             raise ValueError("Invalid data type")
 
+    def handle_click(self, **kwargs):
+        import ipywidgets as widgets
+
+        if kwargs.get("type") == "click":
+            self.add_layer(widgets.Marker(location=kwargs.get("coordinates")))
+
     def add_layer_control(self):
         """Adds a layer control widget to the map."""
         control = ipyleaflet.LayersControl(position="topright")

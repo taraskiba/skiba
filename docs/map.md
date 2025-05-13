@@ -1,4 +1,0 @@
-
-# map module
-
-::: skiba.map

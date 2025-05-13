@@ -16,6 +16,8 @@
 [![ForestSPOT](docs/files/logo.png)](https://github.com/taraskiba/skiba)
 
 
+## Walkthrough and Demonstration
+[![SkibaVideo](https://youtu.be/eaoYLEwzeQc?si=qXwAPfExQKgODc24)](https://youtu.be/eaoYLEwzeQc?si=qXwAPfExQKgODc24)
 
 ## Features
 
@@ -23,6 +25,11 @@
 -   Access and retrieve band values from Google Earth Engine for provided coordinates.
 -   Further developments to come!
 -   Please understand the limitations of confidentiality before use.
+
+## Installation
+```python
+pip install skiba
+```
 
 ### Logo Credit
 -   Logo was designed by HiDream-I1-Dev (https://huggingface.co/spaces/HiDream-ai/HiDream-I1-Dev)

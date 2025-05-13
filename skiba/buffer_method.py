@@ -12,9 +12,14 @@ import os
 
 class buffer_method:
     def __init__(self):
+        """
+        Initializes the buffer_method class and sets up the GUI components.
+        Part 2 of buffered coordinates approach which accesses GEE datasets and extracts median values.
+        (Part 1 is in buffer_coordinates.py)
+        """
         # File Upload
         self.file_upload = widgets.FileUpload(
-            accept=".csv, .txt",  # Accepted file extension e.g. '.txt', '.pdf', 'image/*', 'image/*,.pdf'
+            accept=".geojson",  # Accepted file extension e.g. '.txt', '.pdf', 'image/*', 'image/*,.pdf'
             multiple=False,  # True to accept multiple files upload else False
         )
         # Dropdown
@@ -25,16 +30,6 @@ class buffer_method:
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
             disabled=False,
-        )
-
-        self.buffer_radius = widgets.FloatText(
-            value=10,
-            description="Buffer radius (m):",
-            disabled=False,
-            display="flex",
-            flex_flow="column",
-            align_items="stretch",
-            style={"description_width": "initial"},
         )
 
         self.start_date = widgets.DatePicker(description="Start Date", disabled=False)
@@ -53,7 +48,7 @@ class buffer_method:
         self.run_button.on_click(self.on_button_clicked)
         self.dropdown.observe(self.on_dropdown_change, names="value")
 
-        self.hbox = widgets.HBox([self.file_upload, self.buffer_radius, self.dropdown])
+        self.hbox = widgets.HBox([self.file_upload, self.dropdown])
 
         self.hbox_bottom = widgets.HBox(
             [self.start_date, self.end_date, self.run_button]
@@ -61,6 +56,8 @@ class buffer_method:
         self.vbox = widgets.VBox([self.hbox, self.hbox_bottom, self.output])
 
     def on_dropdown_change(self, change):
+        """
+        Callback function to handle dropdown value changes."""
         if change["new"]:
             with self.output:
                 self.output.clear_output()
@@ -73,74 +70,74 @@ class buffer_method:
                 print(f"URL: {url}")
 
     def on_button_clicked(self, b):
+        """
+        Callback function to handle button click events.
+        """
+        import io
+
         with self.output:
             self.output.clear_output()
             print(
                 f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
             )
 
-            import io
-
             if self.file_upload.value:
-                # For the first file (if multiple=False)
                 file_info = self.file_upload.value[0]
-                content_bytes = file_info["content"].tobytes()  # file content as bytes
+                content_bytes = file_info["content"].tobytes()
                 filename = file_info["name"]
                 print(f"Filename: {filename}")
-                points = pd.read_csv(io.BytesIO(content_bytes))
-            else:
-                print("Please upload a CSV file.")
 
-            radius_meters = self.buffer_radius.value
+                # --- Modification: Read GeoJSON from bytes ---
+                # Use BytesIO to read the uploaded GeoJSON file
+                geojson_buffer = io.BytesIO(content_bytes)
+                points = gpd.read_file(geojson_buffer)
+            else:
+                print("Please upload a GeoJSON file.")
+                return
+
             geedata = self.dropdown.value
             start_date = self.start_date.value
             end_date = self.end_date.value
 
-            out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
-            output_file = f"{radius_meters}.shp"
-            out_path = os.path.join(out_dir, output_file)
-
-            self.create_buffers(
-                data=points, radius_meters=radius_meters, output_shp=out_path
-            )
-
             self.extract_median_values(
-                data=out_path, geedata=geedata, start_date=start_date, end_date=end_date
+                data=points, geedata=geedata, start_date=start_date, end_date=end_date
             )
-
-    def create_buffers(self, data, radius_meters, output_shp):
-        """
-        Create buffers around provided coordinates and save as shapefile.
-        """
-        if isinstance(data, str):
-            coordinates = pd.read_csv(data)
-            gdf = gpd.GeoDataFrame(
-                coordinates,
-                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            )
-        elif isinstance(data, pd.DataFrame):
-            coordinates = data
-            gdf = gpd.GeoDataFrame(
-                coordinates,
-                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            )
-        else:
-            gdf = data.to_crs(epsg=4326)  # Ensure WGS84
-
-        # Convert to UTM for accurate buffering
-        utm_crs = gdf.estimate_utm_crs()
-        buffered = gdf.to_crs(utm_crs).buffer(radius_meters).to_crs("EPSG:4326")
-
-        # Save buffers as shapefile
-        buffer_gdf = gpd.GeoDataFrame(geometry=buffered)
-        buffer_gdf.to_file(output_shp)
-        return buffer_gdf
 
     def extract_median_values(self, data, geedata, start_date, end_date, **kwargs):
+        """
+        Extracts median values from a GEE dataset for the given geometry.
 
-        fc = gm.shp_to_ee(data)
+        Args:
+            data (str, pd.DataFrame, gpd.GeoDataFrame): Input data (GeoJSON, DataFrame, or GeoDataFrame).
+            geedata (str): GEE dataset ID.
+            start_date (str): Start date for filtering the dataset.
+            end_date (str): End date for filtering the dataset.
+            **kwargs: Additional arguments for the GEE dataset.
+        """
+        if isinstance(data, str):
+            # Assume the file is a GeoJSON or Shapefile with polygons
+            gdf = gpd.read_file(data)
+            if gdf.crs is None:
+                gdf.set_crs("EPSG:4326", inplace=True)
+            else:
+                gdf = gdf.to_crs("EPSG:4326")
+        elif isinstance(data, pd.DataFrame):
+            # If you have a DataFrame, it should already have a 'geometry' column with Polygon objects
+            # If not, you need to construct it-otherwise, just convert to GeoDataFrame
+            gdf = gpd.GeoDataFrame(data, geometry="geometry")
+            if gdf.crs is None:
+                gdf.set_crs("EPSG:4326", inplace=True)
+            else:
+                gdf = gdf.to_crs("EPSG:4326")
+        else:
+            # If already a GeoDataFrame
+            if data.crs is None:
+                gdf = data.set_crs("EPSG:4326")
+            else:
+                gdf = data.to_crs("EPSG:4326")
+
+        geojson = gdf.__geo_interface__
+        fc = gm.geojson_to_ee(geojson)
 
         # Load the GEE dataset as an image
         geeimage = buffer_method.load_gee_as_image(geedata, start_date, end_date)
@@ -158,6 +155,11 @@ class buffer_method:
         return sampled_data
 
     def fetch_geojson(url):
+        """
+        Fetches GeoJSON data from a given URL.
+
+        Args:
+            url (str): URL to the GeoJSON file."""
         try:
             response = requests.get(url)
             response.raise_for_status()  # Raises an exception for HTTP errors
@@ -197,6 +199,11 @@ class buffer_method:
         return dropdown
 
     def add_date_picker():
+        """
+        Creates a date picker widget for selecting dates.
+
+        Returns:
+            ipywidgets.DatePicker: A date picker widget for selecting dates."""
         date_picker = widgets.DatePicker(description="Pick a Date", disabled=False)
 
         return date_picker

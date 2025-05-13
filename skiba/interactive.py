@@ -10,9 +10,15 @@ import geemap as gm
 
 
 class Map(ipyleaflet.Map):
-
     def __init__(self, center=[37.5, -95], zoom=4, height="600px", **kwargs):
+        """Initialize the map with a given center and zoom level.
 
+        Args:
+            center (list, optional): Center coordinates of the map. Defaults to [37.5, -95].
+            zoom (int, optional): Zoom level of the map. Defaults to 4.
+            height (str, optional): Height of the map. Defaults to "600px".
+            **kwargs: Additional keyword arguments for ipyleaflet.Map.
+        """
         super().__init__(center=center, zoom=zoom, **kwargs)
         self.layout.height = height
         self.scroll_wheel_zoom = True
@@ -20,6 +26,9 @@ class Map(ipyleaflet.Map):
         self.change_basemap()
         self.add_search_marker()
         self.upload_points()
+        self.change_built_in_shapefiles()
+        self.on_interaction(self.handle_click)
+        self.geojson_button()
 
     def add_basemap(self, basemap="Esri.WorldImagery"):
         """Add basemap to the map.
@@ -52,17 +61,19 @@ class Map(ipyleaflet.Map):
         layer = ipyleaflet.TileLayer(url=url, name="Google Map")
         self.add(layer)
 
+    def handle_click(self, **kwargs):
+        """Handles click events on the map."""
+        if kwargs.get("type") == "click":
+            self.add_layer(ipyleaflet.Marker(location=kwargs.get("coordinates")))
+
+            print(f"Clicked at: {kwargs.get('coordinates')}")
+
     def add_layer_control(self):
         """Adds a layer control widget to the map."""
         control = ipyleaflet.LayersControl(position="topright")
         self.add_control(control)
 
-    def add_geojson(
-        self,
-        data,
-        hover_style=None,
-        **kwargs,
-    ):
+    def add_geojson(self, data, hover_style=None, **kwargs):
         """Adds a GeoJSON layer to the map.
 
         Args:
@@ -87,9 +98,19 @@ class Map(ipyleaflet.Map):
 
         style = {"color": "black", "weight": 1, "opacity": 1}
 
+        if (
+            hasattr(self, "current_geojson_layer")
+            and self.current_geojson_layer is not None
+        ):
+            try:
+                self.remove_layer(self.current_geojson_layer)
+            except Exception:
+                pass  # Layer might have already been removed
+
         layer = ipyleaflet.GeoJSON(
             data=geojson, hover_style=hover_style, style=style, **kwargs
         )
+        self.current_geojson_layer = layer
         self.add_layer(layer)
 
     def add_points(self, data, **kwargs):
@@ -119,7 +140,7 @@ class Map(ipyleaflet.Map):
             gdf = data.to_crs(epsg=4326)  # Ensure WGS84
 
         point_style = {
-            "radius": 5,
+            "radius": 2,
             "fillOpacity": 1,
             "fillColor": "white",
             "weight": 1,
@@ -161,54 +182,54 @@ class Map(ipyleaflet.Map):
 
         from ipywidgets import FileUpload, Button, ToggleButton, HBox
 
-        self.button = Button(
+        button = Button(
             description="Add Points",
             disabled=False,
             button_style="",  # 'success', 'info', 'warning', 'danger' or ''
             tooltip="Click me",
-            icon="regular circle dot",  # (FontAwesome names without the `fa-` prefix)
+            size=38,
+            icon="plus",  # (FontAwesome names without the `fa-` prefix)
         )
 
-        self.file_upload = FileUpload(
+        file_upload = FileUpload(
             accept=".csv",
             multiple=False,
+            size=38,
             description="Upload CSV",
             style={"description_width": "initial"},
         )
 
-        self.close_button = ToggleButton(
-            icon="times", value=True, tooltip="Close upload control"
+        close_button = ToggleButton(
+            icon="map-pin", value=True, tooltip="Close upload control"
         )
-        self.close_button.layout = widgets.Layout(width="38px", height="38px")
+        close_button.layout = widgets.Layout(width="36px", height="36px")
 
-        self.hbox = HBox([self.file_upload, self.button, self.close_button])
+        hbox = HBox([close_button])
 
-        is_open = [True]
+        def on_toggle_change(change):
+            """Toggle visibility of dropdown"""
+            if change["new"]:
+                hbox.children = (close_button,)
+            else:
+                hbox.children = (close_button, file_upload, button)
 
-        self.close_button.observe(self.on_toggle_change, names="value")
+        def on_button_clicked(change):
+            """Handles the file upload."""
+            import io
 
-        self.button.on_click(self.on_button_clicked)
+            if file_upload.value:
+                # For the first file (if multiple=False)
+                file_info = file_upload.value[0]
+                content_bytes = file_info["content"].tobytes()
+                points = pd.read_csv(io.BytesIO(content_bytes))
+                self.add_points(points)
 
-        upload_control = ipyleaflet.WidgetControl(widget=self.hbox, position="topright")
+        close_button.observe(on_toggle_change, names="value")
+
+        button.on_click(on_button_clicked)
+
+        upload_control = ipyleaflet.WidgetControl(widget=hbox, position="topright")
         self.add_control(upload_control)
-
-    def on_toggle_change(self, change):
-        """Toggle visibility of dropdown"""
-        if change["new"]:
-            self.hbox.children = (self.button, self.file_upload, self.close_button)
-        else:
-            self.hbox.children = self.close_button
-
-    def on_button_clicked(self, change):
-        """Handles the file upload."""
-        import io
-
-        if self.file_upload.value:
-            # For the first file (if multiple=False)
-            file_info = self.file_upload.value[0]
-            content_bytes = file_info["content"].tobytes()
-            points = pd.read_csv(io.BytesIO(content_bytes))
-            self.add_points(points)
 
     def add_widgets(self):
         """Creates and displays widgets for user interaction."""
@@ -287,7 +308,7 @@ class Map(ipyleaflet.Map):
             value=True,
             tooltip="Toggle basemap selector",
             icon="map",
-            layout=Layout(width="38px", height="38px"),
+            layout=Layout(width="36px", height="36px"),
         )
 
         dropdown = Dropdown(
@@ -295,7 +316,7 @@ class Map(ipyleaflet.Map):
             value="OpenStreetMap",
             description="Basemap:",
             style={"description_width": "initial"},
-            layout=Layout(width="250px", height="38px"),
+            layout=Layout(width="250px", height="36px"),
         )
 
         # Store reference to current basemap layer
@@ -320,23 +341,91 @@ class Map(ipyleaflet.Map):
         dropdown.observe(on_dropdown_change, names="value")
 
         # Assemble and add control
-        widget_box = HBox([toggle, dropdown])
+        widget_box = HBox([toggle])
 
         is_open = [True]
 
         def on_toggle_change(change):
             """Toggle visibility of dropdown"""
             if is_open[0] and change["new"]:
-                widget_box.children = (toggle, dropdown)
-            else:
                 widget_box.children = (toggle,)
+            else:
+                widget_box.children = (toggle, dropdown)
 
         toggle.observe(on_toggle_change, names="value")
 
         control = WidgetControl(widget=widget_box, position="topright")
         self.add_control(control)
 
-    # Using geemap, ipyleaflet, and ipywidgets create a map with a dropdown menu that has any Google Earth Engine dataset
+    def change_built_in_shapefiles(self, **kwargs):
+        """Changes the basemap of the map using a dropdown selector."""
+        from ipywidgets import Dropdown, ToggleButton, HBox, Layout
+        from ipyleaflet import WidgetControl
+
+        # Map dropdown names to actual basemap objects
+        SHAPEFILE_LOOKUP = {
+            "None": None,
+            "U.S. States": "../data/us-states.json",
+            "National Forests": "https://geohub.oregon.gov/api/download/v1/items/b479e4bd7d70439a87e0230c99bddce5/geojson?layers=0",
+        }
+
+        # Create widgets
+        toggle = ToggleButton(
+            value=True,
+            tooltip="Toggle basemap selector",
+            icon="square-o",
+            layout=Layout(width="38px", height="38px"),
+        )
+
+        dropdown = Dropdown(
+            options=list(SHAPEFILE_LOOKUP.keys()),
+            value="None",
+            placeholder="Select a shapefile",
+            description="Select shapefile:",
+            style={"description_width": "initial"},
+            layout=Layout(width="250px", height="38px"),
+        )
+
+        # Store reference to current basemap layer
+        if not hasattr(self, "current_basemap"):
+            self.current_basemap = self.layers[0]
+
+        def on_dropdown_change(change):
+            """Handle shapefile selection changes"""
+            if change["new"]:
+                geojson_path = SHAPEFILE_LOOKUP[change["new"]]
+                if geojson_path is not None:
+                    self.add_geojson(geojson_path, name=change["new"])
+                else:
+                    # Remove existing shapefile layer if "None" is selected
+                    if (
+                        hasattr(self, "current_geojson_layer")
+                        and self.current_geojson_layer is not None
+                    ):
+                        try:
+                            self.remove_layer(self.current_geojson_layer)
+                        except Exception:
+                            pass
+
+        # Set up event handlers
+        dropdown.observe(on_dropdown_change, names="value")
+
+        # Assemble and add control
+        widget_box = HBox([toggle])
+
+        is_open = [True]
+
+        def on_toggle_change(change):
+            """Toggle visibility of dropdown"""
+            if is_open[0] and change["new"]:
+                widget_box.children = (toggle,)
+            else:
+                widget_box.children = (toggle, dropdown)
+
+        toggle.observe(on_toggle_change, names="value")
+
+        control = WidgetControl(widget=widget_box, position="topright")
+        self.add_control(control)
 
     def add_search_marker(self, **kwargs):
         """Adds a search marker to the map."""
@@ -355,3 +444,56 @@ class Map(ipyleaflet.Map):
         )
 
         self.add(search_control)
+
+    def geojson_button(self, **kwargs):
+        """Creates a button to add shapefiles."""
+        from ipywidgets import Button, Text, ToggleButton, HBox, Layout
+        from ipyleaflet import WidgetControl
+
+        # Create widgets
+        toggle_close = ToggleButton(
+            value=True, tooltip="Toggle GeoJSON uploader", icon="link"
+        )
+
+        url = Text(
+            placeholder="Type something",
+            description="GeoJSON URL:",
+            disabled=False,
+            style={"description_width": "initial"},
+        )
+
+        run_button = Button(
+            description="Add GeoJSON",
+            disabled=False,
+            button_style="",  # 'success', 'info', 'warning', 'danger' or ''
+            tooltip="Click me",
+            size=38,
+            icon="plus",  # (FontAwesome names without the `fa-` prefix)
+        )
+
+        toggle_close.layout = Layout(width="36px", height="36px")
+
+        # Assemble and add control
+        widget_box = HBox([toggle_close])
+
+        def on_toggle_change(change):
+            """Toggle visibility of dropdown"""
+            if change["new"]:
+                widget_box.children = (toggle_close,)
+            else:
+                widget_box.children = (toggle_close, url, run_button)
+
+        def on_button_clicked(change):
+            """Handles the url upload."""
+            if url.value:
+                # For the first file (if multiple=False)
+                geojson_path = url.value
+                self.add_geojson(geojson_path, name=url.value)
+
+        toggle_close.observe(on_toggle_change, names="value")
+
+        run_button.on_click(on_button_clicked)
+
+        control = WidgetControl(widget=widget_box, position="topright")
+
+        self.add_control(control)

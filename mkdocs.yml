@@ -8,12 +8,12 @@ copyright: "Copyright &copy; 2024 - 2024 Tara Skiba"
 
 theme:
     palette:
-        - scheme: iceberg
-                # primary: iceberg
-                # accent: light-blue
-          toggle:
-              icon: material/toggle-switch-off-outline
-              name: Switch to dark mode
+        # - scheme: iceberg
+        #         primary: iceberg
+        #         accent: light-blue
+        #   toggle:
+        #       icon: material/toggle-switch-off-outline
+        #       name: Switch to dark mode
         - scheme: iceberg
           primary: iceberg
           accent: light-blue
@@ -95,10 +95,11 @@ nav:
 
     - API Reference:
           - skiba module: skiba.md
-          - common module: common.md
-          - folium: foliumcode.md
-          - ipyleaflet: ipyleafletcode.md
+          #- common module: common.md
+          #- folium: foliumcode.md
+          #- ipyleaflet: ipyleafletcode.md
           - data_process: data_process.md
+          - buffer_coordintates: buffer_coordinates.md
           - buffer_method: buffer_method.md
-          - map_detail: map_detail.md
-          - map: map.md
+          #- map_detail: map_detail.md
+          - interactive map: map.md
