@@ -1,0 +1,4 @@
+
+# interactive module
+
+::: skiba.interactive

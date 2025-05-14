@@ -35,7 +35,7 @@ class data_process:
             disabled=False,
             button_style="",  # 'success', 'info', 'warning', 'danger' or ''
             tooltip="Click me",
-            icon="check",  # (FontAwesome names without the `fa-` prefix)
+            icon="rotate right",  # (FontAwesome names without the `fa-` prefix)
         )
 
         self.output = widgets.Output()
