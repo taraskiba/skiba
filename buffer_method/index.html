@@ -18,11 +18,9 @@
         <link rel="prev" href="../data_process/">
       
       
-        <link rel="next" href="../map_detail/">
-      
       
       <link rel="icon" href="../files/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
@@ -30,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -73,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="iceberg" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="iceberg" data-md-color-primary="iceberg" data-md-color-accent="light-blue">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -130,17 +128,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="iceberg" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="iceberg" data-md-color-primary="iceberg" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="iceberg" data-md-color-primary="iceberg" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
@@ -827,81 +815,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../common/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    common module
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../foliumcode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    folium
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ipyleafletcode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ipyleaflet
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../data_process/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     data_process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../buffer_coordinates.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    buffer_coordintates
     
   </span>
   
@@ -988,9 +930,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_method.buffer_method.create_buffers" class="md-nav__link">
+  <a href="#skiba.buffer_method.buffer_method.__init__" class="md-nav__link">
     <span class="md-ellipsis">
-      create_buffers()
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.add_date_picker" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_date_picker()
     </span>
   </a>
   
@@ -1006,9 +957,45 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.extract_median_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      extract_median_values()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.fetch_geojson" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_geojson()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#skiba.buffer_method.buffer_method.load_gee_as_image" class="md-nav__link">
     <span class="md-ellipsis">
       load_gee_as_image()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.on_button_clicked" class="md-nav__link">
+    <span class="md-ellipsis">
+      on_button_clicked()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.on_dropdown_change" class="md-nav__link">
+    <span class="md-ellipsis">
+      on_dropdown_change()
     </span>
   </a>
   
@@ -1035,35 +1022,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../map_detail/" class="md-nav__link">
+      <a href="../map.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    map_detail
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    map
+    interactive map
     
   </span>
   
@@ -1127,9 +1091,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_method.buffer_method.create_buffers" class="md-nav__link">
+  <a href="#skiba.buffer_method.buffer_method.__init__" class="md-nav__link">
     <span class="md-ellipsis">
-      create_buffers()
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.add_date_picker" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_date_picker()
     </span>
   </a>
   
@@ -1145,9 +1118,45 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.extract_median_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      extract_median_values()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.fetch_geojson" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_geojson()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#skiba.buffer_method.buffer_method.load_gee_as_image" class="md-nav__link">
     <span class="md-ellipsis">
       load_gee_as_image()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.on_button_clicked" class="md-nav__link">
+    <span class="md-ellipsis">
+      on_button_clicked()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_method.buffer_method.on_dropdown_change" class="md-nav__link">
+    <span class="md-ellipsis">
+      on_dropdown_change()
     </span>
   </a>
   
@@ -1218,9 +1227,14 @@ buffer_method        </code>
           <summary>Source code in <code>skiba/buffer_method.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">buffer_method</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the buffer_method class and sets up the GUI components.</span>
+<span class="sd">        Part 2 of buffered coordinates approach which accesses GEE datasets and extracts median values.</span>
+<span class="sd">        (Part 1 is in buffer_coordinates.py)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># File Upload</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FileUpload</span><span class="p">(</span>
-            <span class="n">accept</span><span class="o">=</span><span class="s2">&quot;.csv, .txt&quot;</span><span class="p">,</span>  <span class="c1"># Accepted file extension e.g. &#39;.txt&#39;, &#39;.pdf&#39;, &#39;image/*&#39;, &#39;image/*,.pdf&#39;</span>
+            <span class="n">accept</span><span class="o">=</span><span class="s2">&quot;.geojson&quot;</span><span class="p">,</span>  <span class="c1"># Accepted file extension e.g. &#39;.txt&#39;, &#39;.pdf&#39;, &#39;image/*&#39;, &#39;image/*,.pdf&#39;</span>
             <span class="n">multiple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># True to accept multiple files upload else False</span>
         <span class="p">)</span>
         <span class="c1"># Dropdown</span>
@@ -1231,16 +1245,6 @@ buffer_method        </code>
             <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
             <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
             <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-            <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Buffer radius (m):&quot;</span><span class="p">,</span>
-            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">display</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
-            <span class="n">flex_flow</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
-            <span class="n">align_items</span><span class="o">=</span><span class="s2">&quot;stretch&quot;</span><span class="p">,</span>
-            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1259,7 +1263,7 @@ buffer_method        </code>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">])</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">hbox_bottom</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
@@ -1267,6 +1271,8 @@ buffer_method        </code>
         <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hbox_bottom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">on_dropdown_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback function to handle dropdown value changes.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
@@ -1279,74 +1285,74 @@ buffer_method        </code>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">on_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Callback function to handle button click events.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">. CSV file will be saved to Downloads folder under this name.&quot;</span>
             <span class="p">)</span>
 
-            <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
-
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-                <span class="c1"># For the first file (if multiple=False)</span>
                 <span class="n">file_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>  <span class="c1"># file content as bytes</span>
+                <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
                 <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content_bytes</span><span class="p">))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a CSV file.&quot;</span><span class="p">)</span>
 
-            <span class="n">radius_meters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span>
+                <span class="c1"># --- Modification: Read GeoJSON from bytes ---</span>
+                <span class="c1"># Use BytesIO to read the uploaded GeoJSON file</span>
+                <span class="n">geojson_buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content_bytes</span><span class="p">)</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">geojson_buffer</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a GeoJSON file.&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
             <span class="n">geedata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span>
             <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">value</span>
             <span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">value</span>
 
-            <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
-            <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radius_meters</span><span class="si">}</span><span class="s2">.shp&quot;</span>
-            <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="n">create_buffers</span><span class="p">(</span>
-                <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">radius_meters</span><span class="o">=</span><span class="n">radius_meters</span><span class="p">,</span> <span class="n">output_shp</span><span class="o">=</span><span class="n">out_path</span>
-            <span class="p">)</span>
-
             <span class="bp">self</span><span class="o">.</span><span class="n">extract_median_values</span><span class="p">(</span>
-                <span class="n">data</span><span class="o">=</span><span class="n">out_path</span><span class="p">,</span> <span class="n">geedata</span><span class="o">=</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">geedata</span><span class="o">=</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span>
             <span class="p">)</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_buffers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_meters</span><span class="p">,</span> <span class="n">output_shp</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create buffers around provided coordinates and save as shapefile.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-                <span class="n">coordinates</span><span class="p">,</span>
-                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-                <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-            <span class="n">coordinates</span> <span class="o">=</span> <span class="n">data</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-                <span class="n">coordinates</span><span class="p">,</span>
-                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-                <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
-
-        <span class="c1"># Convert to UTM for accurate buffering</span>
-        <span class="n">utm_crs</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">estimate_utm_crs</span><span class="p">()</span>
-        <span class="n">buffered</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">utm_crs</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius_meters</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Save buffers as shapefile</span>
-        <span class="n">buffer_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="n">buffered</span><span class="p">)</span>
-        <span class="n">buffer_gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_shp</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">buffer_gdf</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extracts median values from a GEE dataset for the given geometry.</span>
 
-        <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">shp_to_ee</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="sd">        Args:</span>
+<span class="sd">            data (str, pd.DataFrame, gpd.GeoDataFrame): Input data (GeoJSON, DataFrame, or GeoDataFrame).</span>
+<span class="sd">            geedata (str): GEE dataset ID.</span>
+<span class="sd">            start_date (str): Start date for filtering the dataset.</span>
+<span class="sd">            end_date (str): End date for filtering the dataset.</span>
+<span class="sd">            **kwargs: Additional arguments for the GEE dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="c1"># Assume the file is a GeoJSON or Shapefile with polygons</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="c1"># If you have a DataFrame, it should already have a &#39;geometry&#39; column with Polygon objects</span>
+            <span class="c1"># If not, you need to construct it-otherwise, just convert to GeoDataFrame</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If already a GeoDataFrame</span>
+            <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+
+        <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
+        <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
 
         <span class="c1"># Load the GEE dataset as an image</span>
         <span class="n">geeimage</span> <span class="o">=</span> <span class="n">buffer_method</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
@@ -1364,6 +1370,11 @@ buffer_method        </code>
         <span class="k">return</span> <span class="n">sampled_data</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetches GeoJSON data from a given URL.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url (str): URL to the GeoJSON file.&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
             <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Raises an exception for HTTP errors</span>
@@ -1403,6 +1414,11 @@ buffer_method        </code>
         <span class="k">return</span> <span class="n">dropdown</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">add_date_picker</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a date picker widget for selecting dates.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ipywidgets.DatePicker: A date picker widget for selecting dates.&quot;&quot;&quot;</span>
         <span class="n">date_picker</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Pick a Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">date_picker</span>
@@ -1470,53 +1486,118 @@ buffer_method        </code>
 
 
 
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="skiba.buffer_method.buffer_method.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#skiba.buffer_method.buffer_method.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes the buffer_method class and sets up the GUI components.
+Part 2 of buffered coordinates approach which accesses GEE datasets and extracts median values.
+(Part 1 is in buffer_coordinates.py)</p>
+
+        <details class="quote">
+          <summary>Source code in <code>skiba/buffer_method.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes the buffer_method class and sets up the GUI components.</span>
+<span class="sd">    Part 2 of buffered coordinates approach which accesses GEE datasets and extracts median values.</span>
+<span class="sd">    (Part 1 is in buffer_coordinates.py)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># File Upload</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FileUpload</span><span class="p">(</span>
+        <span class="n">accept</span><span class="o">=</span><span class="s2">&quot;.geojson&quot;</span><span class="p">,</span>  <span class="c1"># Accepted file extension e.g. &#39;.txt&#39;, &#39;.pdf&#39;, &#39;image/*&#39;, &#39;image/*,.pdf&#39;</span>
+        <span class="n">multiple</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># True to accept multiple files upload else False</span>
+    <span class="p">)</span>
+    <span class="c1"># Dropdown</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">buffer_method</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+        <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;End Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Run Query&quot;</span><span class="p">,</span>
+        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">button_style</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># &#39;success&#39;, &#39;info&#39;, &#39;warning&#39;, &#39;danger&#39; or &#39;&#39;</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Click me&quot;</span><span class="p">,</span>
+        <span class="n">icon</span><span class="o">=</span><span class="s2">&quot;check&quot;</span><span class="p">,</span>  <span class="c1"># (FontAwesome names without the `fa-` prefix)</span>
+    <span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">])</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">hbox_bottom</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
+        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hbox_bottom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
 
 
   <div class="doc doc-object doc-method">
 
 
 
-<h3 id="skiba.buffer_method.buffer_method.create_buffers" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create_buffers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_meters</span><span class="p">,</span> <span class="n">output_shp</span><span class="p">)</span></code>
+<h3 id="skiba.buffer_method.buffer_method.add_date_picker" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_date_picker</span><span class="p">()</span></code>
 
 
-<a href="#skiba.buffer_method.buffer_method.create_buffers" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_method.buffer_method.add_date_picker" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
-      <p>Create buffers around provided coordinates and save as shapefile.</p>
+      <p>Creates a date picker widget for selecting dates.</p>
 
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>ipywidgets.DatePicker</code></td>
+      <td><p>A date picker widget for selecting dates.</p></td>
+    </tr>
+  </tbody>
+</table>
         <details class="quote">
           <summary>Source code in <code>skiba/buffer_method.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_buffers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_meters</span><span class="p">,</span> <span class="n">output_shp</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_date_picker</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create buffers around provided coordinates and save as shapefile.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-            <span class="n">coordinates</span><span class="p">,</span>
-            <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-            <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-        <span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-        <span class="n">coordinates</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-            <span class="n">coordinates</span><span class="p">,</span>
-            <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-            <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-        <span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
+<span class="sd">    Creates a date picker widget for selecting dates.</span>
 
-    <span class="c1"># Convert to UTM for accurate buffering</span>
-    <span class="n">utm_crs</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">estimate_utm_crs</span><span class="p">()</span>
-    <span class="n">buffered</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">utm_crs</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius_meters</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ipywidgets.DatePicker: A date picker widget for selecting dates.&quot;&quot;&quot;</span>
+    <span class="n">date_picker</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Pick a Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="c1"># Save buffers as shapefile</span>
-    <span class="n">buffer_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="n">buffered</span><span class="p">)</span>
-    <span class="n">buffer_gdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">output_shp</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">buffer_gdf</span>
+    <span class="k">return</span> <span class="n">date_picker</span>
 </code></pre></div>
         </details>
     </div>
@@ -1606,6 +1687,182 @@ buffer_method        </code>
   </div>
 
 
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="skiba.buffer_method.buffer_method.extract_median_values" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#skiba.buffer_method.buffer_method.extract_median_values" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Extracts median values from a GEE dataset for the given geometry.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>data</code></td>
+        <td><code>str, pd.DataFrame, gpd.GeoDataFrame</code></td>
+        <td><p>Input data (GeoJSON, DataFrame, or GeoDataFrame).</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>geedata</code></td>
+        <td><code>str</code></td>
+        <td><p>GEE dataset ID.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>start_date</code></td>
+        <td><code>str</code></td>
+        <td><p>Start date for filtering the dataset.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>str</code></td>
+        <td><p>End date for filtering the dataset.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional arguments for the GEE dataset.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>skiba/buffer_method.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts median values from a GEE dataset for the given geometry.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (str, pd.DataFrame, gpd.GeoDataFrame): Input data (GeoJSON, DataFrame, or GeoDataFrame).</span>
+<span class="sd">        geedata (str): GEE dataset ID.</span>
+<span class="sd">        start_date (str): Start date for filtering the dataset.</span>
+<span class="sd">        end_date (str): End date for filtering the dataset.</span>
+<span class="sd">        **kwargs: Additional arguments for the GEE dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Assume the file is a GeoJSON or Shapefile with polygons</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="c1"># If you have a DataFrame, it should already have a &#39;geometry&#39; column with Polygon objects</span>
+        <span class="c1"># If not, you need to construct it-otherwise, just convert to GeoDataFrame</span>
+        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># If already a GeoDataFrame</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+
+    <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
+
+    <span class="c1"># Load the GEE dataset as an image</span>
+    <span class="n">geeimage</span> <span class="o">=</span> <span class="n">buffer_method</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">geedata</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+
+    <span class="c1"># Retrieve data from the image using sampleRegions</span>
+    <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sampled_data</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="skiba.buffer_method.buffer_method.fetch_geojson" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></code>
+
+
+<a href="#skiba.buffer_method.buffer_method.fetch_geojson" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Fetches GeoJSON data from a given URL.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>url</code></td>
+        <td><code>str</code></td>
+        <td><p>URL to the GeoJSON file.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>skiba/buffer_method.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fetches GeoJSON data from a given URL.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        url (str): URL to the GeoJSON file.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Raises an exception for HTTP errors</span>
+        <span class="n">geojson_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>  <span class="c1"># Parse the JSON response</span>
+        <span class="k">return</span> <span class="n">geojson_data</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">http_err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HTTP error occurred: </span><span class="si">{</span><span class="n">http_err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">conn_err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error connecting to the server: </span><span class="si">{</span><span class="n">conn_err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
@@ -1728,6 +1985,98 @@ Optionally filters by start and end date if applicable.</p>
 
 
 
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="skiba.buffer_method.buffer_method.on_button_clicked" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">on_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code>
+
+
+<a href="#skiba.buffer_method.buffer_method.on_button_clicked" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Callback function to handle button click events.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>skiba/buffer_method.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Callback function to handle button click events.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">. CSV file will be saved to Downloads folder under this name.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">file_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># --- Modification: Read GeoJSON from bytes ---</span>
+            <span class="c1"># Use BytesIO to read the uploaded GeoJSON file</span>
+            <span class="n">geojson_buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content_bytes</span><span class="p">)</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">geojson_buffer</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a GeoJSON file.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">geedata</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">extract_median_values</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">geedata</span><span class="o">=</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span>
+        <span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="skiba.buffer_method.buffer_method.on_dropdown_change" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">on_dropdown_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span></code>
+
+
+<a href="#skiba.buffer_method.buffer_method.on_dropdown_change" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Callback function to handle dropdown value changes.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>skiba/buffer_method.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_dropdown_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Callback function to handle dropdown value changes.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]:</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+            <span class="n">catalog</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">buffer_method</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span>
+            <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
+            <span class="n">change_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">change_value</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected dataset: </span><span class="si">{</span><span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
 
 
 
@@ -1840,10 +2189,10 @@ Optionally filters by start and end date if applicable.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="../js/timeago.min.js"></script>
       
