@@ -71,7 +71,9 @@ class buffer_coordinates:
         Callback function to handle button click events."""
         with self.output:
             self.output.clear_output()
-            print(f"GeoJSON file will be saved to Downloads folder under this name.")
+            print(
+                f"GeoJSON file will be saved to Downloads folder under this name:{self.buffer_radius.value}.0.geojson"
+            )
 
             import io
 
@@ -97,7 +99,7 @@ class buffer_coordinates:
                 plot_id_col="plot_ID",
                 output_file=out_path,
             )
-            print(f"Buffer saved to {out_path}")
+            print(f"Buffered coordinates GeoJSON saved to {out_path}")
 
     def on_dropdown_change(self, change):
         """

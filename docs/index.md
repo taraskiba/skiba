@@ -16,3 +16,4 @@
 * 🌎 **Interactive mapping**: Create a map with provided coordinates and customizable basemaps and built-in or specified shapefiles
 * 📍 **Coordinate-point queries**: Access and retrieve band values from Google Earth Engine for provided coordinates.
 * 🔲 **Hidden coordinate queries**: Access and retrieve band values from Google Earth Engine for geojson polygons, either provided or buffered through __buffer_coordinates__ function
+* 💡 **Got ideas?** Send me an [email](mailto:tskiba@vols.utk.edu)!

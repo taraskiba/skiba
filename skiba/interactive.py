@@ -26,6 +26,7 @@ class Map(ipyleaflet.Map):
         self.change_basemap()
         self.add_search_marker()
         self.upload_points()
+        self.upload_geojson_file()
         self.change_built_in_shapefiles()
         self.on_interaction(self.handle_click)
         self.geojson_button()
@@ -200,15 +201,17 @@ class Map(ipyleaflet.Map):
         )
 
         close_button = ToggleButton(
-            icon="map-pin", value=True, tooltip="Close upload control"
+            icon="map-pin", value=True, tooltip="Upload points from CSV file"
         )
         close_button.layout = widgets.Layout(width="36px", height="36px")
 
         hbox = HBox([close_button])
 
+        is_open = [True]
+
         def on_toggle_change(change):
             """Toggle visibility of dropdown"""
-            if change["new"]:
+            if is_open[0] and change["new"]:
                 hbox.children = (close_button,)
             else:
                 hbox.children = (close_button, file_upload, button)
@@ -223,6 +226,64 @@ class Map(ipyleaflet.Map):
                 content_bytes = file_info["content"].tobytes()
                 points = pd.read_csv(io.BytesIO(content_bytes))
                 self.add_points(points)
+
+        close_button.observe(on_toggle_change, names="value")
+
+        button.on_click(on_button_clicked)
+
+        upload_control = ipyleaflet.WidgetControl(widget=hbox, position="topright")
+        self.add_control(upload_control)
+
+    def upload_geojson_file(self, **kwargs):
+        """Uploads GeoJSON file to the map."""
+
+        from ipywidgets import FileUpload, Button, ToggleButton, HBox
+
+        button = Button(
+            description="Add GeoJSON file",
+            disabled=False,
+            button_style="",  # 'success', 'info', 'warning', 'danger' or ''
+            tooltip="Click me",
+            size=38,
+            icon="plus",  # (FontAwesome names without the `fa-` prefix)
+        )
+
+        file_upload = FileUpload(
+            accept=".geojson",
+            multiple=False,
+            size=38,
+            description="Upload GeoJSON",
+            style={"description_width": "initial"},
+        )
+
+        close_button = ToggleButton(icon="file", value=True, tooltip="Add GeoJSON file")
+        close_button.layout = widgets.Layout(width="36px", height="36px")
+
+        hbox = HBox([close_button])
+
+        is_open = [True]
+
+        def on_toggle_change(change):
+            """Toggle visibility of dropdown"""
+            if change["new"]:
+                hbox.children = (close_button,)
+            else:
+                hbox.children = (close_button, file_upload, button)
+
+        def on_button_clicked(change):
+            """Handles the url upload."""
+            if file_upload.value and len(file_upload.value) > 0:
+                import json
+                from ipyleaflet import GeoJSON
+
+                file_info = file_upload.value[0]
+                # Get bytes from memoryview
+                content_bytes = file_info["content"].tobytes()
+                # Decode bytes to string, then load as JSON
+                geojson_data = json.loads(content_bytes.decode("utf-8"))
+                # Add the GeoJSON layer to the map
+                geo_json = GeoJSON(data=geojson_data)
+                self.add_layer(geo_json)
 
         close_button.observe(on_toggle_change, names="value")
 
@@ -304,10 +365,11 @@ class Map(ipyleaflet.Map):
         }
 
         # Create widgets
+
         toggle = ToggleButton(
             value=True,
-            tooltip="Toggle basemap selector",
-            icon="map",
+            tooltip="Change basemap",
+            icon="map-o",
             layout=Layout(width="36px", height="36px"),
         )
 
@@ -372,7 +434,7 @@ class Map(ipyleaflet.Map):
         # Create widgets
         toggle = ToggleButton(
             value=True,
-            tooltip="Toggle basemap selector",
+            tooltip="Add built-in shapefile",
             icon="square-o",
             layout=Layout(width="38px", height="38px"),
         )
@@ -430,7 +492,7 @@ class Map(ipyleaflet.Map):
     def add_search_marker(self, **kwargs):
         """Adds a search marker to the map."""
 
-        from ipyleaflet import Map, SearchControl, Marker, AwesomeIcon
+        from ipyleaflet import SearchControl, Marker, AwesomeIcon
 
         search_marker = Marker(
             icon=AwesomeIcon(name="search", marker_color="blue", icon_color="white")
@@ -452,7 +514,7 @@ class Map(ipyleaflet.Map):
 
         # Create widgets
         toggle_close = ToggleButton(
-            value=True, tooltip="Toggle GeoJSON uploader", icon="link"
+            value=True, tooltip="Add GeoJSON from link", icon="link"
         )
 
         url = Text(
