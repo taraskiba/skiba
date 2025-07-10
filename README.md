@@ -6,7 +6,7 @@
 
 
 ### A python package for foresters to query Google Earth Engine data
-** Streamlining the process to bring remotely sensed data to foresters **
+**Streamlining the process to bring remotely sensed data to foresters**
 
 
 -   Free software: MIT License
@@ -17,14 +17,17 @@
 
 
 ## Walkthrough and Demonstration
-[![SkibaVideo](https://youtu.be/eaoYLEwzeQc?si=qXwAPfExQKgODc24)](https://youtu.be/eaoYLEwzeQc?si=qXwAPfExQKgODc24)
+
+[![](https://markdown-videos-api.jorgenkh.no/youtube/eaoYLEwzeQc?si=qXwAPfExQKgODc24)](https://youtu.be/eaoYLEwzeQc?si=qXwAPfExQKgODc24)
+
 
 ## Features
 
 -   Create a map with provided coordinates
--   Access and retrieve band values from Google Earth Engine for provided coordinates.
+-   Access and retrieve band values from Google Earth Engine for provided coordinates or GeoJSON files.
+    -   Hide locations of confidential coordinates within a buffered radius.
 -   Further developments to come!
--   Please understand the limitations of confidentiality before use.
+-   Please understand the limitations of Google's confidentiality policy before use.
 
 ## Installation
 ```python
