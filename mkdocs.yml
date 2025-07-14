@@ -86,7 +86,7 @@ nav:
         - examples/intro.ipynb
         - examples/data_process_demo.ipynb
         - examples/data_process_full_walkthrough.ipynb
-        - examples/buffer_method_demo.ipynb
+        - examples/buffer_method.ipynb
         - examples/map.ipynb
         - examples/map_demo.ipynb
         - examples/map_happy.ipynb
@@ -99,7 +99,7 @@ nav:
           #- folium: foliumcode.md
           #- ipyleaflet: ipyleafletcode.md
           - data_process: data_process.md
-          - buffer_coordintates: buffer_coordinates.md
+          - buffer_coordinates: buffer_coordinates.md
           - buffer_method: buffer_method.md
           #- map_detail: map_detail.md
           - interactive map: map.md
