@@ -1,0 +1,6 @@
+faicons
+pandas
+plotly
+ridgeplot
+shiny
+shinywidgets
