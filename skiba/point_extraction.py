@@ -74,7 +74,7 @@ class point_extraction:
                 file_info = self.file_upload.value[0]
                 content_bytes = file_info["content"].tobytes()  # file content as bytes
                 points = pd.read_csv(io.BytesIO(content_bytes))
-                lat_cols = ["lat", "latitude", "y", "LAT", "Latitude", "Y"]
+                lat_cols = ["lat", "latitude", "y", "LAT", "Latitude", "Lat", "Y"]
                 lon_cols = [
                     "lon",
                     "long",
