@@ -141,9 +141,9 @@ class Map(ipyleaflet.Map):
             gdf = data.to_crs(epsg=4326)  # Ensure WGS84
 
         point_style = {
-            "radius": 2,
+            "radius": 3,
             "fillOpacity": 1,
-            "fillColor": "white",
+            "fillColor": "black",
             "weight": 1,
         }  # 'color': 'white',
 

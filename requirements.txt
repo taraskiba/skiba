@@ -8,4 +8,5 @@ localtileserver
 matplotlib
 numpy
 pandas
+pyproj
 requests
