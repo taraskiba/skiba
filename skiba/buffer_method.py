@@ -5,6 +5,7 @@ import pandas as pd
 import geemap as gm
 import ee
 import os
+import json
 
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
@@ -77,15 +78,14 @@ class buffer_method:
 
         with self.output:
             self.output.clear_output()
-            print(
-                f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
-            )
+            print(f"You entered: {self.dropdown.value}.")
 
             if self.file_upload.value:
                 file_info = self.file_upload.value[0]
                 content_bytes = file_info["content"].tobytes()
-                filename = file_info["name"]
-                print(f"Filename: {filename}")
+                name = file_info["name"]
+                file_name = name.replace("/", "_")
+                print(f"Your file will be saved under {file_name}.csv")
 
                 # --- Modification: Read GeoJSON from bytes ---
                 # Use BytesIO to read the uploaded GeoJSON file
@@ -99,11 +99,21 @@ class buffer_method:
             start_date = self.start_date.value
             end_date = self.end_date.value
 
-            self.extract_median_values(
+            out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+            output_file = f"{file_name}.csv"
+            out_path = os.path.join(out_dir, output_file)
+
+            extracted_results = self.extract_median_values(
                 data=points, geedata=geedata, start_date=start_date, end_date=end_date
             )
 
-    def extract_median_values(self, data, geedata, start_date, end_date, **kwargs):
+            returned_csv = gm.ee_to_csv(extracted_results, filename=out_path)
+
+            return returned_csv
+
+    def extract_median_values(
+        self, data, geedata, start_date=None, end_date=None, **kwargs
+    ):
         """
         Extracts median values from a GEE dataset for the given geometry.
 
@@ -114,45 +124,66 @@ class buffer_method:
             end_date (str): End date for filtering the dataset.
             **kwargs: Additional arguments for the GEE dataset.
         """
-        if isinstance(data, str):
-            # Assume the file is a GeoJSON or Shapefile with polygons
-            gdf = gpd.read_file(data)
-            if gdf.crs is None:
-                gdf.set_crs("EPSG:4326", inplace=True)
-            else:
-                gdf = gdf.to_crs("EPSG:4326")
-        elif isinstance(data, pd.DataFrame):
-            # If you have a DataFrame, it should already have a 'geometry' column with Polygon objects
-            # If not, you need to construct it-otherwise, just convert to GeoDataFrame
-            gdf = gpd.GeoDataFrame(data, geometry="geometry")
-            if gdf.crs is None:
-                gdf.set_crs("EPSG:4326", inplace=True)
-            else:
-                gdf = gdf.to_crs("EPSG:4326")
-        else:
-            # If already a GeoDataFrame
-            if data.crs is None:
-                gdf = data.set_crs("EPSG:4326")
-            else:
-                gdf = data.to_crs("EPSG:4326")
 
-        geojson = gdf.__geo_interface__
-        fc = gm.geojson_to_ee(geojson)
+        # Convert GeoDataFrame to GeoJSON dictionary (to feed into Earth Engine)
+        geojson_dict = json.loads(data.to_json())
+        geojson_object = gm.geojson_to_ee(geojson_dict)
 
-        # Load the GEE dataset as an image
+        # Define your dataset and time range, e.g. Sentinel-2 in 2022
         geeimage = buffer_method.load_gee_as_image(geedata, start_date, end_date)
 
-        name = geedata
-        file_name = name.replace("/", "_")
+        # Extract median values over each polygon using reduceRegions
+        results = geeimage.sampleRegions(
+            collection=geojson_object, geometries=True, scale=10
+        )
 
-        out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
-        output_file = f"{file_name}.csv"
-        out_path = os.path.join(out_dir, output_file)
+        return results
 
-        # Retrieve data from the image using sampleRegions
-        sampled_data = gm.extract_values_to_points(fc, geeimage, out_path)
+    def load_gee_as_image(self, dataset_id, start_date=None, end_date=None, **kwargs):
+        """
+        Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.
+        Optionally filters by start and end date if applicable.
 
-        return sampled_data
+        Parameters:
+            dataset_id (str): The Earth Engine dataset ID.
+            start_date (str): Optional start date in 'YYYY-MM-DD' format.
+            end_date (str): Optional end date in 'YYYY-MM-DD' format.
+
+        Returns:
+            ee.Image: The resulting image.
+        """
+        # Try loading as Image
+        try:
+            img = ee.Image(dataset_id)
+            img.getInfo()  # validate image
+            return img
+        except Exception:
+            pass
+
+        # Try loading as ImageCollection
+        try:
+            col = ee.ImageCollection(dataset_id)
+            if start_date and end_date:
+                col = col.filterDate(start_date, end_date)
+            # Reduce to median image
+            img = col.median()
+            img.toBands()  # validate
+            return img
+        except Exception:
+            pass
+
+        # Try loading as FeatureCollection (convert to raster mask)
+        try:
+            col = ee.FeatureCollection(dataset_id)
+            if start_date and end_date:
+                col = col.filterDate(start_date, end_date)
+            img = col.reduceToImage(properties=[], reducer=ee.Reducer.median())
+            img.getInfo()
+            return img
+        except Exception:
+            raise ValueError(
+                "Dataset ID is not a valid Image, ImageCollection, or FeatureCollection."
+            )
 
     def fetch_geojson(url):
         """
@@ -207,52 +238,3 @@ class buffer_method:
         date_picker = widgets.DatePicker(description="Pick a Date", disabled=False)
 
         return date_picker
-
-    def load_gee_as_image(dataset_id, start_date=None, end_date=None, **kwargs):
-        """
-        Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.
-        Optionally filters by start and end date if applicable.
-
-        Parameters:
-            dataset_id (str): The Earth Engine dataset ID.
-            start_date (str): Optional start date in 'YYYY-MM-DD' format.
-            end_date (str): Optional end date in 'YYYY-MM-DD' format.
-
-        Returns:
-            ee.Image: The resulting image.
-        """
-        # Try loading as Image
-        try:
-            img = ee.Image(dataset_id)
-            # If .getInfo() doesn't throw, it's an Image
-            img.getInfo()
-            return img
-        except Exception:
-            pass
-
-        # Try loading as ImageCollection
-        try:
-            col = ee.ImageCollection(dataset_id)
-            # If date filters are provided, apply them
-            if start_date and end_date:
-                col = col.filterDate(start_date, end_date)
-            else:
-                pass
-            # Reduce to a single image (e.g., median composite)
-            img = col.median()
-            img.getInfo()  # Throws if not valid
-            return img
-        except Exception:
-            pass
-
-        # Try loading as FeatureCollection (convert to raster)
-        try:
-            fc_temp = ee.FeatureCollection(dataset_id)
-            # Convert to raster: burn a value of 1 into a new image
-            img = fc_temp.reduceToImage(properties=[], reducer=ee.Reducer.constant(1))
-            img.getInfo()
-            return img
-        except Exception:
-            raise ValueError(
-                "Dataset ID is not a valid Image, ImageCollection, or FeatureCollection."
-            )

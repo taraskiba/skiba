@@ -10,7 +10,7 @@ import os
 # ee.Initialize(project="ee-forestplotvariables")
 
 
-class data_process:
+class point_extraction:
     def __init__(self):
         # File Upload
         self.file_upload = widgets.FileUpload(
@@ -19,17 +19,15 @@ class data_process:
         )
         # Dropdown
         url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = data_process.fetch_geojson(url)
+        data = point_extraction.fetch_geojson(url)
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
         self.dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
             disabled=False,
         )
-
         self.start_date = widgets.DatePicker(description="Start Date", disabled=False)
         self.end_date = widgets.DatePicker(description="End Date", disabled=False)
-
         self.run_button = widgets.Button(
             description="Run Query",
             disabled=False,
@@ -37,12 +35,9 @@ class data_process:
             tooltip="Click me",
             icon="rotate right",  # (FontAwesome names without the `fa-` prefix)
         )
-
         self.output = widgets.Output()
-
         self.run_button.on_click(self.on_button_clicked)
         self.dropdown.observe(self.on_dropdown_change, names="value")
-
         self.hbox = widgets.HBox(
             [
                 self.file_upload,
@@ -59,7 +54,7 @@ class data_process:
             with self.output:
                 self.output.clear_output()
                 catalog = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-                data = data_process.fetch_geojson(catalog)
+                data = point_extraction.fetch_geojson(catalog)
                 data_dict = {item["id"]: item["url"] for item in data if "id" in item}
                 change_value = str(change["new"])
                 url = data_dict.get(change_value)
@@ -72,23 +67,48 @@ class data_process:
             print(
                 f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
             )
-
             import io
 
             if self.file_upload.value:
                 # For the first file (if multiple=False)
                 file_info = self.file_upload.value[0]
                 content_bytes = file_info["content"].tobytes()  # file content as bytes
-                filename = file_info["name"]
-                print(f"Filename: {filename}")
                 points = pd.read_csv(io.BytesIO(content_bytes))
+                lat_cols = ["lat", "latitude", "y", "LAT", "Latitude", "Y"]
+                lon_cols = [
+                    "lon",
+                    "long",
+                    "longitude",
+                    "x",
+                    "LON",
+                    "Longitude",
+                    "Long",
+                    "X",
+                ]
+                id_cols = ["id", "ID", "plot_ID", "plot_id", "plotID", "plotId"]
+
+                def find_column(possible_names, columns):
+                    for name in possible_names:
+                        if name in columns:
+                            return name
+                    # fallback: check case-insensitive match
+                    lower_columns = {c.lower(): c for c in columns}
+                    for name in possible_names:
+                        if name.lower() in lower_columns:
+                            return lower_columns[name.lower()]
+                    raise ValueError(f"No matching column found for {possible_names}")
+
+                lat_col = find_column(lat_cols, points.columns)
+                lon_col = find_column(lon_cols, points.columns)
+                id_col = find_column(id_cols, points.columns)
+                points = points.rename(
+                    columns={lat_col: "LAT", lon_col: "LON", id_col: "plot_ID"}
+                )
             else:
                 print("Please upload a CSV file.")
-
             geedata = self.dropdown.value
             start_date = self.start_date.value
             end_date = self.end_date.value
-
             self.get_coordinate_data(
                 data=points, geedata=geedata, start_date=start_date, end_date=end_date
             )
@@ -121,23 +141,17 @@ class data_process:
             )
         else:
             gdf = data.to_crs(epsg=4326)  # Ensure WGS84
-
         geojson = gdf.__geo_interface__
         fc = gm.geojson_to_ee(geojson)
-
         # Load the GEE dataset as an image
-        geeimage = data_process.load_gee_as_image(geedata, start_date, end_date)
-
-        name = geedata
+        geeimage = point_extraction.load_gee_as_image(geedata, start_date, end_date)
+        name = f"{geedata}"
         file_name = name.replace("/", "_")
-
         out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
         output_file = f"{file_name}.csv"
         out_path = os.path.join(out_dir, output_file)
-
         # Retrieve data from the image using sampleRegions
         sampled_data = gm.extract_values_to_points(fc, geeimage, out_path)
-
         return sampled_data
 
     def fetch_geojson(url):
@@ -166,25 +180,20 @@ class data_process:
         """
 
         url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-
-        data = data_process.fetch_geojson(url)
-
+        data = point_extraction.fetch_geojson(url)
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
-
         dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
             disabled=False,
         )
-
         return dropdown
 
     def add_date_picker():
         date_picker = widgets.DatePicker(description="Pick a Date", disabled=False)
-
         return date_picker
 
-    def load_gee_as_image(dataset_id, start_date=None, end_date=None, **kwargs):
+    def load_gee_as_image(dataset_id, start_date, end_date, **kwargs):
         """
         Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.
         Optionally filters by start and end date if applicable.
@@ -197,38 +206,38 @@ class data_process:
         Returns:
             ee.Image: The resulting image.
         """
+        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an exception for HTTP errors
+        geojson_data = response.json()
+        data_type = [item["type"] for item in geojson_data if item["id"] == dataset_id]
+        data_str = " ".join(data_type)
+        start_date = str(start_date)
+        end_date = str(end_date)
         # Try loading as Image
-        try:
+        if data_str == "image":
             img = ee.Image(dataset_id)
             # If .getInfo() doesn't throw, it's an Image
             img.getInfo()
             return img
-        except Exception:
-            pass
-
-        # Try loading as ImageCollection
-        try:
+        elif data_str == "image_collection":
             col = ee.ImageCollection(dataset_id)
             # If date filters are provided, apply them
-            if start_date and end_date:
+            if start_date is None and end_date is None:
                 col = col.filterDate(start_date, end_date)
             else:
                 pass
             # Reduce to a single image (e.g., median composite)
             img = col.median()
-            img.getInfo()  # Throws if not valid
             return img
-        except Exception:
-            pass
-
         # Try loading as FeatureCollection (convert to raster)
-        try:
-            fc_temp = ee.FeatureCollection(dataset_id)
-            # Convert to raster: burn a value of 1 into a new image
-            img = fc_temp.reduceToImage(properties=[], reducer=ee.Reducer.constant(1))
-            img.getInfo()
-            return img
-        except Exception:
-            raise ValueError(
-                "Dataset ID is not a valid Image, ImageCollection, or FeatureCollection."
-            )
+        else:
+            # fc_temp = ee.FeatureCollection(dataset_id)
+            # if start_date is None and end_date is None:
+            #         fc_temp = fc_temp.filterDate(start_date, end_date)
+            # # Convert to raster: burn a value of 1 into a new image
+            # img = fc_temp.reduceToImage(properties=[], reducer=ee.Reducer.median())
+            # img.getInfo()
+            # return img
+            # or print(f"Dataset must be either an Image or Image Collection")
+            raise ValueError("Dataset ID is not a valid Image or ImageCollection.")

@@ -3,9 +3,11 @@ geemap
 geopandas
 ipyleaflet
 ipywidgets
+json
 leafmap
 localtileserver
 matplotlib
 numpy
 pandas
+pyproj
 requests

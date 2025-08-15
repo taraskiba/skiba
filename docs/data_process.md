@@ -1,3 +1,3 @@
-# data_process module
+# point_extraction module
 
-::: skiba.data_process
+::: skiba.point_extraction

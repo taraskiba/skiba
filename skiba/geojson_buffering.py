@@ -72,7 +72,7 @@ class buffer_coordinates:
         with self.output:
             self.output.clear_output()
             print(
-                f"GeoJSON file will be saved to Downloads folder under this name:{self.buffer_radius.value}ft.csv"
+                f"GeoJSON file will be saved to Downloads folder under this name:{self.buffer_radius.value}.0.geojson"
             )
 
             import io
@@ -81,8 +81,8 @@ class buffer_coordinates:
                 # For the first file (if multiple=False)
                 file_info = self.file_upload.value[0]
                 content_bytes = file_info["content"].tobytes()  # file content as bytes
-                # filename = file_info["name"]
-                # print(f"Filename: {filename}")
+                filename = file_info["name"]
+                print(f"Filename: {filename}")
                 points = pd.read_csv(io.BytesIO(content_bytes))
             else:
                 print("Please upload a CSV file.")
@@ -90,16 +90,16 @@ class buffer_coordinates:
             radius_ft = self.buffer_radius.value
 
             out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
-            output_file = f"{radius_ft}ft.csv"
+            output_file = f"{radius_ft}.geojson"
             out_path = os.path.join(out_dir, output_file)
 
-            self.obfuscate_points(
+            self.obfuscate_points_to_circles(
                 data=points,
                 radius_feet=radius_ft,
                 plot_id_col="plot_ID",
                 output_file=out_path,
             )
-            print(f"Buffered coordinates saved to {out_path}")
+            print(f"Buffered coordinates GeoJSON saved to {out_path}")
 
     def on_dropdown_change(self, change):
         """
@@ -116,7 +116,7 @@ class buffer_coordinates:
                 print(f"Selected dataset: {change['new']}")
                 print(f"URL: {url}")
 
-    def create_obfuscated_point(self, point, radius_feet, crs="EPSG:4326"):
+    def create_obfuscated_circle(self, point, radius_feet, crs="EPSG:4326"):
         """
         Create a circle polygon (as a shapely geometry) with the given radius in feet,
         where the provided point is randomly located inside the circle (not at the center).
@@ -131,25 +131,25 @@ class buffer_coordinates:
         x, y = transformer_to_utm.transform(point.x, point.y)
 
         # Randomize the point's location within the circle
-        angle = np.random.uniform(0, 2 * np.pi)
-        distance = np.random.uniform(0, radius_m)
-        # Calculate center of the circle so that the point is inside the circle but not at the center
-        center_x = x - distance * np.cos(angle)
-        center_y = y - distance * np.sin(angle)
-        center = Point(center_x, center_y)
+        # angle = np.random.uniform(0, 2 * np.pi)
+        # distance = np.random.uniform(0, radius_m)
+        # # Calculate center of the circle so that the point is inside the circle but not at the center
+        # center_x = x - distance * np.cos(angle)
+        # center_y = y - distance * np.sin(angle)
+        center = Point(x, y)  # Point(center_x, center_y)
 
-        # # Create the circle at the calculated center
-        # circle = center.buffer(radius_m, resolution=32)
+        # Create the circle at the calculated center
+        circle = center.buffer(radius_m, resolution=32)
 
         # Transform the circle back to WGS84
-        center_latlon = shapely.ops.transform(
-            lambda x, y: transformer_to_latlon.transform(x, y), center
+        circle_latlon = shapely.ops.transform(
+            lambda x, y: transformer_to_latlon.transform(x, y), circle
         )
-        return center_latlon
+        return circle_latlon
 
-    def obfuscate_points(self, data, radius_feet, plot_id_col, output_file):
+    def obfuscate_points_to_circles(self, data, radius_feet, plot_id_col, output_file):
         """
-        Obfuscate points within a radius and save as csv.
+        Obfuscate points to circles and save as GeoJSON.
 
         Args:
             data (str, pd.DataFrame, gpd.GeoDataFrame): Input data (GeoJSON, DataFrame, or GeoDataFrame).
@@ -174,26 +174,22 @@ class buffer_coordinates:
         else:
             gdf = data.to_crs(epsg=4326)  # Ensure WGS84
 
-        centers = []
+        circles = []
         ids = []
         for idx, row in gdf.iterrows():
             point = row["geometry"]
-            center = self.create_obfuscated_point(point, radius_feet, crs=gdf.crs)
-            centers.append(center)
+            circle = self.create_obfuscated_circle(point, radius_feet, crs=gdf.crs)
+            circles.append(circle)
             ids.append(row[plot_id_col])
-        df = pd.DataFrame(
-            {
-                plot_id_col: ids,
-                "lat": [p.y for p in centers],
-                "lon": [p.x for p in centers],
-            }
+        # Create new GeoDataFrame
+        gdf_circles = gpd.GeoDataFrame(
+            {plot_id_col: ids, "geometry": circles}, crs=gdf.crs
         )
-        # point_df = pd.DataFrame(gdf_circles)
-        point_csv = df.to_csv()
+        geojson_str = gdf_circles.to_json()
         with open(output_file, "w") as f:
-            f.write(point_csv)
-        print(f"CSV saved to {output_file}")
-        return point_csv
+            f.write(geojson_str)
+        print(f"GeoJSON saved to {output_file}")
+        return gdf_circles
 
     def fetch_geojson(self, url):
         """
