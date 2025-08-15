@@ -561,12 +561,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/data_process_demo/" class="md-nav__link">
+      <a href="../examples/data_process_demo.ipynb" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Data process demo
+    None
     
   </span>
   
@@ -1292,15 +1292,14 @@ buffer_method        </code>
 
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">. CSV file will be saved to Downloads folder under this name.&quot;</span>
-            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
                 <span class="n">file_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
-                <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+                <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your file will be saved under </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
 
                 <span class="c1"># --- Modification: Read GeoJSON from bytes ---</span>
                 <span class="c1"># Use BytesIO to read the uploaded GeoJSON file</span>
@@ -1314,11 +1313,21 @@ buffer_method        </code>
             <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">value</span>
             <span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">value</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">extract_median_values</span><span class="p">(</span>
+            <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
+            <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+            <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+
+            <span class="n">extracted_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_median_values</span><span class="p">(</span>
                 <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">geedata</span><span class="o">=</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span>
             <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">returned_csv</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">ee_to_csv</span><span class="p">(</span><span class="n">extracted_results</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">out_path</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">returned_csv</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_median_values</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extracts median values from a GEE dataset for the given geometry.</span>
 
@@ -1329,45 +1338,66 @@ buffer_method        </code>
 <span class="sd">            end_date (str): End date for filtering the dataset.</span>
 <span class="sd">            **kwargs: Additional arguments for the GEE dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="c1"># Assume the file is a GeoJSON or Shapefile with polygons</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-            <span class="c1"># If you have a DataFrame, it should already have a &#39;geometry&#39; column with Polygon objects</span>
-            <span class="c1"># If not, you need to construct it-otherwise, just convert to GeoDataFrame</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># If already a GeoDataFrame</span>
-            <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
 
-        <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
-        <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
+        <span class="c1"># Convert GeoDataFrame to GeoJSON dictionary (to feed into Earth Engine)</span>
+        <span class="n">geojson_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+        <span class="n">geojson_object</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson_dict</span><span class="p">)</span>
 
-        <span class="c1"># Load the GEE dataset as an image</span>
+        <span class="c1"># Define your dataset and time range, e.g. Sentinel-2 in 2022</span>
         <span class="n">geeimage</span> <span class="o">=</span> <span class="n">buffer_method</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
-        <span class="n">name</span> <span class="o">=</span> <span class="n">geedata</span>
-        <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+        <span class="c1"># Extract median values over each polygon using reduceRegions</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">geeimage</span><span class="o">.</span><span class="n">sampleRegions</span><span class="p">(</span>
+            <span class="n">collection</span><span class="o">=</span><span class="n">geojson_object</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span>
+        <span class="p">)</span>
 
-        <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
-        <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
-        <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results</span>
 
-        <span class="c1"># Retrieve data from the image using sampleRegions</span>
-        <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_gee_as_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.</span>
+<span class="sd">        Optionally filters by start and end date if applicable.</span>
 
-        <span class="k">return</span> <span class="n">sampled_data</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            dataset_id (str): The Earth Engine dataset ID.</span>
+<span class="sd">            start_date (str): Optional start date in &#39;YYYY-MM-DD&#39; format.</span>
+<span class="sd">            end_date (str): Optional end date in &#39;YYYY-MM-DD&#39; format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ee.Image: The resulting image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Try loading as Image</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>  <span class="c1"># validate image</span>
+            <span class="k">return</span> <span class="n">img</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># Try loading as ImageCollection</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">start_date</span> <span class="ow">and</span> <span class="n">end_date</span><span class="p">:</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+            <span class="c1"># Reduce to median image</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">toBands</span><span class="p">()</span>  <span class="c1"># validate</span>
+            <span class="k">return</span> <span class="n">img</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># Try loading as FeatureCollection (convert to raster mask)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">start_date</span> <span class="ow">and</span> <span class="n">end_date</span><span class="p">:</span>
+                <span class="n">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">reduceToImage</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="p">[],</span> <span class="n">reducer</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+            <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">img</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Dataset ID is not a valid Image, ImageCollection, or FeatureCollection.&quot;</span>
+            <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1422,55 +1452,6 @@ buffer_method        </code>
         <span class="n">date_picker</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">DatePicker</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Pick a Date&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">date_picker</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">load_gee_as_image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.</span>
-<span class="sd">        Optionally filters by start and end date if applicable.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            dataset_id (str): The Earth Engine dataset ID.</span>
-<span class="sd">            start_date (str): Optional start date in &#39;YYYY-MM-DD&#39; format.</span>
-<span class="sd">            end_date (str): Optional end date in &#39;YYYY-MM-DD&#39; format.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            ee.Image: The resulting image.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Try loading as Image</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
-            <span class="c1"># If .getInfo() doesn&#39;t throw, it&#39;s an Image</span>
-            <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">img</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="k">pass</span>
-
-        <span class="c1"># Try loading as ImageCollection</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">col</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
-            <span class="c1"># If date filters are provided, apply them</span>
-            <span class="k">if</span> <span class="n">start_date</span> <span class="ow">and</span> <span class="n">end_date</span><span class="p">:</span>
-                <span class="n">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="c1"># Reduce to a single image (e.g., median composite)</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-            <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>  <span class="c1"># Throws if not valid</span>
-            <span class="k">return</span> <span class="n">img</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="k">pass</span>
-
-        <span class="c1"># Try loading as FeatureCollection (convert to raster)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">fc_temp</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
-            <span class="c1"># Convert to raster: burn a value of 1 into a new image</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="n">fc_temp</span><span class="o">.</span><span class="n">reduceToImage</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="p">[],</span> <span class="n">reducer</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-            <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">img</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Dataset ID is not a valid Image, ImageCollection, or FeatureCollection.&quot;</span>
-            <span class="p">)</span>
 </code></pre></div>
         </details>
 
@@ -1693,7 +1674,7 @@ Part 2 of buffered coordinates approach which accesses GEE datasets and extracts
 
 
 <h3 id="skiba.buffer_method.buffer_method.extract_median_values" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#skiba.buffer_method.buffer_method.extract_median_values" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -1729,13 +1710,13 @@ Part 2 of buffered coordinates approach which accesses GEE datasets and extracts
         <td><code>start_date</code></td>
         <td><code>str</code></td>
         <td><p>Start date for filtering the dataset.</p></td>
-        <td><em>required</em></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>end_date</code></td>
         <td><code>str</code></td>
         <td><p>End date for filtering the dataset.</p></td>
-        <td><em>required</em></td>
+        <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>**kwargs</code></td>
@@ -1747,7 +1728,9 @@ Part 2 of buffered coordinates approach which accesses GEE datasets and extracts
 </table>
         <details class="quote">
           <summary>Source code in <code>skiba/buffer_method.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_median_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract_median_values</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extracts median values from a GEE dataset for the given geometry.</span>
 
@@ -1758,45 +1741,20 @@ Part 2 of buffered coordinates approach which accesses GEE datasets and extracts
 <span class="sd">        end_date (str): End date for filtering the dataset.</span>
 <span class="sd">        **kwargs: Additional arguments for the GEE dataset.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="c1"># Assume the file is a GeoJSON or Shapefile with polygons</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-        <span class="c1"># If you have a DataFrame, it should already have a &#39;geometry&#39; column with Polygon objects</span>
-        <span class="c1"># If not, you need to construct it-otherwise, just convert to GeoDataFrame</span>
-        <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># If already a GeoDataFrame</span>
-        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
 
-    <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
-    <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
+    <span class="c1"># Convert GeoDataFrame to GeoJSON dictionary (to feed into Earth Engine)</span>
+    <span class="n">geojson_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+    <span class="n">geojson_object</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson_dict</span><span class="p">)</span>
 
-    <span class="c1"># Load the GEE dataset as an image</span>
+    <span class="c1"># Define your dataset and time range, e.g. Sentinel-2 in 2022</span>
     <span class="n">geeimage</span> <span class="o">=</span> <span class="n">buffer_method</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
 
-    <span class="n">name</span> <span class="o">=</span> <span class="n">geedata</span>
-    <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="c1"># Extract median values over each polygon using reduceRegions</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">geeimage</span><span class="o">.</span><span class="n">sampleRegions</span><span class="p">(</span>
+        <span class="n">collection</span><span class="o">=</span><span class="n">geojson_object</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
 
-    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
-    <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
-    <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
-
-    <span class="c1"># Retrieve data from the image using sampleRegions</span>
-    <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">sampled_data</span>
+    <span class="k">return</span> <span class="n">results</span>
 </code></pre></div>
         </details>
     </div>
@@ -1871,7 +1829,7 @@ Part 2 of buffered coordinates approach which accesses GEE datasets and extracts
 
 
 <h3 id="skiba.buffer_method.buffer_method.load_gee_as_image" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">load_gee_as_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#skiba.buffer_method.buffer_method.load_gee_as_image" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -1929,7 +1887,7 @@ Optionally filters by start and end date if applicable.</p>
 </table>
         <details class="quote">
           <summary>Source code in <code>skiba/buffer_method.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_gee_as_image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_gee_as_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.</span>
 <span class="sd">    Optionally filters by start and end date if applicable.</span>
@@ -1945,8 +1903,7 @@ Optionally filters by start and end date if applicable.</p>
     <span class="c1"># Try loading as Image</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
-        <span class="c1"># If .getInfo() doesn&#39;t throw, it&#39;s an Image</span>
-        <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>  <span class="c1"># validate image</span>
         <span class="k">return</span> <span class="n">img</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="k">pass</span>
@@ -1954,23 +1911,21 @@ Optionally filters by start and end date if applicable.</p>
     <span class="c1"># Try loading as ImageCollection</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">col</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
-        <span class="c1"># If date filters are provided, apply them</span>
         <span class="k">if</span> <span class="n">start_date</span> <span class="ow">and</span> <span class="n">end_date</span><span class="p">:</span>
             <span class="n">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">pass</span>
-        <span class="c1"># Reduce to a single image (e.g., median composite)</span>
+        <span class="c1"># Reduce to median image</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-        <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>  <span class="c1"># Throws if not valid</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">toBands</span><span class="p">()</span>  <span class="c1"># validate</span>
         <span class="k">return</span> <span class="n">img</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="k">pass</span>
 
-    <span class="c1"># Try loading as FeatureCollection (convert to raster)</span>
+    <span class="c1"># Try loading as FeatureCollection (convert to raster mask)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">fc_temp</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
-        <span class="c1"># Convert to raster: burn a value of 1 into a new image</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">fc_temp</span><span class="o">.</span><span class="n">reduceToImage</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="p">[],</span> <span class="n">reducer</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">start_date</span> <span class="ow">and</span> <span class="n">end_date</span><span class="p">:</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">reduceToImage</span><span class="p">(</span><span class="n">properties</span><span class="o">=</span><span class="p">[],</span> <span class="n">reducer</span><span class="o">=</span><span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
         <span class="n">img</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">img</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -2009,15 +1964,14 @@ Optionally filters by start and end date if applicable.</p>
 
     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">. CSV file will be saved to Downloads folder under this name.&quot;</span>
-        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You entered: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
             <span class="n">file_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
-            <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Your file will be saved under </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
 
             <span class="c1"># --- Modification: Read GeoJSON from bytes ---</span>
             <span class="c1"># Use BytesIO to read the uploaded GeoJSON file</span>
@@ -2031,9 +1985,17 @@ Optionally filters by start and end date if applicable.</p>
         <span class="n">start_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">value</span>
         <span class="n">end_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">value</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">extract_median_values</span><span class="p">(</span>
+        <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+        <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+
+        <span class="n">extracted_results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_median_values</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">geedata</span><span class="o">=</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span>
         <span class="p">)</span>
+
+        <span class="n">returned_csv</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">ee_to_csv</span><span class="p">(</span><span class="n">extracted_results</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">out_path</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">returned_csv</span>
 </code></pre></div>
         </details>
     </div>
