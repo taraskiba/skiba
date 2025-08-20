@@ -1,3 +1,3 @@
 # FAQ
 
-I don't get asked many questions *shrug*
+Please see the streamlit app for FAQs ([streamlit](https://skibapython.streamlit.app/))
