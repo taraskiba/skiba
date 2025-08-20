@@ -12,8 +12,10 @@
         <meta name="author" content="taraskiba">
       
       
-        <link rel="canonical" href="https://taraskiba.github.io/skiba/buffer_and_sample/">
+        <link rel="canonical" href="https://taraskiba.github.io/skiba/buffer_coordinates/">
       
+      
+        <link rel="prev" href="../skiba/">
       
       
       
@@ -22,7 +24,7 @@
     
     
       
-        <title>buffer_and_sample module - skiba</title>
+        <title>buffer_coordinates - skiba</title>
       
     
     
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#buffer_and_sample-module" class="md-skip">
+        <a href="#buffer_coordinates-module" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              buffer_and_sample module
+              buffer_coordinates
             
           </span>
         </div>
@@ -747,18 +749,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -774,7 +778,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             API Reference
@@ -831,10 +835,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../buffer_coordinates/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    buffer_coordinates
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -845,6 +871,104 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      skiba.buffer_coordinates
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      buffer_coordinates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="buffer_coordinates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.create_obfuscated_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      create_obfuscated_point()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.fetch_geojson" class="md-nav__link">
+    <span class="md-ellipsis">
+      fetch_geojson()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.obfuscate_points" class="md-nav__link">
+    <span class="md-ellipsis">
+      obfuscate_points()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.on_button_clicked" class="md-nav__link">
+    <span class="md-ellipsis">
+      on_button_clicked()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.on_dropdown_change" class="md-nav__link">
+    <span class="md-ellipsis">
+      on_dropdown_change()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -930,26 +1054,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      skiba.buffer_and_sample
+      skiba.buffer_coordinates
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates" class="md-nav__link">
     <span class="md-ellipsis">
-      buffer
+      buffer_coordinates
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="buffer">
+    <nav class="md-nav" aria-label="buffer_coordinates">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer.__init__" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.__init__" class="md-nav__link">
     <span class="md-ellipsis">
       __init__()
     </span>
@@ -958,16 +1082,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer.create_obfuscated_points" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.create_obfuscated_point" class="md-nav__link">
     <span class="md-ellipsis">
-      create_obfuscated_points()
+      create_obfuscated_point()
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer.fetch_geojson" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.fetch_geojson" class="md-nav__link">
     <span class="md-ellipsis">
       fetch_geojson()
     </span>
@@ -976,7 +1100,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer.obfuscate_points" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.obfuscate_points" class="md-nav__link">
     <span class="md-ellipsis">
       obfuscate_points()
     </span>
@@ -985,7 +1109,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer.on_button_clicked" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.on_button_clicked" class="md-nav__link">
     <span class="md-ellipsis">
       on_button_clicked()
     </span>
@@ -994,7 +1118,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.buffer_and_sample.buffer.on_dropdown_change" class="md-nav__link">
+  <a href="#skiba.buffer_coordinates.buffer_coordinates.on_dropdown_change" class="md-nav__link">
     <span class="md-ellipsis">
       on_dropdown_change()
     </span>
@@ -1029,12 +1153,12 @@
   
 
 
-<h1 id="buffer_and_sample-module">buffer_and_sample module<a class="headerlink" href="#buffer_and_sample-module" title="Permanent link">&para;</a></h1>
+<h1 id="buffer_coordinates-module">buffer_coordinates module<a class="headerlink" href="#buffer_coordinates-module" title="Permanent link">&para;</a></h1>
 
 
   <div class="doc doc-object doc-module">
 
-<a id="skiba.buffer_and_sample"></a>
+<a id="skiba.buffer_coordinates"></a>
     <div class="doc doc-contents first">
 
 
@@ -1052,20 +1176,20 @@
 
 
 
-<h2 id="skiba.buffer_and_sample.buffer" class="doc doc-heading">
+<h2 id="skiba.buffer_coordinates.buffer_coordinates" class="doc doc-heading">
         <code>
-buffer        </code>
+buffer_coordinates        </code>
 
 
 
-<a href="#skiba.buffer_and_sample.buffer" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#skiba.buffer_coordinates.buffer_coordinates" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
 
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">buffer</span><span class="p">:</span>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">buffer_coordinates</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the buffer_coordinates class and sets up the GUI components.</span>
@@ -1084,24 +1208,14 @@ buffer        </code>
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
             <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;OPTIONAL:&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
             <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-            <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Buffer radius (ft):&quot;</span><span class="p">,</span>
-            <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">display</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
-            <span class="n">flex_flow</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
-            <span class="n">align_items</span><span class="o">=</span><span class="s2">&quot;stretch&quot;</span><span class="p">,</span>
-            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
-        <span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">sample_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
             <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Sampling number (int):&quot;</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Buffer radius (ft):&quot;</span><span class="p">,</span>
             <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">display</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
             <span class="n">flex_flow</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
@@ -1122,13 +1236,7 @@ buffer        </code>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
-            <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">sample_button</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">,</span>
-            <span class="p">]</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
@@ -1183,7 +1291,6 @@ buffer        </code>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a CSV file.&quot;</span><span class="p">)</span>
 
             <span class="n">radius_ft</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">no_samp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_button</span><span class="o">.</span><span class="n">value</span>
 
             <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
             <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radius_ft</span><span class="si">}</span><span class="s2">ft.csv&quot;</span>
@@ -1192,7 +1299,6 @@ buffer        </code>
             <span class="bp">self</span><span class="o">.</span><span class="n">obfuscate_points</span><span class="p">(</span>
                 <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span>
                 <span class="n">radius_feet</span><span class="o">=</span><span class="n">radius_ft</span><span class="p">,</span>
-                <span class="n">no_samp</span><span class="o">=</span><span class="n">no_samp</span><span class="p">,</span>
                 <span class="n">plot_id_col</span><span class="o">=</span><span class="s2">&quot;plot_ID&quot;</span><span class="p">,</span>
                 <span class="n">output_file</span><span class="o">=</span><span class="n">out_path</span><span class="p">,</span>
             <span class="p">)</span>
@@ -1213,7 +1319,7 @@ buffer        </code>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected dataset: </span><span class="si">{</span><span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_obfuscated_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_obfuscated_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a circle polygon (as a shapely geometry) with the given radius in feet,</span>
 <span class="sd">        where the provided point is randomly located inside the circle (not at the center).</span>
@@ -1228,22 +1334,23 @@ buffer        </code>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transformer_to_utm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
         <span class="c1"># Randomize the point&#39;s location within the circle</span>
-        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_samp</span><span class="p">):</span>
-            <span class="c1"># Randomize the point&#39;s location within the circle</span>
-            <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-            <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">)</span>
-            <span class="c1"># Calculate center of the circle so that the point is inside the circle but not at the center</span>
-            <span class="n">center_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="n">center_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span><span class="p">)</span>
-            <span class="n">center_latlon</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">transformer_to_latlon</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">center</span>
-            <span class="p">)</span>
-            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center_latlon</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">points</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">)</span>
+        <span class="c1"># Calculate center of the circle so that the point is inside the circle but not at the center</span>
+        <span class="n">center_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">center_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">obfuscate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">plot_id_col</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+        <span class="c1"># # Create the circle at the calculated center</span>
+        <span class="c1"># circle = center.buffer(radius_m, resolution=32)</span>
+
+        <span class="c1"># Transform the circle back to WGS84</span>
+        <span class="n">center_latlon</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">transformer_to_latlon</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">center</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">center_latlon</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">obfuscate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">plot_id_col</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Obfuscate points within a radius and save as csv.</span>
 
@@ -1271,19 +1378,22 @@ buffer        </code>
             <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
 
         <span class="n">centers</span> <span class="o">=</span> <span class="p">[]</span>
-
+        <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">gdf</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
             <span class="n">point</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_obfuscated_points</span><span class="p">(</span>
-                <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span>
-            <span class="p">)</span>
-            <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">center</span><span class="p">:</span>
-                <span class="n">centers</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;plot_ID&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">plot_id_col</span><span class="p">],</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">x</span><span class="p">})</span>
-            <span class="c1"># Create new GeoDataFrame</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span>
+            <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_obfuscated_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+            <span class="n">centers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+            <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">plot_id_col</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">plot_id_col</span><span class="p">:</span> <span class="n">ids</span><span class="p">,</span>
+                <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">],</span>
+                <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">],</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
         <span class="c1"># point_df = pd.DataFrame(gdf_circles)</span>
         <span class="n">point_csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">point_csv</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSV saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">point_csv</span>
@@ -1326,14 +1436,14 @@ buffer        </code>
 
 
 
-<h3 id="skiba.buffer_and_sample.buffer.__init__" class="doc doc-heading">
+<h3 id="skiba.buffer_coordinates.buffer_coordinates.__init__" class="doc doc-heading">
 <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-special"><code>special</code></small>
   </span>
 
-<a href="#skiba.buffer_and_sample.buffer.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_coordinates.buffer_coordinates.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1342,7 +1452,7 @@ Part 1 of buffered coordinates approach which creates circles around points.
 (Part 2 is in buffer_method.py)</p>
 
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initializes the buffer_coordinates class and sets up the GUI components.</span>
@@ -1361,24 +1471,14 @@ Part 1 of buffered coordinates approach which creates circles around points.
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
         <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;OPTIONAL:&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Dataset:&quot;</span><span class="p">,</span>
         <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-        <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Buffer radius (ft):&quot;</span><span class="p">,</span>
-        <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">display</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
-        <span class="n">flex_flow</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
-        <span class="n">align_items</span><span class="o">=</span><span class="s2">&quot;stretch&quot;</span><span class="p">,</span>
-        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;description_width&quot;</span><span class="p">:</span> <span class="s2">&quot;initial&quot;</span><span class="p">},</span>
-    <span class="p">)</span>
-
-    <span class="bp">self</span><span class="o">.</span><span class="n">sample_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
         <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Sampling number (int):&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Buffer radius (ft):&quot;</span><span class="p">,</span>
         <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">display</span><span class="o">=</span><span class="s2">&quot;flex&quot;</span><span class="p">,</span>
         <span class="n">flex_flow</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">,</span>
@@ -1399,13 +1499,7 @@ Part 1 of buffered coordinates approach which creates circles around points.
     <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">sample_button</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">,</span>
-        <span class="p">]</span>
+        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
     <span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
@@ -1421,11 +1515,11 @@ Part 1 of buffered coordinates approach which creates circles around points.
 
 
 
-<h3 id="skiba.buffer_and_sample.buffer.create_obfuscated_points" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create_obfuscated_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span></code>
+<h3 id="skiba.buffer_coordinates.buffer_coordinates.create_obfuscated_point" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">create_obfuscated_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span></code>
 
 
-<a href="#skiba.buffer_and_sample.buffer.create_obfuscated_points" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_coordinates.buffer_coordinates.create_obfuscated_point" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1433,8 +1527,8 @@ Part 1 of buffered coordinates approach which creates circles around points.
 where the provided point is randomly located inside the circle (not at the center).</p>
 
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_obfuscated_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">):</span>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_obfuscated_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a circle polygon (as a shapely geometry) with the given radius in feet,</span>
 <span class="sd">    where the provided point is randomly located inside the circle (not at the center).</span>
@@ -1449,20 +1543,21 @@ where the provided point is randomly located inside the circle (not at the cente
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">transformer_to_utm</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="c1"># Randomize the point&#39;s location within the circle</span>
-    <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_samp</span><span class="p">):</span>
-        <span class="c1"># Randomize the point&#39;s location within the circle</span>
-        <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-        <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">)</span>
-        <span class="c1"># Calculate center of the circle so that the point is inside the circle but not at the center</span>
-        <span class="n">center_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-        <span class="n">center_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
-        <span class="n">center</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span><span class="p">)</span>
-        <span class="n">center_latlon</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">transformer_to_latlon</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">center</span>
-        <span class="p">)</span>
-        <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center_latlon</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">points</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">radius_m</span><span class="p">)</span>
+    <span class="c1"># Calculate center of the circle so that the point is inside the circle but not at the center</span>
+    <span class="n">center_x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">center_y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span><span class="p">)</span>
+
+    <span class="c1"># # Create the circle at the calculated center</span>
+    <span class="c1"># circle = center.buffer(radius_m, resolution=32)</span>
+
+    <span class="c1"># Transform the circle back to WGS84</span>
+    <span class="n">center_latlon</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">transformer_to_latlon</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">center</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">center_latlon</span>
 </code></pre></div>
         </details>
     </div>
@@ -1475,11 +1570,11 @@ where the provided point is randomly located inside the circle (not at the cente
 
 
 
-<h3 id="skiba.buffer_and_sample.buffer.fetch_geojson" class="doc doc-heading">
+<h3 id="skiba.buffer_coordinates.buffer_coordinates.fetch_geojson" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">fetch_geojson</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span></code>
 
 
-<a href="#skiba.buffer_and_sample.buffer.fetch_geojson" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_coordinates.buffer_coordinates.fetch_geojson" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1505,7 +1600,7 @@ where the provided point is randomly located inside the circle (not at the cente
   </tbody>
 </table>
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_geojson</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fetch GeoJSON data from a given URL.</span>
@@ -1537,11 +1632,11 @@ where the provided point is randomly located inside the circle (not at the cente
 
 
 
-<h3 id="skiba.buffer_and_sample.buffer.obfuscate_points" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">obfuscate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">plot_id_col</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span></code>
+<h3 id="skiba.buffer_coordinates.buffer_coordinates.obfuscate_points" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">obfuscate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">plot_id_col</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span></code>
 
 
-<a href="#skiba.buffer_and_sample.buffer.obfuscate_points" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_coordinates.buffer_coordinates.obfuscate_points" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1585,8 +1680,8 @@ where the provided point is randomly located inside the circle (not at the cente
   </tbody>
 </table>
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">obfuscate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">plot_id_col</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">obfuscate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">plot_id_col</span><span class="p">,</span> <span class="n">output_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Obfuscate points within a radius and save as csv.</span>
 
@@ -1614,19 +1709,22 @@ where the provided point is randomly located inside the circle (not at the cente
         <span class="n">gdf</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># Ensure WGS84</span>
 
     <span class="n">centers</span> <span class="o">=</span> <span class="p">[]</span>
-
+    <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">gdf</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
-        <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_obfuscated_points</span><span class="p">(</span>
-            <span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">no_samp</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span>
-        <span class="p">)</span>
-        <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">center</span><span class="p">:</span>
-            <span class="n">centers</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;plot_ID&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="n">plot_id_col</span><span class="p">],</span> <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">x</span><span class="p">})</span>
-        <span class="c1"># Create new GeoDataFrame</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">centers</span><span class="p">)</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_obfuscated_point</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">radius_feet</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+        <span class="n">centers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+        <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">plot_id_col</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="n">plot_id_col</span><span class="p">:</span> <span class="n">ids</span><span class="p">,</span>
+            <span class="s2">&quot;lat&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">y</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">],</span>
+            <span class="s2">&quot;lon&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">x</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">centers</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
     <span class="c1"># point_df = pd.DataFrame(gdf_circles)</span>
     <span class="n">point_csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">point_csv</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSV saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">point_csv</span>
@@ -1642,18 +1740,18 @@ where the provided point is randomly located inside the circle (not at the cente
 
 
 
-<h3 id="skiba.buffer_and_sample.buffer.on_button_clicked" class="doc doc-heading">
+<h3 id="skiba.buffer_coordinates.buffer_coordinates.on_button_clicked" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">on_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></code>
 
 
-<a href="#skiba.buffer_and_sample.buffer.on_button_clicked" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_coordinates.buffer_coordinates.on_button_clicked" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
       <p>Callback function to handle button click events.</p>
 
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_button_clicked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Callback function to handle button click events.&quot;&quot;&quot;</span>
@@ -1704,7 +1802,6 @@ where the provided point is randomly located inside the circle (not at the cente
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a CSV file.&quot;</span><span class="p">)</span>
 
         <span class="n">radius_ft</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span>
-        <span class="n">no_samp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_button</span><span class="o">.</span><span class="n">value</span>
 
         <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
         <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">radius_ft</span><span class="si">}</span><span class="s2">ft.csv&quot;</span>
@@ -1713,7 +1810,6 @@ where the provided point is randomly located inside the circle (not at the cente
         <span class="bp">self</span><span class="o">.</span><span class="n">obfuscate_points</span><span class="p">(</span>
             <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span>
             <span class="n">radius_feet</span><span class="o">=</span><span class="n">radius_ft</span><span class="p">,</span>
-            <span class="n">no_samp</span><span class="o">=</span><span class="n">no_samp</span><span class="p">,</span>
             <span class="n">plot_id_col</span><span class="o">=</span><span class="s2">&quot;plot_ID&quot;</span><span class="p">,</span>
             <span class="n">output_file</span><span class="o">=</span><span class="n">out_path</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1730,18 +1826,18 @@ where the provided point is randomly located inside the circle (not at the cente
 
 
 
-<h3 id="skiba.buffer_and_sample.buffer.on_dropdown_change" class="doc doc-heading">
+<h3 id="skiba.buffer_coordinates.buffer_coordinates.on_dropdown_change" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">on_dropdown_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">)</span></code>
 
 
-<a href="#skiba.buffer_and_sample.buffer.on_dropdown_change" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.buffer_coordinates.buffer_coordinates.on_dropdown_change" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
       <p>Callback function to handle dropdown value changes.</p>
 
         <details class="quote">
-          <summary>Source code in <code>skiba/buffer_and_sample.py</code></summary>
+          <summary>Source code in <code>skiba/buffer_coordinates.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_dropdown_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">change</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Callback function to handle dropdown value changes.</span>
@@ -1805,7 +1901,7 @@ where the provided point is randomly located inside the circle (not at the cente
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 15, 2025 21:34:25 UTC"><span class="timeago" datetime="2025-08-15T21:34:25+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 15, 2025 21:34:25 UTC">2025-08-15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 20, 2025 19:21:20 UTC"><span class="timeago" datetime="2025-08-20T19:21:20+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 20, 2025 19:21:20 UTC">2025-08-20</span>
   </span>
 
     
@@ -1815,7 +1911,7 @@ where the provided point is randomly located inside the circle (not at the cente
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 15, 2025 21:34:25 UTC"><span class="timeago" datetime="2025-08-15T21:34:25+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 15, 2025 21:34:25 UTC">2025-08-15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 20, 2025 19:21:20 UTC"><span class="timeago" datetime="2025-08-20T19:21:20+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 20, 2025 19:21:20 UTC">2025-08-20</span>
   </span>
 
     
