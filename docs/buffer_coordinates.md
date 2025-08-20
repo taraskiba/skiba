@@ -1,4 +1,4 @@
 
 # buffer_coordinates module
 
-::: buffer_coordinates
+::: skiba.buffer_coordinates
