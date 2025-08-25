@@ -10,7 +10,7 @@
 
 
 -   Free software: MIT License
--   Documentation: https://taraskiba.github.io/skiba
+-   Documentation: https://skibapython.streamlit.app/
 
 
 [![ForestSPOT](docs/files/logo.png)](https://github.com/taraskiba/skiba)
