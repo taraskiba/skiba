@@ -17,10 +17,10 @@ class TestBufferCoordinates(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
-        self.mock_widgets_patcher = patch('skiba.buffer_coordinates.widgets')
+        self.mock_widgets_patcher = patch("skiba.buffer_coordinates.widgets")
         self.mock_widgets = self.mock_widgets_patcher.start()
 
-        self.mock_gpd_patcher = patch('skiba.buffer_coordinates.gpd')
+        self.mock_gpd_patcher = patch("skiba.buffer_coordinates.gpd")
         self.mock_gpd = self.mock_gpd_patcher.start()
 
         # Setup mock widgets
@@ -37,12 +37,10 @@ class TestBufferCoordinates(unittest.TestCase):
         self.mock_widgets_patcher.stop()
         self.mock_gpd_patcher.stop()
 
-    @patch('skiba.buffer_coordinates.buffer_coordinates.fetch_geojson')
+    @patch("skiba.buffer_coordinates.buffer_coordinates.fetch_geojson")
     def test_initialization(self, mock_fetch):
         """Test buffer_coordinates class initialization."""
-        mock_fetch.return_value = [
-            {"title": "Test Dataset", "id": "test/dataset"}
-        ]
+        mock_fetch.return_value = [{"title": "Test Dataset", "id": "test/dataset"}]
 
         bc = buffer_coordinates()
 
@@ -52,7 +50,7 @@ class TestBufferCoordinates(unittest.TestCase):
         self.mock_widgets.FloatText.assert_called_once()
         self.assertIsNotNone(bc)
 
-    @patch('skiba.buffer_coordinates.requests.get')
+    @patch("skiba.buffer_coordinates.requests.get")
     def test_fetch_geojson_success(self, mock_get):
         """Test successful fetching of GeoJSON data."""
         # Mock the initial catalog fetch during initialization
@@ -62,7 +60,10 @@ class TestBufferCoordinates(unittest.TestCase):
 
         # Mock the actual test fetch
         mock_test_response = Mock()
-        mock_test_response.json.return_value = {"type": "FeatureCollection", "features": []}
+        mock_test_response.json.return_value = {
+            "type": "FeatureCollection",
+            "features": [],
+        }
         mock_test_response.raise_for_status.return_value = None
 
         # Set up side_effect to return different responses
@@ -73,15 +74,17 @@ class TestBufferCoordinates(unittest.TestCase):
 
         self.assertEqual(result, {"type": "FeatureCollection", "features": []})
         # Check that the second call was to our test URL
-        self.assertEqual(mock_get.call_args_list[1][0][0], "https://example.com/data.json")
+        self.assertEqual(
+            mock_get.call_args_list[1][0][0], "https://example.com/data.json"
+        )
 
-    @patch('skiba.buffer_coordinates.requests.get')
+    @patch("skiba.buffer_coordinates.requests.get")
     def test_fetch_geojson_http_error(self, mock_get):
         """Test handling of HTTP errors when fetching GeoJSON."""
         bc = buffer_coordinates()
         mock_get.side_effect = Exception("HTTP error")
 
-        with patch('builtins.print') as mock_print:
+        with patch("builtins.print") as mock_print:
             result = bc.fetch_geojson("https://example.com/data.json")
             self.assertIsNone(result)
             mock_print.assert_called_once()
@@ -105,7 +108,7 @@ class TestBufferCoordinates(unittest.TestCase):
         self.assertIsNotNone(bc.buffer_radius)
         self.assertEqual(bc.buffer_radius.value, 10)  # Default radius
 
-    @patch('skiba.buffer_coordinates.buffer_coordinates.fetch_geojson')
+    @patch("skiba.buffer_coordinates.buffer_coordinates.fetch_geojson")
     def test_on_dropdown_change(self, mock_fetch):
         """Test dropdown change handler."""
         mock_fetch.return_value = [
@@ -114,7 +117,7 @@ class TestBufferCoordinates(unittest.TestCase):
 
         bc = buffer_coordinates()
 
-        with patch('builtins.print') as mock_print:
+        with patch("builtins.print") as mock_print:
             # Simulate dropdown change
             change = {"new": "test/dataset"}
             bc.on_dropdown_change(change)
@@ -140,8 +143,8 @@ class TestBufferCoordinates(unittest.TestCase):
         # This tests the concept but actual implementation may vary
         self.assertIsNotNone(bc)
 
-    @patch('skiba.buffer_coordinates.json.dump')
-    @patch('builtins.open', new_callable=unittest.mock.mock_open)
+    @patch("skiba.buffer_coordinates.json.dump")
+    @patch("builtins.open", new_callable=unittest.mock.mock_open)
     def test_save_geojson(self, mock_open, mock_json_dump):
         """Test saving GeoDataFrame as GeoJSON."""
         bc = buffer_coordinates()
@@ -173,5 +176,5 @@ class TestBufferCoordinates(unittest.TestCase):
         self.assertFalse(-180 <= invalid_lon <= 180)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
