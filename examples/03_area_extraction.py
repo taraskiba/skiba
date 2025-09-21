@@ -19,7 +19,9 @@ from skiba.area_extraction import point_extraction
 # Initialize Earth Engine
 print("Earth Engine Authentication")
 print("-" * 30)
-project_id = input("Enter your Earth Engine project ID (or press Enter to skip): ").strip()
+project_id = input(
+    "Enter your Earth Engine project ID (or press Enter to skip): "
+).strip()
 
 if project_id:
     try:

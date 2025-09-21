@@ -19,7 +19,9 @@ from skiba.buffer_and_sample import buffer
 # Initialize Earth Engine
 print("Earth Engine Authentication")
 print("-" * 30)
-project_id = input("Enter your Earth Engine project ID (or press Enter to skip): ").strip()
+project_id = input(
+    "Enter your Earth Engine project ID (or press Enter to skip): "
+).strip()
 
 if project_id:
     try:
@@ -88,7 +90,9 @@ def create_buffered_forest_plots():
             subset_projected = subset.to_crs("EPSG:32610")  # UTM Zone 10N
             # Convert feet to meters (1 foot = 0.3048 meters)
             radius_meters = radius_ft * 0.3048
-            subset_projected["geometry"] = subset_projected.geometry.buffer(radius_meters)
+            subset_projected["geometry"] = subset_projected.geometry.buffer(
+                radius_meters
+            )
             # Convert back to geographic CRS
             subset = subset_projected.to_crs("EPSG:4326")
             subset["buffer_radius_ft"] = radius_ft
