@@ -29,15 +29,17 @@ def extract_ndvi_for_forest_points():
 
     # Define forest monitoring points
     # These could be plot centers, phenocam locations, or flux tower sites
-    forest_points = pd.DataFrame({
-        'plot_ID': ['PLOT_001', 'PLOT_002', 'PLOT_003', 'PLOT_004'],
-        'LAT': [35.9606, 36.0544, 35.8235, 36.1069],
-        'LON': [-83.9207, -112.1401, -84.2875, -112.0693],
-        'forest_type': ['Mixed Deciduous', 'Coniferous', 'Oak-Hickory', 'Pine']
-    })
+    forest_points = pd.DataFrame(
+        {
+            "plot_ID": ["PLOT_001", "PLOT_002", "PLOT_003", "PLOT_004"],
+            "LAT": [35.9606, 36.0544, 35.8235, 36.1069],
+            "LON": [-83.9207, -112.1401, -84.2875, -112.0693],
+            "forest_type": ["Mixed Deciduous", "Coniferous", "Oak-Hickory", "Pine"],
+        }
+    )
 
     # Save to CSV for use with point_extraction
-    forest_points.to_csv('forest_monitoring_points.csv', index=False)
+    forest_points.to_csv("forest_monitoring_points.csv", index=False)
 
     # Initialize point extraction
     pe = point_extraction()
@@ -52,17 +54,17 @@ def extract_ndvi_for_forest_points():
     # Extract data
     print("Extracting NDVI values for forest monitoring points...")
     results = pe.get_coordinate_data(
-        data='forest_monitoring_points.csv',
+        data="forest_monitoring_points.csv",
         geedata=dataset,
         start_date=start_date,
-        end_date=end_date
+        end_date=end_date,
     )
 
     # Analyze results
     print("\n=== Forest Health Analysis ===")
     print(f"Data extracted for {len(results)} points")
 
-    if 'NDVI' in results.columns:
+    if "NDVI" in results.columns:
         print(f"\nNDVI Statistics:")
         print(f"Mean NDVI: {results['NDVI'].mean():.3f}")
         print(f"Min NDVI: {results['NDVI'].min():.3f}")
@@ -70,7 +72,7 @@ def extract_ndvi_for_forest_points():
 
         # Identify potential problem areas
         low_ndvi_threshold = 0.4
-        problem_plots = results[results['NDVI'] < low_ndvi_threshold]
+        problem_plots = results[results["NDVI"] < low_ndvi_threshold]
         if not problem_plots.empty:
             print(f"\n⚠️ Plots with low NDVI (< {low_ndvi_threshold}):")
             for _, plot in problem_plots.iterrows():
@@ -87,11 +89,13 @@ def extract_multiple_indices():
     print("\n=== Extracting Multiple Vegetation Indices ===")
 
     # Sample coordinates for a forest stand
-    forest_stand = pd.DataFrame({
-        'plot_ID': ['STAND_A1', 'STAND_A2', 'STAND_A3'],
-        'LAT': [45.5231, 45.5245, 45.5259],
-        'LON': [-122.6765, -122.6750, -122.6735],
-    })
+    forest_stand = pd.DataFrame(
+        {
+            "plot_ID": ["STAND_A1", "STAND_A2", "STAND_A3"],
+            "LAT": [45.5231, 45.5245, 45.5259],
+            "LON": [-122.6765, -122.6750, -122.6735],
+        }
+    )
 
     pe = point_extraction()
 
@@ -101,23 +105,28 @@ def extract_multiple_indices():
     end_date = datetime(2024, 12, 31)
 
     results = pe.get_coordinate_data(
-        data=forest_stand,
-        geedata=dataset,
-        start_date=start_date,
-        end_date=end_date
+        data=forest_stand, geedata=dataset, start_date=start_date, end_date=end_date
     )
 
     print(f"Extracted data shape: {results.shape}")
     print(f"Available bands: {results.columns.tolist()}")
 
     # Calculate additional indices if bands are available
-    if 'B5' in results.columns and 'B4' in results.columns:  # NIR and Red
-        results['NDVI'] = (results['B5'] - results['B4']) / (results['B5'] + results['B4'])
-        print(f"Calculated NDVI range: {results['NDVI'].min():.3f} to {results['NDVI'].max():.3f}")
+    if "B5" in results.columns and "B4" in results.columns:  # NIR and Red
+        results["NDVI"] = (results["B5"] - results["B4"]) / (
+            results["B5"] + results["B4"]
+        )
+        print(
+            f"Calculated NDVI range: {results['NDVI'].min():.3f} to {results['NDVI'].max():.3f}"
+        )
 
-    if 'B5' in results.columns and 'B3' in results.columns:  # NIR and Green
-        results['GNDVI'] = (results['B5'] - results['B3']) / (results['B5'] + results['B3'])
-        print(f"Calculated GNDVI range: {results['GNDVI'].min():.3f} to {results['GNDVI'].max():.3f}")
+    if "B5" in results.columns and "B3" in results.columns:  # NIR and Green
+        results["GNDVI"] = (results["B5"] - results["B3"]) / (
+            results["B5"] + results["B3"]
+        )
+        print(
+            f"Calculated GNDVI range: {results['GNDVI'].min():.3f} to {results['GNDVI'].max():.3f}"
+        )
 
     return results
 

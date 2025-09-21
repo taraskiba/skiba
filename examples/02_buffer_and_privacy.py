@@ -32,42 +32,46 @@ def create_buffered_forest_plots():
     print("=== Creating Buffered Forest Plot Locations ===\n")
 
     # Original sensitive plot locations (e.g., endangered species habitat)
-    sensitive_plots = pd.DataFrame({
-        'plot_ID': ['RARE_001', 'RARE_002', 'RARE_003'],
-        'LAT': [44.0582, 44.0691, 44.0523],
-        'LON': [-121.3153, -121.3089, -121.3201],
-        'species': ['Spotted Owl', 'Spotted Owl', 'Marbled Murrelet'],
-        'sensitivity': ['HIGH', 'HIGH', 'CRITICAL']
-    })
+    sensitive_plots = pd.DataFrame(
+        {
+            "plot_ID": ["RARE_001", "RARE_002", "RARE_003"],
+            "LAT": [44.0582, 44.0691, 44.0523],
+            "LON": [-121.3153, -121.3089, -121.3201],
+            "species": ["Spotted Owl", "Spotted Owl", "Marbled Murrelet"],
+            "sensitivity": ["HIGH", "HIGH", "CRITICAL"],
+        }
+    )
 
     print(f"Original plots: {len(sensitive_plots)} locations")
-    print(sensitive_plots[['plot_ID', 'species', 'sensitivity']].to_string())
+    print(sensitive_plots[["plot_ID", "species", "sensitivity"]].to_string())
 
     # Initialize buffer_coordinates
     bc = buffer_coordinates()
 
     # Create buffers based on sensitivity level
     buffer_radius_map = {
-        'LOW': 100,      # 100 feet
-        'MEDIUM': 500,   # 500 feet
-        'HIGH': 1000,    # 1000 feet
-        'CRITICAL': 2000 # 2000 feet
+        "LOW": 100,  # 100 feet
+        "MEDIUM": 500,  # 500 feet
+        "HIGH": 1000,  # 1000 feet
+        "CRITICAL": 2000,  # 2000 feet
     }
 
     # Convert to GeoDataFrame
-    geometry = [Point(lon, lat) for lon, lat in zip(sensitive_plots.LON, sensitive_plots.LAT)]
-    gdf = gpd.GeoDataFrame(sensitive_plots, geometry=geometry, crs='EPSG:4326')
+    geometry = [
+        Point(lon, lat) for lon, lat in zip(sensitive_plots.LON, sensitive_plots.LAT)
+    ]
+    gdf = gpd.GeoDataFrame(sensitive_plots, geometry=geometry, crs="EPSG:4326")
 
     # Create buffers for each sensitivity level
     buffered_gdfs = []
     for sensitivity, radius_ft in buffer_radius_map.items():
-        mask = gdf['sensitivity'] == sensitivity
+        mask = gdf["sensitivity"] == sensitivity
         if mask.any():
             subset = gdf[mask].copy()
             # Convert feet to approximate degrees (rough approximation)
             radius_deg = radius_ft / 364000  # ~364,000 feet per degree at equator
-            subset['geometry'] = subset.geometry.buffer(radius_deg)
-            subset['buffer_radius_ft'] = radius_ft
+            subset["geometry"] = subset.geometry.buffer(radius_deg)
+            subset["buffer_radius_ft"] = radius_ft
             buffered_gdfs.append(subset)
 
     # Combine all buffered areas
@@ -106,28 +110,31 @@ def sample_within_buffers():
     while len(sample_points) < num_samples and attempts < 1000:
         # Generate random point within bounding box
         random_point = Point(
-            np.random.uniform(minx, maxx),
-            np.random.uniform(miny, maxy)
+            np.random.uniform(minx, maxx), np.random.uniform(miny, maxy)
         )
 
         # Check if point is within buffer
         if buffered_area.contains(random_point):
             sample_points.append(random_point)
-            print(f"  Point {len(sample_points)}: ({random_point.x:.6f}, {random_point.y:.6f})")
+            print(
+                f"  Point {len(sample_points)}: ({random_point.x:.6f}, {random_point.y:.6f})"
+            )
 
         attempts += 1
 
     print(f"\n✅ Generated {len(sample_points)} sample points")
 
     # Convert to DataFrame for extraction
-    sample_df = pd.DataFrame({
-        'sample_ID': [f'SAMPLE_{i+1:03d}' for i in range(len(sample_points))],
-        'LAT': [p.y for p in sample_points],
-        'LON': [p.x for p in sample_points],
-        'buffer_center_lat': center_point.y,
-        'buffer_center_lon': center_point.x,
-        'buffer_radius_km': 1.0
-    })
+    sample_df = pd.DataFrame(
+        {
+            "sample_ID": [f"SAMPLE_{i+1:03d}" for i in range(len(sample_points))],
+            "LAT": [p.y for p in sample_points],
+            "LON": [p.x for p in sample_points],
+            "buffer_center_lat": center_point.y,
+            "buffer_center_lon": center_point.x,
+            "buffer_radius_km": 1.0,
+        }
+    )
 
     return sample_df
 
@@ -152,8 +159,8 @@ def extract_data_from_buffered_samples():
     bas = buffer_and_sample()
 
     # Use simplified sample for demonstration
-    extraction_points = sample_df[['sample_ID', 'LAT', 'LON']].copy()
-    extraction_points.rename(columns={'sample_ID': 'plot_ID'}, inplace=True)
+    extraction_points = sample_df[["sample_ID", "LAT", "LON"]].copy()
+    extraction_points.rename(columns={"sample_ID": "plot_ID"}, inplace=True)
 
     print("\nExtracting vegetation data from sampled points...")
 
@@ -220,7 +227,7 @@ def main():
         privacy_report(
             original_coords=None,  # Not exported for privacy
             buffered_coords=None,  # Randomized
-            extracted_data=extraction_points
+            extracted_data=extraction_points,
         )
 
         print("\n✅ Privacy-protected extraction completed!")
