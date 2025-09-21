@@ -531,9 +531,9 @@ Examples:
 
             choice = input("\n➤ Select mode (1-3): ").strip()
 
-            if choice == '2':
+            if choice == "2":
                 run_real_mode(args.project)
-            elif choice == '3':
+            elif choice == "3":
                 run_interactive_mode()
             else:
                 run_demo_mode()
