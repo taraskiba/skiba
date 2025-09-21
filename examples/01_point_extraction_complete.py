@@ -519,9 +519,24 @@ Examples:
             run_interactive_mode()
         elif args.real:
             run_real_mode(args.project)
-        else:
-            # Default to demo
+        elif args.demo:
             run_demo_mode()
+        else:
+            # No arguments provided - ask user what they want
+            print("\n🎯 Welcome to SKIBA Forest Monitoring!")
+            print("\nChoose mode:")
+            print("  1. Demo mode (simulated data, no authentication)")
+            print("  2. Real mode (Google Earth Engine, requires authentication)")
+            print("  3. Interactive mode (choose all options)")
+
+            choice = input("\n➤ Select mode (1-3): ").strip()
+
+            if choice == '2':
+                run_real_mode(args.project)
+            elif choice == '3':
+                run_interactive_mode()
+            else:
+                run_demo_mode()
 
         print("\n✅ Complete! Thank you for using SKIBA!")
 
