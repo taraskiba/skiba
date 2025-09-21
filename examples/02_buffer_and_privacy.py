@@ -14,11 +14,27 @@ import numpy as np
 from datetime import datetime
 import ee
 from skiba.buffer_coordinates import buffer_coordinates
-from skiba.buffer_and_sample import buffer_and_sample
+from skiba.buffer_and_sample import buffer
 
 # Initialize Earth Engine
-# ee.Authenticate()
-ee.Initialize(project="your-project-id")
+print("Earth Engine Authentication")
+print("-" * 30)
+project_id = input("Enter your Earth Engine project ID (or press Enter to skip): ").strip()
+
+if project_id:
+    try:
+        # Try to initialize with the provided project ID
+        ee.Initialize(project=project_id)
+        print(f"✅ Successfully initialized Earth Engine with project: {project_id}\n")
+    except Exception as e:
+        print(f"❌ Failed to initialize Earth Engine: {e}")
+        print("\nTroubleshooting:")
+        print("1. Make sure you've authenticated before: ee.Authenticate()")
+        print("2. Verify your project ID is correct")
+        print("3. Ensure you have the necessary permissions")
+        exit(1)
+else:
+    print("⚠️  Skipping Earth Engine initialization - some features may not work\n")
 
 
 def create_buffered_forest_plots():
@@ -68,9 +84,13 @@ def create_buffered_forest_plots():
         mask = gdf["sensitivity"] == sensitivity
         if mask.any():
             subset = gdf[mask].copy()
-            # Convert feet to approximate degrees (rough approximation)
-            radius_deg = radius_ft / 364000  # ~364,000 feet per degree at equator
-            subset["geometry"] = subset.geometry.buffer(radius_deg)
+            # Convert to projected CRS for accurate buffering (UTM Zone 10N for Oregon)
+            subset_projected = subset.to_crs("EPSG:32610")  # UTM Zone 10N
+            # Convert feet to meters (1 foot = 0.3048 meters)
+            radius_meters = radius_ft * 0.3048
+            subset_projected["geometry"] = subset_projected.geometry.buffer(radius_meters)
+            # Convert back to geographic CRS
+            subset = subset_projected.to_crs("EPSG:4326")
             subset["buffer_radius_ft"] = radius_ft
             buffered_gdfs.append(subset)
 
@@ -156,7 +176,7 @@ def extract_data_from_buffered_samples():
     sample_df = sample_within_buffers()
 
     # Step 3: Prepare for extraction
-    bas = buffer_and_sample()
+    bas = buffer()
 
     # Use simplified sample for demonstration
     extraction_points = sample_df[["sample_ID", "LAT", "LON"]].copy()

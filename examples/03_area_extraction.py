@@ -10,14 +10,31 @@ polygon features rather than just points.
 import json
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 from shapely.geometry import Polygon, Point
 from datetime import datetime
 import ee
-from skiba.area_extraction import area_extraction
+from skiba.area_extraction import point_extraction
 
 # Initialize Earth Engine
-# ee.Authenticate()
-ee.Initialize(project="your-project-id")
+print("Earth Engine Authentication")
+print("-" * 30)
+project_id = input("Enter your Earth Engine project ID (or press Enter to skip): ").strip()
+
+if project_id:
+    try:
+        # Try to initialize with the provided project ID
+        ee.Initialize(project=project_id)
+        print(f"✅ Successfully initialized Earth Engine with project: {project_id}\n")
+    except Exception as e:
+        print(f"❌ Failed to initialize Earth Engine: {e}")
+        print("\nTroubleshooting:")
+        print("1. Make sure you've authenticated before: ee.Authenticate()")
+        print("2. Verify your project ID is correct")
+        print("3. Ensure you have the necessary permissions")
+        exit(1)
+else:
+    print("⚠️  Skipping Earth Engine initialization - some features may not work\n")
 
 
 def extract_data_for_forest_stands():
@@ -87,7 +104,7 @@ def extract_data_for_forest_stands():
     print(f"Created {len(forest_stands['features'])} forest stand polygons")
 
     # Initialize area extraction
-    ae = area_extraction()
+    ae = point_extraction()
 
     # Extract Sentinel-2 data for summer period
     dataset = "COPERNICUS/S2_SR_HARMONIZED"
