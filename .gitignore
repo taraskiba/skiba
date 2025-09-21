@@ -107,3 +107,18 @@ ENV/
 
 # IDE settings
 .vscode/
+
+# Generated test/demo files
+demo_forest_monitoring_results.csv
+forest_monitoring_points.csv
+forest_ndvi_results.csv
+real_forest_monitoring_results.csv
+temp_extraction_points.csv
+results.csv
+*_results.csv
+*_points.csv
+temp_*.csv
+tmp_*.csv
+
+# UV lock file
+uv.lock
