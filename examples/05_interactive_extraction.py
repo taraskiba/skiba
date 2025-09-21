@@ -18,12 +18,14 @@ import time
 # Check available imports
 try:
     from skiba.point_extraction import point_extraction
+
     SKIBA_AVAILABLE = True
 except ImportError:
     SKIBA_AVAILABLE = False
 
 try:
     import ee
+
     EE_AVAILABLE = True
 except ImportError:
     EE_AVAILABLE = False
@@ -31,9 +33,9 @@ except ImportError:
 
 def print_header():
     """Print a nice header for the application."""
-    print("\n" + "="*70)
+    print("\n" + "=" * 70)
     print(" 🌲 SKIBA - INTERACTIVE FOREST MONITORING TOOL 🌲".center(70))
-    print("="*70)
+    print("=" * 70)
 
 
 def get_user_choice():
@@ -46,16 +48,16 @@ def get_user_choice():
 
     while True:
         choice = input("\n➤ Select an option (1-3): ").strip()
-        if choice in ['1', '2', '3']:
+        if choice in ["1", "2", "3"]:
             return choice
         print("❌ Invalid choice. Please enter 1, 2, or 3.")
 
 
 def setup_earth_engine():
     """Interactive Earth Engine setup."""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("🛰️  GOOGLE EARTH ENGINE SETUP")
-    print("="*60)
+    print("=" * 60)
 
     if not EE_AVAILABLE:
         print("\n❌ Earth Engine API not installed!")
@@ -74,11 +76,11 @@ def setup_earth_engine():
 
     auth_choice = input("\n➤ Select authentication method (1-3): ").strip()
 
-    if auth_choice == '3':
+    if auth_choice == "3":
         return False
 
     try:
-        if auth_choice == '1':
+        if auth_choice == "1":
             print("\n🌐 Opening browser for authentication...")
             print("📝 Please follow these steps:")
             print("  1. A browser window will open")
@@ -101,9 +103,11 @@ def setup_earth_engine():
         print("  Find your project ID at: console.cloud.google.com")
         print("  Example: 'my-earth-engine-project'")
 
-        project_id = input("\n➤ Enter your Google Cloud Project ID (or 'skip' for demo): ").strip()
+        project_id = input(
+            "\n➤ Enter your Google Cloud Project ID (or 'skip' for demo): "
+        ).strip()
 
-        if project_id.lower() == 'skip':
+        if project_id.lower() == "skip":
             return False
 
         # Initialize Earth Engine
@@ -135,17 +139,17 @@ def setup_earth_engine():
 
 def get_extraction_parameters():
     """Get user input for extraction parameters."""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("⚙️  EXTRACTION PARAMETERS")
-    print("="*60)
+    print("=" * 60)
 
     # Dataset selection
     print("\n📡 Available Datasets:")
     datasets = {
-        '1': ('COPERNICUS/S2_SR_HARMONIZED', 'Sentinel-2 (10m resolution, 5-day)'),
-        '2': ('LANDSAT/LC08/C02/T1_L2', 'Landsat 8 (30m resolution, 16-day)'),
-        '3': ('MODIS/006/MOD13Q1', 'MODIS NDVI (250m resolution, 16-day)'),
-        '4': ('custom', 'Enter custom dataset ID')
+        "1": ("COPERNICUS/S2_SR_HARMONIZED", "Sentinel-2 (10m resolution, 5-day)"),
+        "2": ("LANDSAT/LC08/C02/T1_L2", "Landsat 8 (30m resolution, 16-day)"),
+        "3": ("MODIS/006/MOD13Q1", "MODIS NDVI (250m resolution, 16-day)"),
+        "4": ("custom", "Enter custom dataset ID"),
     }
 
     for key, (dataset_id, description) in datasets.items():
@@ -153,13 +157,13 @@ def get_extraction_parameters():
 
     dataset_choice = input("\n➤ Select dataset (1-4): ").strip()
 
-    if dataset_choice == '4':
+    if dataset_choice == "4":
         dataset = input("➤ Enter custom dataset ID: ").strip()
     elif dataset_choice in datasets:
         dataset = datasets[dataset_choice][0]
     else:
         print("⚠️ Invalid choice, using Sentinel-2")
-        dataset = 'COPERNICUS/S2_SR_HARMONIZED'
+        dataset = "COPERNICUS/S2_SR_HARMONIZED"
 
     # Date range selection
     print("\n📅 Date Range Selection:")
@@ -170,13 +174,13 @@ def get_extraction_parameters():
 
     date_choice = input("\n➤ Select date range (1-4): ").strip()
 
-    if date_choice == '1':
+    if date_choice == "1":
         end_date = datetime.now()
         start_date = end_date - pd.Timedelta(days=30)
-    elif date_choice == '2':
+    elif date_choice == "2":
         end_date = datetime.now()
         start_date = end_date - pd.Timedelta(days=90)
-    elif date_choice == '3':
+    elif date_choice == "3":
         start_date = datetime(2024, 6, 1)
         end_date = datetime(2024, 8, 31)
     else:
@@ -184,8 +188,8 @@ def get_extraction_parameters():
         start_str = input("➤ Start date: ").strip()
         end_str = input("➤ End date: ").strip()
         try:
-            start_date = datetime.strptime(start_str, '%Y-%m-%d')
-            end_date = datetime.strptime(end_str, '%Y-%m-%d')
+            start_date = datetime.strptime(start_str, "%Y-%m-%d")
+            end_date = datetime.strptime(end_str, "%Y-%m-%d")
         except:
             print("⚠️ Invalid date format, using default range")
             start_date = datetime(2024, 6, 1)
@@ -199,9 +203,9 @@ def get_extraction_parameters():
 
 def get_forest_points():
     """Get forest monitoring points from user."""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("📍 FOREST MONITORING POINTS")
-    print("="*60)
+    print("=" * 60)
 
     print("\n🌲 Point Selection Options:")
     print("  1. Use example forest locations (US National Parks)")
@@ -210,7 +214,7 @@ def get_forest_points():
 
     point_choice = input("\n➤ Select option (1-3): ").strip()
 
-    if point_choice == '2':
+    if point_choice == "2":
         # Custom coordinates
         print("\n📝 Enter custom coordinates (one per line)")
         print("Format: plot_id,latitude,longitude,forest_type")
@@ -220,17 +224,21 @@ def get_forest_points():
         points = []
         while True:
             line = input("➤ ").strip()
-            if line.lower() == 'done':
+            if line.lower() == "done":
                 break
             try:
-                parts = line.split(',')
+                parts = line.split(",")
                 if len(parts) >= 3:
-                    points.append({
-                        'plot_ID': parts[0].strip(),
-                        'LAT': float(parts[1].strip()),
-                        'LON': float(parts[2].strip()),
-                        'forest_type': parts[3].strip() if len(parts) > 3 else 'Unknown'
-                    })
+                    points.append(
+                        {
+                            "plot_ID": parts[0].strip(),
+                            "LAT": float(parts[1].strip()),
+                            "LON": float(parts[2].strip()),
+                            "forest_type": (
+                                parts[3].strip() if len(parts) > 3 else "Unknown"
+                            ),
+                        }
+                    )
                     print(f"  ✅ Added {parts[0].strip()}")
             except:
                 print("  ❌ Invalid format, skipping")
@@ -241,7 +249,7 @@ def get_forest_points():
             print("⚠️ No valid points entered, using defaults")
             forest_points = get_default_forest_points()
 
-    elif point_choice == '3':
+    elif point_choice == "3":
         # Load from CSV
         csv_path = input("\n➤ Enter CSV file path: ").strip()
         try:
@@ -257,20 +265,27 @@ def get_forest_points():
 
     # Display points
     print(f"\n📊 Using {len(forest_points)} monitoring points:")
-    print(forest_points[['plot_ID', 'LAT', 'LON']].to_string(index=False))
+    print(forest_points[["plot_ID", "LAT", "LON"]].to_string(index=False))
 
     return forest_points
 
 
 def get_default_forest_points():
     """Get default example forest points."""
-    return pd.DataFrame({
-        'plot_ID': ['GSMNP_001', 'YOSE_002', 'YELL_003', 'GLAC_004'],
-        'LAT': [35.6532, 37.8651, 44.4280, 48.7596],
-        'LON': [-83.5070, -119.5383, -110.5885, -113.7870],
-        'forest_type': ['Mixed Deciduous', 'Coniferous', 'Lodgepole Pine', 'Subalpine Fir'],
-        'location': ['Great Smoky Mountains', 'Yosemite', 'Yellowstone', 'Glacier']
-    })
+    return pd.DataFrame(
+        {
+            "plot_ID": ["GSMNP_001", "YOSE_002", "YELL_003", "GLAC_004"],
+            "LAT": [35.6532, 37.8651, 44.4280, 48.7596],
+            "LON": [-83.5070, -119.5383, -110.5885, -113.7870],
+            "forest_type": [
+                "Mixed Deciduous",
+                "Coniferous",
+                "Lodgepole Pine",
+                "Subalpine Fir",
+            ],
+            "location": ["Great Smoky Mountains", "Yosemite", "Yellowstone", "Glacier"],
+        }
+    )
 
 
 def simulate_extraction(forest_points, dataset, start_date, end_date):
@@ -279,7 +294,7 @@ def simulate_extraction(forest_points, dataset, start_date, end_date):
 
     # Simulate processing time
     for i in range(3):
-        print(f"  Processing{'.' * (i+1)}", end='\r')
+        print(f"  Processing{'.' * (i+1)}", end="\r")
         time.sleep(0.5)
 
     # Generate simulated data
@@ -287,13 +302,13 @@ def simulate_extraction(forest_points, dataset, start_date, end_date):
 
     # Base NDVI by forest type
     ndvi_base = {
-        'Mixed Deciduous': 0.75,
-        'Coniferous': 0.65,
-        'Lodgepole Pine': 0.60,
-        'Subalpine Fir': 0.55,
-        'Oak Forest': 0.70,
-        'Pine': 0.60,
-        'Unknown': 0.65
+        "Mixed Deciduous": 0.75,
+        "Coniferous": 0.65,
+        "Lodgepole Pine": 0.60,
+        "Subalpine Fir": 0.55,
+        "Oak Forest": 0.70,
+        "Pine": 0.60,
+        "Unknown": 0.65,
     }
 
     # Seasonal adjustment
@@ -301,15 +316,15 @@ def simulate_extraction(forest_points, dataset, start_date, end_date):
     seasonal_factor = 1.0 - abs(month - 7) * 0.08  # Peak in July
 
     for idx, row in results.iterrows():
-        forest_type = row.get('forest_type', 'Unknown')
+        forest_type = row.get("forest_type", "Unknown")
         base = ndvi_base.get(forest_type, 0.65)
         ndvi = base * seasonal_factor + np.random.normal(0, 0.05)
-        results.at[idx, 'NDVI'] = np.clip(ndvi, 0, 1)
+        results.at[idx, "NDVI"] = np.clip(ndvi, 0, 1)
 
         # Add band values
-        results.at[idx, 'B4_RED'] = 0.08 + np.random.normal(0, 0.02)
-        results.at[idx, 'B8_NIR'] = 0.40 + np.random.normal(0, 0.03)
-        results.at[idx, 'cloud_cover'] = np.random.randint(0, 30)
+        results.at[idx, "B4_RED"] = 0.08 + np.random.normal(0, 0.02)
+        results.at[idx, "B8_NIR"] = 0.40 + np.random.normal(0, 0.03)
+        results.at[idx, "cloud_cover"] = np.random.randint(0, 30)
 
     print("\n✅ Simulation complete!")
     return results
@@ -325,7 +340,7 @@ def perform_real_extraction(forest_points, dataset, start_date, end_date):
 
     try:
         # Save points to CSV
-        temp_csv = 'temp_forest_points.csv'
+        temp_csv = "temp_forest_points.csv"
         forest_points.to_csv(temp_csv, index=False)
 
         # Initialize point extraction
@@ -337,10 +352,7 @@ def perform_real_extraction(forest_points, dataset, start_date, end_date):
         print(f"  Processing...")
 
         results = pe.get_coordinate_data(
-            data=temp_csv,
-            geedata=dataset,
-            start_date=start_date,
-            end_date=end_date
+            data=temp_csv, geedata=dataset, start_date=start_date, end_date=end_date
         )
 
         # Clean up temp file
@@ -358,9 +370,9 @@ def perform_real_extraction(forest_points, dataset, start_date, end_date):
 
 def analyze_results(results):
     """Analyze and display extraction results."""
-    print("\n" + "="*60)
+    print("\n" + "=" * 60)
     print("📊 ANALYSIS RESULTS")
-    print("="*60)
+    print("=" * 60)
 
     if results is None or results.empty:
         print("❌ No results to analyze")
@@ -370,7 +382,7 @@ def analyze_results(results):
     print(f"  • Points analyzed: {len(results)}")
     print(f"  • Columns: {', '.join(results.columns[:5])}...")
 
-    if 'NDVI' in results.columns:
+    if "NDVI" in results.columns:
         print(f"\n🌿 NDVI Statistics:")
         print(f"  • Mean:   {results['NDVI'].mean():.3f}")
         print(f"  • Median: {results['NDVI'].median():.3f}")
@@ -380,24 +392,28 @@ def analyze_results(results):
 
         # Health categories
         def get_health_status(ndvi):
-            if ndvi >= 0.7: return '🟢 Excellent'
-            elif ndvi >= 0.5: return '🔵 Good'
-            elif ndvi >= 0.3: return '🟡 Moderate'
-            else: return '🔴 Poor'
+            if ndvi >= 0.7:
+                return "🟢 Excellent"
+            elif ndvi >= 0.5:
+                return "🔵 Good"
+            elif ndvi >= 0.3:
+                return "🟡 Moderate"
+            else:
+                return "🔴 Poor"
 
         print("\n🏥 Forest Health Status:")
         for _, row in results.iterrows():
-            status = get_health_status(row['NDVI'])
+            status = get_health_status(row["NDVI"])
             print(f"  {row['plot_ID']}: {status} (NDVI = {row['NDVI']:.3f})")
 
     # Save results
     save_choice = input("\n➤ Save results to CSV? (y/n): ").strip().lower()
-    if save_choice == 'y':
+    if save_choice == "y":
         filename = input("➤ Enter filename (default: forest_results.csv): ").strip()
         if not filename:
-            filename = 'forest_results.csv'
-        if not filename.endswith('.csv'):
-            filename += '.csv'
+            filename = "forest_results.csv"
+        if not filename.endswith(".csv"):
+            filename += ".csv"
 
         results.to_csv(filename, index=False)
         print(f"✅ Results saved to: {filename}")
@@ -408,14 +424,18 @@ def main():
     print_header()
 
     print("\n🔍 System Check:")
-    print(f"  • skiba package: {'✅ Installed' if SKIBA_AVAILABLE else '❌ Not installed (pip install skiba)'}")
-    print(f"  • earthengine-api: {'✅ Installed' if EE_AVAILABLE else '❌ Not installed (pip install earthengine-api)'}")
+    print(
+        f"  • skiba package: {'✅ Installed' if SKIBA_AVAILABLE else '❌ Not installed (pip install skiba)'}"
+    )
+    print(
+        f"  • earthengine-api: {'✅ Installed' if EE_AVAILABLE else '❌ Not installed (pip install earthengine-api)'}"
+    )
 
     while True:
         # Get user choice
         choice = get_user_choice()
 
-        if choice == '3':
+        if choice == "3":
             print("\n👋 Thank you for using SKIBA!")
             break
 
@@ -426,32 +446,36 @@ def main():
         dataset, start_date, end_date = get_extraction_parameters()
 
         # Perform extraction based on choice
-        if choice == '1':
+        if choice == "1":
             # Demo mode
-            print("\n" + "="*60)
+            print("\n" + "=" * 60)
             print("📊 DEMO MODE - SIMULATED DATA")
-            print("="*60)
+            print("=" * 60)
             results = simulate_extraction(forest_points, dataset, start_date, end_date)
 
         else:
             # Real mode
-            print("\n" + "="*60)
+            print("\n" + "=" * 60)
             print("🛰️  REAL MODE - EARTH ENGINE DATA")
-            print("="*60)
+            print("=" * 60)
 
             # Setup Earth Engine
             if setup_earth_engine():
-                results = perform_real_extraction(forest_points, dataset, start_date, end_date)
+                results = perform_real_extraction(
+                    forest_points, dataset, start_date, end_date
+                )
             else:
                 print("\n⚠️ Earth Engine setup failed, using simulated data")
-                results = simulate_extraction(forest_points, dataset, start_date, end_date)
+                results = simulate_extraction(
+                    forest_points, dataset, start_date, end_date
+                )
 
         # Analyze results
         analyze_results(results)
 
         # Ask if user wants to continue
         continue_choice = input("\n➤ Run another analysis? (y/n): ").strip().lower()
-        if continue_choice != 'y':
+        if continue_choice != "y":
             print("\n👋 Thank you for using SKIBA!")
             break
 
