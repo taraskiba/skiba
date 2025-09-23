@@ -1,0 +1,19 @@
+# Generated output files
+*.csv
+*.json
+*.geojson
+*.tif
+*.png
+*.jpg
+
+# Temporary files
+temp_*
+tmp_*
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
