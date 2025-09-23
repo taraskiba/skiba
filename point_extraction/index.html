@@ -1143,13 +1143,48 @@ point_extraction        </code>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Pull data from provided coordinates from GEE.</span>
+<span class="sd">        Pull data from provided coordinates from Google Earth Engine.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            data (str): The data to get the coordinate data from.</span>
+<span class="sd">            data (str or pd.DataFrame): Path to CSV file or DataFrame with coordinates.</span>
+<span class="sd">                Must contain columns for latitude (LAT), longitude (LON), and ID (plot_ID).</span>
+<span class="sd">            geedata (str): Earth Engine dataset ID (e.g., &#39;COPERNICUS/S2_SR_HARMONIZED&#39;).</span>
+<span class="sd">            start_date (datetime): Start date for data extraction.</span>
+<span class="sd">            end_date (datetime): End date for data extraction.</span>
+<span class="sd">            **kwargs: Additional parameters for extraction.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            data (str): CSV file contained GEE data.</span>
+<span class="sd">            pd.DataFrame: DataFrame containing extracted Earth Engine data for each point.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">            &gt;&gt;&gt; from datetime import datetime</span>
+<span class="sd">            &gt;&gt;&gt; from skiba.point_extraction import point_extraction</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; # Create sample forest monitoring points</span>
+<span class="sd">            &gt;&gt;&gt; points = pd.DataFrame({</span>
+<span class="sd">            ...     &#39;plot_ID&#39;: [&#39;FOREST_01&#39;, &#39;FOREST_02&#39;],</span>
+<span class="sd">            ...     &#39;LAT&#39;: [45.5231, 45.5245],</span>
+<span class="sd">            ...     &#39;LON&#39;: [-122.6765, -122.6750]</span>
+<span class="sd">            ... })</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; # Initialize and extract NDVI data</span>
+<span class="sd">            &gt;&gt;&gt; pe = point_extraction()</span>
+<span class="sd">            &gt;&gt;&gt; results = pe.get_coordinate_data(</span>
+<span class="sd">            ...     data=points,</span>
+<span class="sd">            ...     geedata=&#39;COPERNICUS/S2_SR_HARMONIZED&#39;,</span>
+<span class="sd">            ...     start_date=datetime(2024, 6, 1),</span>
+<span class="sd">            ...     end_date=datetime(2024, 8, 31)</span>
+<span class="sd">            ... )</span>
+<span class="sd">            &gt;&gt;&gt;</span>
+<span class="sd">            &gt;&gt;&gt; # Analyze results</span>
+<span class="sd">            &gt;&gt;&gt; print(f&quot;Mean NDVI: {results[&#39;NDVI&#39;].mean():.3f}&quot;)</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            - Coordinates should be in WGS84 (EPSG:4326) projection</span>
+<span class="sd">            - Results are saved to Downloads folder as CSV</span>
+<span class="sd">            - Common datasets: &#39;COPERNICUS/S2_SR_HARMONIZED&#39; (Sentinel-2),</span>
+<span class="sd">              &#39;LANDSAT/LC08/C02/T1_L2&#39; (Landsat 8), &#39;MODIS/006/MOD13Q1&#39; (MODIS NDVI)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># Load data with safety checks</span>
@@ -1377,7 +1412,7 @@ point_extraction        </code>
 
     <div class="doc doc-contents ">
 
-      <p>Pull data from provided coordinates from GEE.</p>
+      <p>Pull data from provided coordinates from Google Earth Engine.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -1392,9 +1427,34 @@ point_extraction        </code>
   <tbody>
       <tr>
         <td><code>data</code></td>
-        <td><code>str</code></td>
-        <td><p>The data to get the coordinate data from.</p></td>
+        <td><code>str or pd.DataFrame</code></td>
+        <td><p>Path to CSV file or DataFrame with coordinates.
+Must contain columns for latitude (LAT), longitude (LON), and ID (plot_ID).</p></td>
         <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>geedata</code></td>
+        <td><code>str</code></td>
+        <td><p>Earth Engine dataset ID (e.g., 'COPERNICUS/S2_SR_HARMONIZED').</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>start_date</code></td>
+        <td><code>datetime</code></td>
+        <td><p>Start date for data extraction.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>end_date</code></td>
+        <td><code>datetime</code></td>
+        <td><p>End date for data extraction.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional parameters for extraction.</p></td>
+        <td><code>{}</code></td>
       </tr>
   </tbody>
 </table>
@@ -1408,22 +1468,91 @@ point_extraction        </code>
   </thead>
   <tbody>
     <tr>
-      <td><code>data (str)</code></td>
-      <td><p>CSV file contained GEE data.</p></td>
+      <td><code>pd.DataFrame</code></td>
+      <td><p>DataFrame containing extracted Earth Engine data for each point.</p></td>
     </tr>
   </tbody>
 </table>
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">skiba.point_extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">point_extraction</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Create sample forest monitoring points</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="o">...</span>     <span class="s1">&#39;plot_ID&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;FOREST_01&#39;</span><span class="p">,</span> <span class="s1">&#39;FOREST_02&#39;</span><span class="p">],</span>
+<span class="o">...</span>     <span class="s1">&#39;LAT&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">45.5231</span><span class="p">,</span> <span class="mf">45.5245</span><span class="p">],</span>
+<span class="o">...</span>     <span class="s1">&#39;LON&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">122.6765</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.6750</span><span class="p">]</span>
+<span class="o">...</span> <span class="p">})</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Initialize and extract NDVI data</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pe</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">pe</span><span class="o">.</span><span class="n">get_coordinate_data</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">data</span><span class="o">=</span><span class="n">points</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">geedata</span><span class="o">=</span><span class="s1">&#39;COPERNICUS/S2_SR_HARMONIZED&#39;</span><span class="p">,</span>
+<span class="o">...</span>     <span class="n">start_date</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="o">...</span>     <span class="n">end_date</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+<span class="o">...</span> <span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Analyze results</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean NDVI: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;NDVI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+      <div class="admonition notes">
+<p class="admonition-title">Notes</p>
+<ul>
+<li>Coordinates should be in WGS84 (EPSG:4326) projection</li>
+<li>Results are saved to Downloads folder as CSV</li>
+<li>Common datasets: 'COPERNICUS/S2_SR_HARMONIZED' (Sentinel-2),
+  'LANDSAT/LC08/C02/T1_L2' (Landsat 8), 'MODIS/006/MOD13Q1' (MODIS NDVI)</li>
+</ul>
+</div>
+
         <details class="quote">
           <summary>Source code in <code>skiba/point_extraction.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Pull data from provided coordinates from GEE.</span>
+<span class="sd">    Pull data from provided coordinates from Google Earth Engine.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        data (str): The data to get the coordinate data from.</span>
+<span class="sd">        data (str or pd.DataFrame): Path to CSV file or DataFrame with coordinates.</span>
+<span class="sd">            Must contain columns for latitude (LAT), longitude (LON), and ID (plot_ID).</span>
+<span class="sd">        geedata (str): Earth Engine dataset ID (e.g., &#39;COPERNICUS/S2_SR_HARMONIZED&#39;).</span>
+<span class="sd">        start_date (datetime): Start date for data extraction.</span>
+<span class="sd">        end_date (datetime): End date for data extraction.</span>
+<span class="sd">        **kwargs: Additional parameters for extraction.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        data (str): CSV file contained GEE data.</span>
+<span class="sd">        pd.DataFrame: DataFrame containing extracted Earth Engine data for each point.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from datetime import datetime</span>
+<span class="sd">        &gt;&gt;&gt; from skiba.point_extraction import point_extraction</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; # Create sample forest monitoring points</span>
+<span class="sd">        &gt;&gt;&gt; points = pd.DataFrame({</span>
+<span class="sd">        ...     &#39;plot_ID&#39;: [&#39;FOREST_01&#39;, &#39;FOREST_02&#39;],</span>
+<span class="sd">        ...     &#39;LAT&#39;: [45.5231, 45.5245],</span>
+<span class="sd">        ...     &#39;LON&#39;: [-122.6765, -122.6750]</span>
+<span class="sd">        ... })</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; # Initialize and extract NDVI data</span>
+<span class="sd">        &gt;&gt;&gt; pe = point_extraction()</span>
+<span class="sd">        &gt;&gt;&gt; results = pe.get_coordinate_data(</span>
+<span class="sd">        ...     data=points,</span>
+<span class="sd">        ...     geedata=&#39;COPERNICUS/S2_SR_HARMONIZED&#39;,</span>
+<span class="sd">        ...     start_date=datetime(2024, 6, 1),</span>
+<span class="sd">        ...     end_date=datetime(2024, 8, 31)</span>
+<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; # Analyze results</span>
+<span class="sd">        &gt;&gt;&gt; print(f&quot;Mean NDVI: {results[&#39;NDVI&#39;].mean():.3f}&quot;)</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        - Coordinates should be in WGS84 (EPSG:4326) projection</span>
+<span class="sd">        - Results are saved to Downloads folder as CSV</span>
+<span class="sd">        - Common datasets: &#39;COPERNICUS/S2_SR_HARMONIZED&#39; (Sentinel-2),</span>
+<span class="sd">          &#39;LANDSAT/LC08/C02/T1_L2&#39; (Landsat 8), &#39;MODIS/006/MOD13Q1&#39; (MODIS NDVI)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># Load data with safety checks</span>
