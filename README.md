@@ -30,61 +30,9 @@
 -   Please understand the limitations of Google's confidentiality policy before use.
 
 ## Installation
-```bash
+```python
 pip install skiba
 ```
-
-## Quick Start
-
-### 1. Set up Earth Engine
-```python
-import ee
-# First time only - authenticate with Google Earth Engine
-ee.Authenticate()
-# Initialize with your project
-ee.Initialize(project="your-project-id")
-```
-
-### 2. Extract NDVI for forest monitoring points
-```python
-import pandas as pd
-from datetime import datetime
-from skiba.point_extraction import point_extraction
-
-# Define your forest monitoring locations
-forest_points = pd.DataFrame({
-    'plot_ID': ['PLOT_001', 'PLOT_002', 'PLOT_003'],
-    'LAT': [35.9606, 36.0544, 35.8235],
-    'LON': [-83.9207, -112.1401, -84.2875]
-})
-
-# Initialize and extract data
-pe = point_extraction()
-results = pe.get_coordinate_data(
-    data=forest_points,
-    geedata="COPERNICUS/S2_SR_HARMONIZED",  # Sentinel-2
-    start_date=datetime(2024, 6, 1),
-    end_date=datetime(2024, 8, 31)
-)
-
-# Analyze forest health
-print(f"Mean NDVI: {results['NDVI'].mean():.3f}")
-```
-
-### 3. Protect sensitive locations with buffering
-```python
-from skiba.buffer_coordinates import buffer_coordinates
-
-# Create buffers around sensitive plots
-bc = buffer_coordinates()
-# Set buffer radius (in feet)
-bc.buffer_radius.value = 500  # 500 feet buffer
-
-# Process locations while maintaining privacy
-# Original coordinates are obscured within buffer radius
-```
-
-See the [examples/](examples/) directory for more detailed usage examples
 
 ### Logo Credit
 -   Logo was designed by HiDream-I1-Dev (https://huggingface.co/spaces/HiDream-ai/HiDream-I1-Dev)

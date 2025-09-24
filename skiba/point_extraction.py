@@ -115,48 +115,13 @@ class point_extraction:
 
     def get_coordinate_data(self, data, geedata, start_date, end_date, **kwargs):
         """
-        Pull data from provided coordinates from Google Earth Engine.
+        Pull data from provided coordinates from GEE.
 
         Args:
-            data (str or pd.DataFrame): Path to CSV file or DataFrame with coordinates.
-                Must contain columns for latitude (LAT), longitude (LON), and ID (plot_ID).
-            geedata (str): Earth Engine dataset ID (e.g., 'COPERNICUS/S2_SR_HARMONIZED').
-            start_date (datetime): Start date for data extraction.
-            end_date (datetime): End date for data extraction.
-            **kwargs: Additional parameters for extraction.
+            data (str): The data to get the coordinate data from.
 
         Returns:
-            pd.DataFrame: DataFrame containing extracted Earth Engine data for each point.
-
-        Examples:
-            >>> import pandas as pd
-            >>> from datetime import datetime
-            >>> from skiba.point_extraction import point_extraction
-            >>>
-            >>> # Create sample forest monitoring points
-            >>> points = pd.DataFrame({
-            ...     'plot_ID': ['FOREST_01', 'FOREST_02'],
-            ...     'LAT': [45.5231, 45.5245],
-            ...     'LON': [-122.6765, -122.6750]
-            ... })
-            >>>
-            >>> # Initialize and extract NDVI data
-            >>> pe = point_extraction()
-            >>> results = pe.get_coordinate_data(
-            ...     data=points,
-            ...     geedata='COPERNICUS/S2_SR_HARMONIZED',
-            ...     start_date=datetime(2024, 6, 1),
-            ...     end_date=datetime(2024, 8, 31)
-            ... )
-            >>>
-            >>> # Analyze results
-            >>> print(f"Mean NDVI: {results['NDVI'].mean():.3f}")
-
-        Notes:
-            - Coordinates should be in WGS84 (EPSG:4326) projection
-            - Results are saved to Downloads folder as CSV
-            - Common datasets: 'COPERNICUS/S2_SR_HARMONIZED' (Sentinel-2),
-              'LANDSAT/LC08/C02/T1_L2' (Landsat 8), 'MODIS/006/MOD13Q1' (MODIS NDVI)
+            data (str): CSV file contained GEE data.
         """
 
         # Load data with safety checks
