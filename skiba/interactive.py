@@ -141,9 +141,11 @@ class Map(ipyleaflet.Map):
             gdf = data.to_crs(epsg=4326)  # Ensure WGS84
 
         point_style = {
-            "radius": 3,
+            "radius": 2,
+            "color": "black",
+            "dashArray": "2",
             "fillOpacity": 1,
-            "fillColor": "black",
+            "fillColor": "red",
             "weight": 1,
         }  # 'color': 'white',
 
@@ -479,7 +481,7 @@ class Map(ipyleaflet.Map):
 
         def on_toggle_change(change):
             """Toggle visibility of dropdown"""
-            if is_open[0] and change["new"]:
+            if change["new"]:
                 widget_box.children = (toggle,)
             else:
                 widget_box.children = (toggle, dropdown)

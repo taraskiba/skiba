@@ -72,7 +72,6 @@ class buffer:
 
         self.hbox = widgets.HBox(
             [
-                self.dropdown,
                 self.file_upload,
                 self.buffer_radius,
                 self.sample_button,

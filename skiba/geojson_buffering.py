@@ -61,7 +61,7 @@ class buffer_coordinates:
         self.run_button.on_click(self.on_button_clicked)
 
         self.hbox = widgets.HBox(
-            [self.file_upload, self.dropdown, self.buffer_radius, self.run_button]
+            [self.file_upload, self.buffer_radius, self.run_button]
         )
 
         self.vbox = widgets.VBox([self.hbox, self.output])
@@ -84,6 +84,36 @@ class buffer_coordinates:
                 filename = file_info["name"]
                 print(f"Filename: {filename}")
                 points = pd.read_csv(io.BytesIO(content_bytes))
+                lat_cols = ["lat", "latitude", "y", "LAT", "Latitude", "Lat", "Y"]
+                lon_cols = [
+                    "lon",
+                    "long",
+                    "longitude",
+                    "x",
+                    "LON",
+                    "Longitude",
+                    "Long",
+                    "X",
+                ]
+                id_cols = ["id", "ID", "plot_ID", "plot_id", "plotID", "plotId"]
+
+                def find_column(possible_names, columns):
+                    for name in possible_names:
+                        if name in columns:
+                            return name
+                    # fallback: check case-insensitive match
+                    lower_columns = {c.lower(): c for c in columns}
+                    for name in possible_names:
+                        if name.lower() in lower_columns:
+                            return lower_columns[name.lower()]
+                    raise ValueError(f"No matching column found for {possible_names}")
+
+                lat_col = find_column(lat_cols, points.columns)
+                lon_col = find_column(lon_cols, points.columns)
+                id_col = find_column(id_cols, points.columns)
+                points = points.rename(
+                    columns={lat_col: "LAT", lon_col: "LON", id_col: "plot_ID"}
+                )
             else:
                 print("Please upload a CSV file.")
 
