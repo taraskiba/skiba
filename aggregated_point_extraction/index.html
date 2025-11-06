@@ -12,7 +12,7 @@
         <meta name="author" content="taraskiba">
       
       
-        <link rel="canonical" href="https://taraskiba.github.io/skiba/point_extraction/">
+        <link rel="canonical" href="https://taraskiba.github.io/skiba/aggregated_point_extraction/">
       
       
       
@@ -22,7 +22,7 @@
     
     
       
-        <title>point_extraction module - skiba</title>
+        <title>aggregated_point_extraction module - skiba</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#point_extraction-module" class="md-skip">
+        <a href="#aggregated_point_extraction-module" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              point_extraction module
+              aggregated_point_extraction module
             
           </span>
         </div>
@@ -582,12 +582,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/data_process_full_walkthrough/" class="md-nav__link">
+      <a href="../examples/data_process_full_walkthrough.ipynb" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Data process full walkthrough
+    None
     
   </span>
   
@@ -857,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../buffer_method.md" class="md-nav__link">
+      <a href="../buffer_method/" class="md-nav__link">
         
   
   
@@ -930,26 +930,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#skiba.point_extraction" class="md-nav__link">
+  <a href="#skiba.aggregated_point_extraction" class="md-nav__link">
     <span class="md-ellipsis">
-      skiba.point_extraction
+      skiba.aggregated_point_extraction
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#skiba.point_extraction.point_extraction" class="md-nav__link">
+  <a href="#skiba.aggregated_point_extraction.area_extraction" class="md-nav__link">
     <span class="md-ellipsis">
-      point_extraction
+      area_extraction
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="point_extraction">
+    <nav class="md-nav" aria-label="area_extraction">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#skiba.point_extraction.point_extraction.create_dropdown" class="md-nav__link">
+  <a href="#skiba.aggregated_point_extraction.area_extraction.create_dropdown" class="md-nav__link">
     <span class="md-ellipsis">
       create_dropdown()
     </span>
@@ -958,7 +958,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.point_extraction.point_extraction.get_coordinate_data" class="md-nav__link">
+  <a href="#skiba.aggregated_point_extraction.area_extraction.get_coordinate_data" class="md-nav__link">
     <span class="md-ellipsis">
       get_coordinate_data()
     </span>
@@ -967,7 +967,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.point_extraction.point_extraction.load_gee_as_image" class="md-nav__link">
+  <a href="#skiba.aggregated_point_extraction.area_extraction.load_gee_as_image" class="md-nav__link">
     <span class="md-ellipsis">
       load_gee_as_image()
     </span>
@@ -1002,12 +1002,12 @@
   
 
 
-<h1 id="point_extraction-module">point_extraction module<a class="headerlink" href="#point_extraction-module" title="Permanent link">&para;</a></h1>
+<h1 id="aggregated_point_extraction-module">aggregated_point_extraction module<a class="headerlink" href="#aggregated_point_extraction-module" title="Permanent link">&para;</a></h1>
 
 
   <div class="doc doc-object doc-module">
 
-<a id="skiba.point_extraction"></a>
+<a id="skiba.aggregated_point_extraction"></a>
     <div class="doc doc-contents first">
 
 
@@ -1025,20 +1025,20 @@
 
 
 
-<h2 id="skiba.point_extraction.point_extraction" class="doc doc-heading">
+<h2 id="skiba.aggregated_point_extraction.area_extraction" class="doc doc-heading">
         <code>
-point_extraction        </code>
+area_extraction        </code>
 
 
 
-<a href="#skiba.point_extraction.point_extraction" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#skiba.aggregated_point_extraction.area_extraction" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
 
         <details class="quote">
-          <summary>Source code in <code>skiba/point_extraction.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">point_extraction</span><span class="p">:</span>
+          <summary>Source code in <code>skiba/aggregated_point_extraction.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">area_extraction</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># File Upload</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FileUpload</span><span class="p">(</span>
@@ -1047,7 +1047,7 @@ point_extraction        </code>
         <span class="p">)</span>
         <span class="c1"># Dropdown</span>
         <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">area_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
             <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
@@ -1082,7 +1082,7 @@ point_extraction        </code>
             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
                 <span class="n">catalog</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">area_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span>
                 <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
                 <span class="n">change_value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">])</span>
                 <span class="n">url</span> <span class="o">=</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">change_value</span><span class="p">)</span>
@@ -1172,15 +1172,21 @@ point_extraction        </code>
         <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
         <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
         <span class="c1"># Load the GEE dataset as an image</span>
-        <span class="n">geeimage</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+        <span class="n">geeimage</span> <span class="o">=</span> <span class="n">area_extraction</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
         <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">geedata</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
         <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
         <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
         <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
         <span class="c1"># Retrieve data from the image using sampleRegions</span>
-        <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">sampled_data</span>
+        <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">sampled_df</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">sampled_data</span><span class="p">)</span>
+        <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">sampled_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;LAT&quot;</span><span class="p">,</span> <span class="s2">&quot;LON&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pre-aggregation data preview:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">filtered_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+        <span class="n">aggregated_df</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;plot_ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">aggregated_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_path</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">aggregated_df</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1208,7 +1214,7 @@ point_extraction        </code>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">area_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
         <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
         <span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
             <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
@@ -1290,11 +1296,11 @@ point_extraction        </code>
 
 
 
-<h3 id="skiba.point_extraction.point_extraction.create_dropdown" class="doc doc-heading">
+<h3 id="skiba.aggregated_point_extraction.area_extraction.create_dropdown" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">create_dropdown</span><span class="p">()</span></code>
 
 
-<a href="#skiba.point_extraction.point_extraction.create_dropdown" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.aggregated_point_extraction.area_extraction.create_dropdown" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1335,7 +1341,7 @@ point_extraction        </code>
   </tbody>
 </table>
         <details class="quote">
-          <summary>Source code in <code>skiba/point_extraction.py</code></summary>
+          <summary>Source code in <code>skiba/aggregated_point_extraction.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_dropdown</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates an ipywidgets dropdown menu from a GeoJSON catalog.</span>
@@ -1348,7 +1354,7 @@ point_extraction        </code>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json&quot;</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">area_extraction</span><span class="o">.</span><span class="n">fetch_geojson</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">if</span> <span class="s2">&quot;title&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">}</span>
     <span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
         <span class="n">options</span><span class="o">=</span><span class="n">data_dict</span><span class="p">,</span>  <span class="c1"># keys shown, values returned</span>
@@ -1369,11 +1375,11 @@ point_extraction        </code>
 
 
 
-<h3 id="skiba.point_extraction.point_extraction.get_coordinate_data" class="doc doc-heading">
+<h3 id="skiba.aggregated_point_extraction.area_extraction.get_coordinate_data" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
-<a href="#skiba.point_extraction.point_extraction.get_coordinate_data" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.aggregated_point_extraction.area_extraction.get_coordinate_data" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1414,7 +1420,7 @@ point_extraction        </code>
   </tbody>
 </table>
         <details class="quote">
-          <summary>Source code in <code>skiba/point_extraction.py</code></summary>
+          <summary>Source code in <code>skiba/aggregated_point_extraction.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Pull data from provided coordinates from GEE.</span>
@@ -1446,15 +1452,21 @@ point_extraction        </code>
     <span class="n">geojson</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">__geo_interface__</span>
     <span class="n">fc</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">geojson_to_ee</span><span class="p">(</span><span class="n">geojson</span><span class="p">)</span>
     <span class="c1"># Load the GEE dataset as an image</span>
-    <span class="n">geeimage</span> <span class="o">=</span> <span class="n">point_extraction</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
+    <span class="n">geeimage</span> <span class="o">=</span> <span class="n">area_extraction</span><span class="o">.</span><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">geedata</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
     <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">),</span> <span class="s2">&quot;Downloads&quot;</span><span class="p">)</span>
     <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">.csv&quot;</span>
     <span class="n">out_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
     <span class="c1"># Retrieve data from the image using sampleRegions</span>
-    <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">sampled_data</span>
+    <span class="n">sampled_data</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">extract_values_to_points</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">geeimage</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">sampled_df</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">ee_to_df</span><span class="p">(</span><span class="n">sampled_data</span><span class="p">)</span>
+    <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">sampled_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;LAT&quot;</span><span class="p">,</span> <span class="s2">&quot;LON&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pre-aggregation data preview:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">filtered_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+    <span class="n">aggregated_df</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;plot_ID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">aggregated_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">aggregated_df</span>
 </code></pre></div>
         </details>
     </div>
@@ -1467,11 +1479,11 @@ point_extraction        </code>
 
 
 
-<h3 id="skiba.point_extraction.point_extraction.load_gee_as_image" class="doc doc-heading">
+<h3 id="skiba.aggregated_point_extraction.area_extraction.load_gee_as_image" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
-<a href="#skiba.point_extraction.point_extraction.load_gee_as_image" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.aggregated_point_extraction.area_extraction.load_gee_as_image" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1525,7 +1537,7 @@ Optionally filters by start and end date if applicable.</p>
   </tbody>
 </table>
         <details class="quote">
-          <summary>Source code in <code>skiba/point_extraction.py</code></summary>
+          <summary>Source code in <code>skiba/aggregated_point_extraction.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_gee_as_image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.</span>
@@ -1625,7 +1637,7 @@ Optionally filters by start and end date if applicable.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="August 15, 2025 01:12:24 UTC"><span class="timeago" datetime="2025-08-15T01:12:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="August 15, 2025 01:12:24 UTC">2025-08-15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 6, 2025 21:41:46 UTC"><span class="timeago" datetime="2025-11-06T21:41:46+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 6, 2025 21:41:46 UTC">2025-11-06</span>
   </span>
 
     
@@ -1635,7 +1647,7 @@ Optionally filters by start and end date if applicable.</p>
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="April 23, 2025 21:17:22 UTC"><span class="timeago" datetime="2025-04-23T21:17:22+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="April 23, 2025 21:17:22 UTC">2025-04-23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 6, 2025 21:41:46 UTC"><span class="timeago" datetime="2025-11-06T21:41:46+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 6, 2025 21:41:46 UTC">2025-11-06</span>
   </span>
 
     

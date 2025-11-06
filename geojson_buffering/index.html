@@ -582,12 +582,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/data_process_full_walkthrough/" class="md-nav__link">
+      <a href="../examples/data_process_full_walkthrough.ipynb" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Data process full walkthrough
+    None
     
   </span>
   
@@ -857,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../buffer_method.md" class="md-nav__link">
+      <a href="../buffer_method/" class="md-nav__link">
         
   
   
@@ -1112,7 +1112,7 @@ buffer_coordinates        </code>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
-            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
@@ -1135,6 +1135,36 @@ buffer_coordinates        </code>
                 <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
                 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content_bytes</span><span class="p">))</span>
+                <span class="n">lat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;LAT&quot;</span><span class="p">,</span> <span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;Lat&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+                <span class="n">lon_cols</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="s2">&quot;lon&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;long&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;longitude&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;x&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;LON&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Longitude&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Long&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+                <span class="p">]</span>
+                <span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;plot_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;plot_id&quot;</span><span class="p">,</span> <span class="s2">&quot;plotID&quot;</span><span class="p">,</span> <span class="s2">&quot;plotId&quot;</span><span class="p">]</span>
+
+                <span class="k">def</span><span class="w"> </span><span class="nf">find_column</span><span class="p">(</span><span class="n">possible_names</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">possible_names</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="n">name</span>
+                    <span class="c1"># fallback: check case-insensitive match</span>
+                    <span class="n">lower_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
+                    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">possible_names</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">lower_columns</span><span class="p">:</span>
+                            <span class="k">return</span> <span class="n">lower_columns</span><span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No matching column found for </span><span class="si">{</span><span class="n">possible_names</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">lat_col</span> <span class="o">=</span> <span class="n">find_column</span><span class="p">(</span><span class="n">lat_cols</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+                <span class="n">lon_col</span> <span class="o">=</span> <span class="n">find_column</span><span class="p">(</span><span class="n">lon_cols</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+                <span class="n">id_col</span> <span class="o">=</span> <span class="n">find_column</span><span class="p">(</span><span class="n">id_cols</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+                    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">lat_col</span><span class="p">:</span> <span class="s2">&quot;LAT&quot;</span><span class="p">,</span> <span class="n">lon_col</span><span class="p">:</span> <span class="s2">&quot;LON&quot;</span><span class="p">,</span> <span class="n">id_col</span><span class="p">:</span> <span class="s2">&quot;plot_ID&quot;</span><span class="p">}</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a CSV file.&quot;</span><span class="p">)</span>
 
@@ -1343,7 +1373,7 @@ Part 1 of buffered coordinates approach which creates circles around points.
     <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_button_clicked</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">hbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span>
-        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropdown</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
+        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">]</span>
     <span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">vbox</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">])</span>
@@ -1610,6 +1640,36 @@ where the provided point is randomly located inside the circle (not at the cente
             <span class="n">filename</span> <span class="o">=</span> <span class="n">file_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filename: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">content_bytes</span><span class="p">))</span>
+            <span class="n">lat_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;LAT&quot;</span><span class="p">,</span> <span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;Lat&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+            <span class="n">lon_cols</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="s2">&quot;lon&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;long&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;longitude&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;x&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;LON&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Longitude&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Long&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+            <span class="p">]</span>
+            <span class="n">id_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;plot_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;plot_id&quot;</span><span class="p">,</span> <span class="s2">&quot;plotID&quot;</span><span class="p">,</span> <span class="s2">&quot;plotId&quot;</span><span class="p">]</span>
+
+            <span class="k">def</span><span class="w"> </span><span class="nf">find_column</span><span class="p">(</span><span class="n">possible_names</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">possible_names</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">name</span>
+                <span class="c1"># fallback: check case-insensitive match</span>
+                <span class="n">lower_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">}</span>
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">possible_names</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">lower_columns</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="n">lower_columns</span><span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No matching column found for </span><span class="si">{</span><span class="n">possible_names</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">lat_col</span> <span class="o">=</span> <span class="n">find_column</span><span class="p">(</span><span class="n">lat_cols</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">lon_col</span> <span class="o">=</span> <span class="n">find_column</span><span class="p">(</span><span class="n">lon_cols</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">id_col</span> <span class="o">=</span> <span class="n">find_column</span><span class="p">(</span><span class="n">id_cols</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">points</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">lat_col</span><span class="p">:</span> <span class="s2">&quot;LAT&quot;</span><span class="p">,</span> <span class="n">lon_col</span><span class="p">:</span> <span class="s2">&quot;LON&quot;</span><span class="p">,</span> <span class="n">id_col</span><span class="p">:</span> <span class="s2">&quot;plot_ID&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please upload a CSV file.&quot;</span><span class="p">)</span>
 

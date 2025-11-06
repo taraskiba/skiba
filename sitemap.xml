@@ -5,6 +5,10 @@
          <lastmod>2025-11-06</lastmod>
     </url>
     <url>
+         <loc>https://taraskiba.github.io/skiba/aggregated_point_extraction/</loc>
+         <lastmod>2025-11-06</lastmod>
+    </url>
+    <url>
          <loc>https://taraskiba.github.io/skiba/area_extraction/</loc>
          <lastmod>2025-11-06</lastmod>
     </url>
@@ -14,6 +18,10 @@
     </url>
     <url>
          <loc>https://taraskiba.github.io/skiba/buffer_coordinates/</loc>
+         <lastmod>2025-11-06</lastmod>
+    </url>
+    <url>
+         <loc>https://taraskiba.github.io/skiba/buffer_method/</loc>
          <lastmod>2025-11-06</lastmod>
     </url>
     <url>
@@ -53,10 +61,6 @@
          <lastmod>2025-11-06</lastmod>
     </url>
     <url>
-         <loc>https://taraskiba.github.io/skiba/point_extraction/</loc>
-         <lastmod>2025-11-06</lastmod>
-    </url>
-    <url>
          <loc>https://taraskiba.github.io/skiba/skiba/</loc>
          <lastmod>2025-11-06</lastmod>
     </url>
@@ -66,10 +70,6 @@
     </url>
     <url>
          <loc>https://taraskiba.github.io/skiba/examples/buffer_method/</loc>
-         <lastmod>2025-11-06</lastmod>
-    </url>
-    <url>
-         <loc>https://taraskiba.github.io/skiba/examples/data_process_full_walkthrough/</loc>
          <lastmod>2025-11-06</lastmod>
     </url>
     <url>

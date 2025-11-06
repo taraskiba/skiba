@@ -582,12 +582,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/data_process_full_walkthrough/" class="md-nav__link">
+      <a href="../examples/data_process_full_walkthrough.ipynb" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Data process full walkthrough
+    None
     
   </span>
   
@@ -857,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../buffer_method.md" class="md-nav__link">
+      <a href="../buffer_method/" class="md-nav__link">
         
   
   
@@ -939,17 +939,17 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#skiba.area_extraction.point_extraction" class="md-nav__link">
+  <a href="#skiba.area_extraction.agg_extraction" class="md-nav__link">
     <span class="md-ellipsis">
-      point_extraction
+      agg_extraction
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="point_extraction">
+    <nav class="md-nav" aria-label="agg_extraction">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#skiba.area_extraction.point_extraction.create_dropdown" class="md-nav__link">
+  <a href="#skiba.area_extraction.agg_extraction.create_dropdown" class="md-nav__link">
     <span class="md-ellipsis">
       create_dropdown()
     </span>
@@ -958,7 +958,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.area_extraction.point_extraction.get_coordinate_data" class="md-nav__link">
+  <a href="#skiba.area_extraction.agg_extraction.get_coordinate_data" class="md-nav__link">
     <span class="md-ellipsis">
       get_coordinate_data()
     </span>
@@ -967,7 +967,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#skiba.area_extraction.point_extraction.load_gee_as_image" class="md-nav__link">
+  <a href="#skiba.area_extraction.agg_extraction.load_gee_as_image" class="md-nav__link">
     <span class="md-ellipsis">
       load_gee_as_image()
     </span>
@@ -1025,20 +1025,20 @@
 
 
 
-<h2 id="skiba.area_extraction.point_extraction" class="doc doc-heading">
+<h2 id="skiba.area_extraction.agg_extraction" class="doc doc-heading">
         <code>
-point_extraction        </code>
+agg_extraction        </code>
 
 
 
-<a href="#skiba.area_extraction.point_extraction" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#skiba.area_extraction.agg_extraction" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
 
         <details class="quote">
           <summary>Source code in <code>skiba/area_extraction.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">point_extraction</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">agg_extraction</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># File Upload</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_upload</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FileUpload</span><span class="p">(</span>
@@ -1296,11 +1296,11 @@ point_extraction        </code>
 
 
 
-<h3 id="skiba.area_extraction.point_extraction.create_dropdown" class="doc doc-heading">
+<h3 id="skiba.area_extraction.agg_extraction.create_dropdown" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">create_dropdown</span><span class="p">()</span></code>
 
 
-<a href="#skiba.area_extraction.point_extraction.create_dropdown" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.area_extraction.agg_extraction.create_dropdown" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1375,11 +1375,11 @@ point_extraction        </code>
 
 
 
-<h3 id="skiba.area_extraction.point_extraction.get_coordinate_data" class="doc doc-heading">
+<h3 id="skiba.area_extraction.agg_extraction.get_coordinate_data" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_coordinate_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">geedata</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
-<a href="#skiba.area_extraction.point_extraction.get_coordinate_data" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.area_extraction.agg_extraction.get_coordinate_data" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1479,11 +1479,11 @@ point_extraction        </code>
 
 
 
-<h3 id="skiba.area_extraction.point_extraction.load_gee_as_image" class="doc doc-heading">
+<h3 id="skiba.area_extraction.agg_extraction.load_gee_as_image" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">load_gee_as_image</span><span class="p">(</span><span class="n">dataset_id</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
-<a href="#skiba.area_extraction.point_extraction.load_gee_as_image" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#skiba.area_extraction.agg_extraction.load_gee_as_image" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
