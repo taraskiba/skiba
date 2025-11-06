@@ -23,15 +23,45 @@
 
 ## Features
 
--   Create a map with provided coordinates
--   Access and retrieve band values from Google Earth Engine for provided coordinates or GeoJSON files.
-    -   Hide locations of confidential coordinates within a buffered radius.
--   Further developments to come!
+-   Access and retrieve pixel values from Google Earth Engine Images or ImageCollections and a desired time-period for a .CSV provided coordinates.
+    -   Results can be exported averaged over matching plot IDs or individual points.
+-   Buffer sensitive coordinates:
+    -   Buffer to a singular point within a specified radius.
+    -   Buffer to *n* points within a specified radius.
+-   Create a map with provided coordinates and built-in basemaps and geojson overlays.
 -   Please understand the limitations of Google's confidentiality policy before use.
 
 ## Installation
 ```python
 pip install skiba
+```
+
+Once installed, you need to authenticate your Google Earth Engine account. You can do this by running the following commands in Python:
+```python
+import ee
+# Initialize Earth Engine
+ee.Authenticate()
+ee.Initialize(project="ee-forestplotvariables")
+```
+To load widget boxes, run the following command in Python:
+```python
+# For single point buffering
+import skiba.buffer_coordinates as sbc
+single = sbc.buffer_coordinates().vbox
+single
+
+# For multiple point buffering
+import skiba.buffer_and_sample as sbs
+multiple = sbs.buffer().vbox
+multiple
+
+# For non-aggregated point extraction
+import skiba.point_extraction  as spe
+point = spe.point_extraction().vbox
+point
+
+# For aggregated point extraction
+
 ```
 
 ### Logo Credit

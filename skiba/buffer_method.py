@@ -10,51 +10,59 @@ import os
 # ee.Initialize(project="ee-forestplotvariables")
 
 
-class agg_extraction:
+class buffer_method:
     def __init__(self):
+        """
+        Initializes the buffer_method class and sets up the GUI components.
+        Part 2 of buffered coordinates approach which accesses GEE datasets and extracts median values.
+        (Part 1 is in buffer_coordinates.py)
+        """
         # File Upload
         self.file_upload = widgets.FileUpload(
-            accept=".csv, .txt",  # Accepted file extension e.g. '.txt', '.pdf', 'image/*', 'image/*,.pdf'
+            accept=".geojson",  # Accepted file extension e.g. '.txt', '.pdf', 'image/*', 'image/*,.pdf'
             multiple=False,  # True to accept multiple files upload else False
         )
         # Dropdown
         url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = point_extraction.fetch_geojson(url)
+        data = buffer_method.fetch_geojson(url)
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
         self.dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
             disabled=False,
         )
+
         self.start_date = widgets.DatePicker(description="Start Date", disabled=False)
         self.end_date = widgets.DatePicker(description="End Date", disabled=False)
+
         self.run_button = widgets.Button(
             description="Run Query",
             disabled=False,
             button_style="",  # 'success', 'info', 'warning', 'danger' or ''
             tooltip="Click me",
-            icon="rotate right",  # (FontAwesome names without the `fa-` prefix)
+            icon="check",  # (FontAwesome names without the `fa-` prefix)
         )
+
         self.output = widgets.Output()
+
         self.run_button.on_click(self.on_button_clicked)
         self.dropdown.observe(self.on_dropdown_change, names="value")
-        self.hbox = widgets.HBox(
-            [
-                self.file_upload,
-                self.dropdown,
-                self.start_date,
-                self.end_date,
-                self.run_button,
-            ]
+
+        self.hbox = widgets.HBox([self.file_upload, self.dropdown])
+
+        self.hbox_bottom = widgets.HBox(
+            [self.start_date, self.end_date, self.run_button]
         )
-        self.vbox = widgets.VBox([self.hbox, self.output])
+        self.vbox = widgets.VBox([self.hbox, self.hbox_bottom, self.output])
 
     def on_dropdown_change(self, change):
+        """
+        Callback function to handle dropdown value changes."""
         if change["new"]:
             with self.output:
                 self.output.clear_output()
                 catalog = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-                data = point_extraction.fetch_geojson(catalog)
+                data = buffer_method.fetch_geojson(catalog)
                 data_dict = {item["id"]: item["url"] for item in data if "id" in item}
                 change_value = str(change["new"])
                 url = data_dict.get(change_value)
@@ -62,105 +70,158 @@ class agg_extraction:
                 print(f"URL: {url}")
 
     def on_button_clicked(self, b):
+        """
+        Callback function to handle button click events.
+        """
+        import io
+
         with self.output:
             self.output.clear_output()
             print(
                 f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
             )
-            import io
 
             if self.file_upload.value:
-                # For the first file (if multiple=False)
                 file_info = self.file_upload.value[0]
-                content_bytes = file_info["content"].tobytes()  # file content as bytes
-                points = pd.read_csv(io.BytesIO(content_bytes))
-                lat_cols = ["lat", "latitude", "y", "LAT", "Latitude", "Lat", "Y"]
-                lon_cols = [
-                    "lon",
-                    "long",
-                    "longitude",
-                    "x",
-                    "LON",
-                    "Longitude",
-                    "Long",
-                    "X",
-                ]
-                id_cols = ["id", "ID", "plot_ID", "plot_id", "plotID", "plotId"]
+                content_bytes = file_info["content"].tobytes()
+                filename = file_info["name"]
+                print(f"Filename: {filename}")
 
-                def find_column(possible_names, columns):
-                    for name in possible_names:
-                        if name in columns:
-                            return name
-                    # fallback: check case-insensitive match
-                    lower_columns = {c.lower(): c for c in columns}
-                    for name in possible_names:
-                        if name.lower() in lower_columns:
-                            return lower_columns[name.lower()]
-                    raise ValueError(f"No matching column found for {possible_names}")
-
-                lat_col = find_column(lat_cols, points.columns)
-                lon_col = find_column(lon_cols, points.columns)
-                id_col = find_column(id_cols, points.columns)
-                points = points.rename(
-                    columns={lat_col: "LAT", lon_col: "LON", id_col: "plot_ID"}
-                )
+                # --- Modification: Read GeoJSON from bytes ---
+                # Use BytesIO to read the uploaded GeoJSON file
+                geojson_buffer = io.BytesIO(content_bytes)
+                points = gpd.read_file(geojson_buffer)
             else:
-                print("Please upload a CSV file.")
+                print("Please upload a GeoJSON file.")
+                return
+
             geedata = self.dropdown.value
             start_date = self.start_date.value
             end_date = self.end_date.value
-            self.get_coordinate_data(
+
+            self.extract_median_values(
                 data=points, geedata=geedata, start_date=start_date, end_date=end_date
             )
 
-    def get_coordinate_data(self, data, geedata, start_date, end_date, **kwargs):
+    def extract_median_values(self, data, geedata, start_date, end_date, **kwargs):
         """
-        Pull data from provided coordinates from GEE.
+        Extracts median values from a GEE dataset for the given geometry.
 
         Args:
-            data (str): The data to get the coordinate data from.
-
-        Returns:
-            data (str): CSV file contained GEE data.
+            data (str, pd.DataFrame, gpd.GeoDataFrame): Input data (GeoJSON, DataFrame, or GeoDataFrame).
+            geedata (str): GEE dataset ID.
+            start_date (str): Start date for filtering the dataset.
+            end_date (str): End date for filtering the dataset.
+            **kwargs: Additional arguments for the GEE dataset.
         """
 
-        # Load data with safety checks
+        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
+        response = requests.get(url)
+        response.raise_for_status()  # Raises an exception for HTTP errors
+        geojson_data = response.json()
+        data_type = [item["type"] for item in geojson_data if item["id"] == geedata]
+        data_str = " ".join(data_type)
+        start_date = str(start_date)
+        end_date = str(end_date)
+
         if isinstance(data, str):
-            coordinates = pd.read_csv(data)
-            gdf = gpd.GeoDataFrame(
-                coordinates,
-                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            )
+            # Assume the file is a GeoJSON or Shapefile with polygons
+            gdf = gpd.read_file(data)
+            if gdf.crs is None:
+                gdf.set_crs("EPSG:4326", inplace=True)
+            else:
+                gdf = gdf.to_crs("EPSG:4326")
         elif isinstance(data, pd.DataFrame):
-            coordinates = data
-            gdf = gpd.GeoDataFrame(
-                coordinates,
-                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            )
+            # If you have a DataFrame, it should already have a 'geometry' column with Polygon objects
+            # If not, you need to construct it-otherwise, just convert to GeoDataFrame
+            gdf = gpd.GeoDataFrame(data, geometry="geometry")
+            if gdf.crs is None:
+                gdf.set_crs("EPSG:4326", inplace=True)
+            else:
+                gdf = gdf.to_crs("EPSG:4326")
         else:
-            gdf = data.to_crs(epsg=4326)  # Ensure WGS84
-        geojson = gdf.__geo_interface__
-        fc = gm.geojson_to_ee(geojson)
+            # If already a GeoDataFrame
+            if data.crs is None:
+                gdf = data.set_crs("EPSG:4326")
+            else:
+                gdf = data.to_crs("EPSG:4326")
+
+        comp_results = pd.DataFrame()
+
+        for row in gdf.itertuples():
+            gdf_row = gdf.iloc[[row.Index]]
+            geojson = gdf_row.__geo_interface__
+            fc = gm.geojson_to_ee(geojson)
+
+            # Try loading as Image
+            if data_str == "image":
+                col = ee.Image(geedata)
+                col = ee.ImageCollection(col)
+
+            elif data_str == "image_collection":
+                col = ee.ImageCollection(geedata)
+                # If date filters are provided, apply them
+
+            else:
+                raise ValueError("Dataset ID is not a valid Image or ImageCollection.")
+
+            if start_date is None and end_date is None:
+                col = col.filterDate(start_date, end_date)
+            else:
+                pass
+
+            zonal_stats = col.median().reduceRegion(
+                reducer=ee.Reducer.median(), geometry=fc.geometry()
+            )
+            print("Zonal Stats:")
+            print(zonal_stats)
+            col = zonal_stats.getInfo()
+            print(col)
+
+            col = pd.DataFrame.from_dict(col, orient="index")
+
+            print(col)
+            print(col.keys())
+            print(type(col))
+
+            # col['plot_ID'] = gdf_row['plot_ID'].values[0]
+            # col = pd.DataFrame(col)
+            comp_results = pd.concat([comp_results, col], axis=0)
+
         # Load the GEE dataset as an image
-        geeimage = point_extraction.load_gee_as_image(geedata, start_date, end_date)
-        name = f"{geedata}"
+        name = geedata
         file_name = name.replace("/", "_")
+
         out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
         output_file = f"{file_name}.csv"
         out_path = os.path.join(out_dir, output_file)
+
         # Retrieve data from the image using sampleRegions
-        sampled_data = gm.extract_values_to_points(fc, geeimage, scale=None)
-        sampled_df = gm.ee_to_df(sampled_data)
-        filtered_df = sampled_df.drop(["LAT", "LON", "Unnamed: 0"], axis=1)
-        print("Pre-aggregation data preview:")
-        print(filtered_df.head())
-        aggregated_df = filtered_df.groupby("plot_ID").mean()
-        aggregated_df.to_csv(out_path)
-        return aggregated_df
+        sampled_data = comp_results.to_csv(out_path)
+        return sampled_data
+
+        # Try loading as FeatureCollection (convert to raster)
+
+        # Load the GEE dataset as an image
+        # geeimage = buffer_method.load_gee_as_image(geedata, start_date, end_date)
+        # name = geedata
+        # file_name = name.replace("/", "_")
+
+        # out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+        # output_file = f"{file_name}.csv"
+        # out_path = os.path.join(out_dir, output_file)
+
+        # # Retrieve data from the image using sampleRegions
+        # sampled_data = gm.zonal_statistics(geeimage, fc, out_path, stat_type="MEDIAN")
+
+        # return sampled_data
 
     def fetch_geojson(url):
+        """
+        Fetches GeoJSON data from a given URL.
+
+        Args:
+            url (str): URL to the GeoJSON file."""
         try:
             response = requests.get(url)
             response.raise_for_status()  # Raises an exception for HTTP errors
@@ -186,20 +247,30 @@ class agg_extraction:
         """
 
         url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = point_extraction.fetch_geojson(url)
+
+        data = buffer_method.fetch_geojson(url)
+
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
+
         dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
             disabled=False,
         )
+
         return dropdown
 
     def add_date_picker():
+        """
+        Creates a date picker widget for selecting dates.
+
+        Returns:
+            ipywidgets.DatePicker: A date picker widget for selecting dates."""
         date_picker = widgets.DatePicker(description="Pick a Date", disabled=False)
+
         return date_picker
 
-    def load_gee_as_image(dataset_id, start_date, end_date, **kwargs):
+    def load_gee_as_image(dataset_id, start_date=None, end_date=None, **kwargs):
         """
         Loads any GEE dataset (Image, ImageCollection, FeatureCollection) as an ee.Image.
         Optionally filters by start and end date if applicable.
@@ -224,7 +295,7 @@ class agg_extraction:
         if data_str == "image":
             img = ee.Image(dataset_id)
             # If .getInfo() doesn't throw, it's an Image
-            img.getInfo()
+            # img.getInfo()
             return img
         elif data_str == "image_collection":
             col = ee.ImageCollection(dataset_id)
