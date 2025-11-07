@@ -2,11 +2,9 @@ import requests
 import ipywidgets as widgets
 import geopandas as gpd
 import pandas as pd
-import geemap as gm
 from shapely.geometry import Point
 import shapely
 from pyproj import Transformer
-import json
 import os
 import numpy as np
 
