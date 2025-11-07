@@ -8,12 +8,11 @@
 ### A python package for foresters to query Google Earth Engine data
 **Streamlining the process to bring remotely sensed data to foresters**
 
+[![ForestSPOT](docs/files/logo.png)](https://github.com/taraskiba/skiba)
+
 
 -   Free software: MIT License
--   Documentation: https://skibapython.streamlit.app/
-
-
-[![ForestSPOT](docs/files/logo.png)](https://github.com/taraskiba/skiba)
+-   Documentation: https://taraskiba.github.io/skiba/
 
 
 ## Walkthrough and Demonstration
@@ -56,13 +55,19 @@ multiple = sbs.buffer().vbox
 multiple
 
 # For non-aggregated point extraction
-import skiba.point_extraction  as spe
+import skiba.point_extraction as spe
 point = spe.point_extraction().vbox
 point
 
 # For aggregated point extraction
 
+
+# For the mapping tool
+
 ```
+
+For a non-python user, you can access the Streamlit app here:
+https://gskiba.streamlit.app/
 
 ### Logo Credit
 -   Logo was designed by HiDream-I1-Dev (https://huggingface.co/spaces/HiDream-ai/HiDream-I1-Dev)

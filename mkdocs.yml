@@ -84,12 +84,8 @@ nav:
         - Bibliography: paper/paper.bib
     - Examples:
         - examples/intro.ipynb
-        - examples/data_process_demo.ipynb
-        - examples/data_process_full_walkthrough.ipynb
         - examples/buffer_method.ipynb
-        - examples/map.ipynb
         - examples/map_demo.ipynb
-        - examples/map_happy.ipynb
         - examples/folium_demo.ipynb
         - examples/ipyleaflet_demo.ipynb
 

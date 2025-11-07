@@ -10,7 +10,7 @@ import os
 # ee.Initialize(project="ee-forestplotvariables")
 
 
-class area_extraction:
+class aggregated_point_extraction:
     def __init__(self):
         # File Upload
         self.file_upload = widgets.FileUpload(
