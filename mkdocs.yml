@@ -94,8 +94,10 @@ nav:
           #- common module: common.md
           #- folium: foliumcode.md
           #- ipyleaflet: ipyleafletcode.md
-          - data_process: data_process.md
+          - aggregated_point_extraction: aggregated_point_extraction.md
+          #- data_process: data_process.md
+          - buffer_and_sample: buffer_and_sample.md
           - buffer_coordinates: buffer_coordinates.md
-          - buffer_method: buffer_method.md
-          #- map_detail: map_detail.md
+          #- buffer_method: buffer_method.md
+          - point_extraction: point_extraction.md
           - interactive map: map.md
