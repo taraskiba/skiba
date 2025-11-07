@@ -76,6 +76,9 @@ m
 For a non-python user, you can access the Streamlit app here:
 https://gskiba.streamlit.app/
 
+## Publication
+*pending*
+
 ### Logo Credit
 
 -   Logo was designed by HiDream-I1-Dev (https://huggingface.co/spaces/HiDream-ai/HiDream-I1-Dev)
