@@ -36,13 +36,16 @@ pip install skiba
 ```
 
 Once installed, you need to authenticate your Google Earth Engine account. You can do this by running the following commands in Python:
+
 ```python
 import ee
 # Initialize Earth Engine
 ee.Authenticate()
 ee.Initialize(project="ee-forestplotvariables")
 ```
+
 To load widget boxes, run the following command in Python:
+
 ```python
 # For single point buffering
 import skiba.buffer_coordinates as sbc
@@ -63,11 +66,16 @@ point
 
 
 # For the mapping tool
-
+import skiba.interactive as map
+m = map.Map()
+m
 ```
+
+## Web App
 
 For a non-python user, you can access the Streamlit app here:
 https://gskiba.streamlit.app/
 
 ### Logo Credit
+
 -   Logo was designed by HiDream-I1-Dev (https://huggingface.co/spaces/HiDream-ai/HiDream-I1-Dev)
