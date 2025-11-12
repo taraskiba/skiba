@@ -84,10 +84,10 @@ nav:
         - Bibliography: paper/paper.bib
     - Examples:
         - examples/intro.ipynb
-        - examples/buffer_method.ipynb
-        - examples/map_demo.ipynb
-        - examples/folium_demo.ipynb
-        - examples/ipyleaflet_demo.ipynb
+        - examples/usage.ipynb
+        # - examples/map_demo.ipynb
+        # - examples/folium_demo.ipynb
+        # - examples/ipyleaflet_demo.ipynb
 
     - API Reference:
           - skiba module: skiba.md

@@ -10,7 +10,7 @@ import os
 # ee.Initialize(project="ee-forestplotvariables")
 
 
-class aggregated_point_extraction:
+class AggregatedPointExtraction:
     def __init__(self):
         # File Upload
         self.file_upload = widgets.FileUpload(
@@ -19,7 +19,7 @@ class aggregated_point_extraction:
         )
         # Dropdown
         url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = aggregated_point_extraction.fetch_geojson(url)
+        data = AggregatedPointExtraction.fetch_geojson(url)
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
         self.dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
@@ -54,7 +54,7 @@ class aggregated_point_extraction:
             with self.output:
                 self.output.clear_output()
                 catalog = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-                data = aggregated_point_extraction.fetch_geojson(catalog)
+                data = AggregatedPointExtraction.fetch_geojson(catalog)
                 data_dict = {item["id"]: item["url"] for item in data if "id" in item}
                 change_value = str(change["new"])
                 url = data_dict.get(change_value)
@@ -144,7 +144,7 @@ class aggregated_point_extraction:
         geojson = gdf.__geo_interface__
         fc = gm.geojson_to_ee(geojson)
         # Load the GEE dataset as an image
-        geeimage = aggregated_point_extraction.load_gee_as_image(
+        geeimage = AggregatedPointExtraction.load_gee_as_image(
             geedata, start_date, end_date
         )
         name = f"{geedata}"
@@ -188,7 +188,7 @@ class aggregated_point_extraction:
         """
 
         url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = aggregated_point_extraction.fetch_geojson(url)
+        data = AggregatedPointExtraction.fetch_geojson(url)
         data_dict = {item["title"]: item["id"] for item in data if "title" in item}
         dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned

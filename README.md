@@ -59,11 +59,13 @@ multiple
 
 # For non-aggregated point extraction
 import skiba.point_extraction as spe
-point = spe.point_extraction().vbox
+point = spe.PointExtraction().vbox
 point
 
 # For aggregated point extraction
-
+import skiba.aggregated_point_extraction as sape
+agg = sape.AggregatedPointExtraction().vbox
+agg
 
 # For the mapping tool
 import skiba.interactive as map

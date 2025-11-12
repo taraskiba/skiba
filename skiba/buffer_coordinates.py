@@ -14,7 +14,7 @@ import numpy as np
 # ee.Initialize(project="ee-forestplotvariables")
 
 
-class buffer_coordinates:
+class BufferCoordinates:
     def __init__(self):
         """
         Initializes the buffer_coordinates class and sets up the GUI components.
