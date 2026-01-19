@@ -2,7 +2,6 @@
 
 """Tests for `skiba` package."""
 
-
 import unittest
 
 from skiba import skiba
