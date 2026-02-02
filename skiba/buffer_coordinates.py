@@ -83,9 +83,7 @@ class BufferCoordinates:
             self.output.clear_output()
             output_dir = self.output_dir.value
             radius_ft = self.buffer_radius.value
-            print(
-                f"CSV file will be saved to {output_dir}/{radius_ft}ft.csv"
-            )
+            print(f"CSV file will be saved to {output_dir}/{radius_ft}ft.csv")
 
             import io
 

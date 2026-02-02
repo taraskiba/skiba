@@ -81,9 +81,7 @@ class buffer_coordinates:
             self.output.clear_output()
             output_dir = self.output_dir.value
             radius_ft = self.buffer_radius.value
-            print(
-                f"GeoJSON file will be saved to {output_dir}/{radius_ft}.geojson"
-            )
+            print(f"GeoJSON file will be saved to {output_dir}/{radius_ft}.geojson")
 
             import io
 
