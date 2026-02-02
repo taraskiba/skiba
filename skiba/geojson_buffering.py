@@ -1,14 +1,14 @@
-import requests
 import ipywidgets as widgets
 import geopandas as gpd
 import pandas as pd
-import geemap as gm
 from shapely.geometry import Point
 import shapely
 from pyproj import Transformer
 import json
 import os
 import numpy as np
+
+from skiba.common import get_gee_catalog_as_dict, get_dataset_url
 
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
@@ -27,12 +27,10 @@ class buffer_coordinates:
             multiple=False,  # True to accept multiple files upload else False
         )
 
-        # Dropdown
-        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = self.fetch_geojson(url)
-        data_dict = {item["title"]: item["id"] for item in data if "title" in item}
+        # Dropdown - uses cached GEE catalog
+        data_dict = get_gee_catalog_as_dict()
         self.dropdown = widgets.Dropdown(
-            options=data_dict,  # keys shown, values returned
+            options=data_dict,
             description="Dataset:",
             disabled=False,
         )
@@ -138,12 +136,9 @@ class buffer_coordinates:
         if change["new"]:
             with self.output:
                 self.output.clear_output()
-                catalog = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-                data = self.fetch_geojson(catalog)
-                data_dict = {item["id"]: item["url"] for item in data if "id" in item}
-                change_value = str(change["new"])
-                url = data_dict.get(change_value)
-                print(f"Selected dataset: {change['new']}")
+                dataset_id = str(change["new"])
+                url = get_dataset_url(dataset_id)
+                print(f"Selected dataset: {dataset_id}")
                 print(f"URL: {url}")
 
     def create_obfuscated_circle(self, point, radius_feet, crs="EPSG:4326"):
@@ -220,23 +215,3 @@ class buffer_coordinates:
             f.write(geojson_str)
         print(f"GeoJSON saved to {output_file}")
         return gdf_circles
-
-    def fetch_geojson(self, url):
-        """
-        Fetch GeoJSON data from a given URL.
-
-        Args:
-            url (str): URL to fetch the GeoJSON data from.
-        """
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raises an exception for HTTP errors
-            geojson_data = response.json()  # Parse the JSON response
-            return geojson_data
-        except requests.exceptions.HTTPError as http_err:
-            print(f"HTTP error occurred: {http_err}")
-        except requests.exceptions.ConnectionError as conn_err:
-            print(f"Error connecting to the server: {conn_err}")
-        except Exception as err:
-            print(f"An error occurred: {err}")
-        return None
