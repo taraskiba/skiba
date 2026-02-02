@@ -165,10 +165,8 @@ class buffer_method:
             else:
                 raise ValueError("Dataset ID is not a valid Image or ImageCollection.")
 
-            if start_date is None and end_date is None:
+            if start_date is not None and end_date is not None:
                 col = col.filterDate(start_date, end_date)
-            else:
-                pass
 
             zonal_stats = col.median().reduceRegion(
                 reducer=ee.Reducer.median(), geometry=fc.geometry()
@@ -300,10 +298,8 @@ class buffer_method:
         elif data_str == "image_collection":
             col = ee.ImageCollection(dataset_id)
             # If date filters are provided, apply them
-            if start_date is None and end_date is None:
+            if start_date is not None and end_date is not None:
                 col = col.filterDate(start_date, end_date)
-            else:
-                pass
             # Reduce to a single image (e.g., median composite)
             img = col.median()
             return img
