@@ -8,6 +8,8 @@ from pyproj import Transformer
 import os
 import numpy as np
 
+from skiba.common import get_output_directory, DEFAULT_OUTPUT_DIR
+
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
 
@@ -64,28 +66,37 @@ class Buffer:
             icon="rotate right",  # (FontAwesome names without the `fa-` prefix)
         )
 
+        self.output_dir = widgets.Text(
+            value=DEFAULT_OUTPUT_DIR,
+            description="Output folder:",
+            style={"description_width": "initial"},
+            layout=widgets.Layout(width="400px"),
+        )
+
         self.output = widgets.Output()
 
         self.run_button.on_click(self.on_button_clicked)
 
-        self.hbox = widgets.HBox(
+        self.hbox_top = widgets.HBox(
             [
                 self.file_upload,
                 self.buffer_radius,
                 self.sample_button,
-                self.run_button,
             ]
         )
+        self.hbox_bottom = widgets.HBox([self.output_dir, self.run_button])
 
-        self.vbox = widgets.VBox([self.hbox, self.output])
+        self.vbox = widgets.VBox([self.hbox_top, self.hbox_bottom, self.output])
 
     def on_button_clicked(self, b):
         """
         Callback function to handle button click events."""
         with self.output:
             self.output.clear_output()
+            output_dir = self.output_dir.value
+            radius_ft = self.buffer_radius.value
             print(
-                f"GeoJSON file will be saved to Downloads folder under this name:{self.buffer_radius.value}ft.csv"
+                f"CSV file will be saved to {output_dir}/{radius_ft}ft.csv"
             )
 
             import io
@@ -127,11 +138,11 @@ class Buffer:
                 )
             else:
                 print("Please upload a CSV file.")
+                return
 
-            radius_ft = self.buffer_radius.value
             no_samp = self.sample_button.value
 
-            out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+            out_dir = get_output_directory(output_dir)
             output_file = f"{radius_ft}ft.csv"
             out_path = os.path.join(out_dir, output_file)
 

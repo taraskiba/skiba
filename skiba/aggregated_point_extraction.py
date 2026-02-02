@@ -6,6 +6,8 @@ import geemap as gm
 import ee
 import os
 
+from skiba.common import get_output_directory, DEFAULT_OUTPUT_DIR
+
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
 
@@ -35,19 +37,25 @@ class AggregatedPointExtraction:
             tooltip="Click me",
             icon="rotate right",  # (FontAwesome names without the `fa-` prefix)
         )
+        self.output_dir = widgets.Text(
+            value=DEFAULT_OUTPUT_DIR,
+            description="Output folder:",
+            style={"description_width": "initial"},
+            layout=widgets.Layout(width="400px"),
+        )
         self.output = widgets.Output()
         self.run_button.on_click(self.on_button_clicked)
         self.dropdown.observe(self.on_dropdown_change, names="value")
-        self.hbox = widgets.HBox(
+        self.hbox_top = widgets.HBox(
             [
                 self.file_upload,
                 self.dropdown,
                 self.start_date,
                 self.end_date,
-                self.run_button,
             ]
         )
-        self.vbox = widgets.VBox([self.hbox, self.output])
+        self.hbox_bottom = widgets.HBox([self.output_dir, self.run_button])
+        self.vbox = widgets.VBox([self.hbox_top, self.hbox_bottom, self.output])
 
     def on_dropdown_change(self, change):
         if change["new"]:
@@ -64,8 +72,9 @@ class AggregatedPointExtraction:
     def on_button_clicked(self, b):
         with self.output:
             self.output.clear_output()
+            output_dir = self.output_dir.value
             print(
-                f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
+                f"You entered: {self.dropdown.value}. CSV file will be saved to {output_dir}."
             )
             import io
 
@@ -106,24 +115,35 @@ class AggregatedPointExtraction:
                 )
             else:
                 print("Please upload a CSV file.")
+                return
             geedata = self.dropdown.value
             start_date = self.start_date.value
             end_date = self.end_date.value
             self.get_coordinate_data(
-                data=points, geedata=geedata, start_date=start_date, end_date=end_date
+                data=points,
+                geedata=geedata,
+                start_date=start_date,
+                end_date=end_date,
+                output_dir=output_dir,
             )
 
-    def get_coordinate_data(self, data, geedata, start_date, end_date, **kwargs):
+    def get_coordinate_data(
+        self, data, geedata, start_date, end_date, output_dir=None, **kwargs
+    ):
         """
-        Pull data from provided coordinates from GEE.
+        Pull data from provided coordinates from GEE and aggregate by plot ID.
 
         Args:
-            data (str): The data to get the coordinate data from.
+            data (str, pd.DataFrame, gpd.GeoDataFrame): The coordinate data.
+            geedata (str): The GEE dataset ID.
+            start_date: Start date for filtering.
+            end_date: End date for filtering.
+            output_dir (str, optional): Output directory for the CSV file.
+                If None, uses SKIBA_OUTPUT_DIR env var or ~/Downloads.
 
         Returns:
-            data (str): CSV file contained GEE data.
+            pd.DataFrame: Aggregated data by plot ID.
         """
-
         # Load data with safety checks
         if isinstance(data, str):
             coordinates = pd.read_csv(data)
@@ -149,7 +169,7 @@ class AggregatedPointExtraction:
         )
         name = f"{geedata}"
         file_name = name.replace("/", "_")
-        out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+        out_dir = get_output_directory(output_dir)
         output_file = f"{file_name}.csv"
         out_path = os.path.join(out_dir, output_file)
         # Retrieve data from the image using sampleRegions
@@ -160,6 +180,7 @@ class AggregatedPointExtraction:
         print(filtered_df.head())
         aggregated_df = filtered_df.groupby("plot_ID").mean()
         aggregated_df.to_csv(out_path)
+        print(f"Data saved to {out_path}")
         return aggregated_df
 
     def fetch_geojson(url):

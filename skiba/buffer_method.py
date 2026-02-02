@@ -6,6 +6,8 @@ import geemap as gm
 import ee
 import os
 
+from skiba.common import get_output_directory, DEFAULT_OUTPUT_DIR
+
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
 
@@ -43,17 +45,24 @@ class buffer_method:
             icon="check",  # (FontAwesome names without the `fa-` prefix)
         )
 
+        self.output_dir = widgets.Text(
+            value=DEFAULT_OUTPUT_DIR,
+            description="Output folder:",
+            style={"description_width": "initial"},
+            layout=widgets.Layout(width="400px"),
+        )
+
         self.output = widgets.Output()
 
         self.run_button.on_click(self.on_button_clicked)
         self.dropdown.observe(self.on_dropdown_change, names="value")
 
-        self.hbox = widgets.HBox([self.file_upload, self.dropdown])
-
-        self.hbox_bottom = widgets.HBox(
-            [self.start_date, self.end_date, self.run_button]
+        self.hbox_top = widgets.HBox([self.file_upload, self.dropdown])
+        self.hbox_middle = widgets.HBox([self.start_date, self.end_date])
+        self.hbox_bottom = widgets.HBox([self.output_dir, self.run_button])
+        self.vbox = widgets.VBox(
+            [self.hbox_top, self.hbox_middle, self.hbox_bottom, self.output]
         )
-        self.vbox = widgets.VBox([self.hbox, self.hbox_bottom, self.output])
 
     def on_dropdown_change(self, change):
         """
@@ -77,8 +86,9 @@ class buffer_method:
 
         with self.output:
             self.output.clear_output()
+            output_dir = self.output_dir.value
             print(
-                f"You entered: {self.dropdown.value}. CSV file will be saved to Downloads folder under this name."
+                f"You entered: {self.dropdown.value}. CSV file will be saved to {output_dir}."
             )
 
             if self.file_upload.value:
@@ -100,10 +110,16 @@ class buffer_method:
             end_date = self.end_date.value
 
             self.extract_median_values(
-                data=points, geedata=geedata, start_date=start_date, end_date=end_date
+                data=points,
+                geedata=geedata,
+                start_date=start_date,
+                end_date=end_date,
+                output_dir=output_dir,
             )
 
-    def extract_median_values(self, data, geedata, start_date, end_date, **kwargs):
+    def extract_median_values(
+        self, data, geedata, start_date, end_date, output_dir=None, **kwargs
+    ):
         """
         Extracts median values from a GEE dataset for the given geometry.
 
@@ -112,6 +128,8 @@ class buffer_method:
             geedata (str): GEE dataset ID.
             start_date (str): Start date for filtering the dataset.
             end_date (str): End date for filtering the dataset.
+            output_dir (str, optional): Output directory for the CSV file.
+                If None, uses SKIBA_OUTPUT_DIR env var or ~/Downloads.
             **kwargs: Additional arguments for the GEE dataset.
         """
 
@@ -192,12 +210,13 @@ class buffer_method:
         name = geedata
         file_name = name.replace("/", "_")
 
-        out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
+        out_dir = get_output_directory(output_dir)
         output_file = f"{file_name}.csv"
         out_path = os.path.join(out_dir, output_file)
 
         # Retrieve data from the image using sampleRegions
         sampled_data = comp_results.to_csv(out_path)
+        print(f"Data saved to {out_path}")
         return sampled_data
 
         # Try loading as FeatureCollection (convert to raster)
