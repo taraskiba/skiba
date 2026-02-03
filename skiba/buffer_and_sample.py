@@ -172,8 +172,7 @@ class Buffer:
         transformer_to_utm = Transformer.from_crs(crs, utm_crs, always_xy=True)
         transformer_to_latlon = Transformer.from_crs(utm_crs, crs, always_xy=True)
         x, y = transformer_to_utm.transform(point.x, point.y)
-
-        # Randomize the point's location within the circle
+        
         points = []
         for no in range(no_samp):
             # Randomize the point's location within the circle
