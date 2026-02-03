@@ -10,6 +10,8 @@ import json
 import os
 import numpy as np
 
+from skiba.common import validate_coordinates, validate_buffer_radius
+
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
 
@@ -114,10 +116,26 @@ class buffer_coordinates:
                 points = points.rename(
                     columns={lat_col: "LAT", lon_col: "LON", id_col: "plot_ID"}
                 )
+
+                # Validate coordinates
+                coord_errors = validate_coordinates(points, "LAT", "LON")
+                if coord_errors:
+                    for error in coord_errors:
+                        print(f"Validation Error: {error}")
+                    return
+
             else:
                 print("Please upload a CSV file.")
+                return
 
             radius_ft = self.buffer_radius.value
+
+            # Validate buffer radius
+            radius_errors = validate_buffer_radius(radius_ft)
+            if radius_errors:
+                for error in radius_errors:
+                    print(f"Validation Error: {error}")
+                return
 
             out_dir = os.path.join(os.path.expanduser("~"), "Downloads")
             output_file = f"{radius_ft}.geojson"
