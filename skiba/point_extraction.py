@@ -143,6 +143,7 @@ class PointExtraction:
             gdf = data.to_crs(epsg=4326)  # Ensure WGS84
         geojson = gdf.__geo_interface__
         fc = gm.geojson_to_ee(geojson)
+
         # Load the GEE dataset as an image
         geeimage = PointExtraction.load_gee_as_image(geedata, start_date, end_date)
         name = f"{geedata}"
@@ -222,12 +223,10 @@ class PointExtraction:
             return img
         elif data_str == "image_collection":
             col = ee.ImageCollection(dataset_id)
-            # If date filters are provided, apply them
-            if start_date is None and end_date is None:
+            if start_date is not None and end_date is not None:
                 col = col.filterDate(start_date, end_date)
             else:
                 pass
-            # Reduce to a single image (e.g., median composite)
             img = col.median()
             return img
         # Try loading as FeatureCollection (convert to raster)
