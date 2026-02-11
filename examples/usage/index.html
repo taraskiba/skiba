@@ -1890,7 +1890,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-2">
@@ -1922,7 +1922,7 @@ import os</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a9b45b8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -1943,13 +1943,13 @@ import os</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
@@ -1964,45 +1964,15 @@ import os</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Initialize Earth Engine</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">ee</span>
+
 <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
 <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s2">"ee-forestplotvariables"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3"># Initialize Earth Engine
 import ee
+
 ee.Authenticate()
 ee.Initialize(project="ee-forestplotvariables")</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
 </div>
 </div>
 </div>
@@ -2019,8 +1989,8 @@ ee.Initialize(project="ee-forestplotvariables")</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2051,44 +2021,6 @@ post</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Error connecting to the server: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /opengeos/geospatial-data-catalogs/master/gee_catalog.json (Caused by NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x000002485C6BBE60&gt;: Failed to resolve 'raw.githubusercontent.com' ([Errno 11001] getaddrinfo failed)"))
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">skiba</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">point_extraction</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">point_extraction</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> post = <span class="ansi-yellow-bg">point_extraction</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">PointExtraction</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>.vbox
-<span class="ansi-green-fg">      4</span> post
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~\Desktop\skiba\skiba\point_extraction.py:23</span>, in <span class="ansi-cyan-fg">PointExtraction.__init__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-fg">     21</span> url = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">     22</span> data = PointExtraction.fetch_geojson(url)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">23</span> data_dict = <span class="ansi-yellow-bg">{</span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">title</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">id</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">for</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(175,0,255)">in</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">if</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">title</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(175,0,255)">in</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg">}</span>
-<span class="ansi-green-fg">     24</span> <span style="color: rgb(0,135,0)">self</span>.dropdown = widgets.Dropdown(
-<span class="ansi-green-fg">     25</span>     options=data_dict,  <span style="color: rgb(95,135,135)"># keys shown, values returned</span>
-<span class="ansi-green-fg">     26</span>     description=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Dataset:</span><span class="ansi-yellow-fg">"</span>,
-<span class="ansi-green-fg">     27</span>     disabled=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
-<span class="ansi-green-fg">     28</span> )
-<span class="ansi-green-fg">     29</span> <span style="color: rgb(0,135,0)">self</span>.start_date = widgets.DatePicker(description=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Start Date</span><span class="ansi-yellow-fg">"</span>, disabled=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>)
-
-<span class="ansi-red-fg">TypeError</span>: 'NoneType' object is not iterable</pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
@@ -2101,13 +2033,13 @@ post</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
@@ -2129,44 +2061,6 @@ post</div>
 
 point = sape.AggregatedPointExtraction().vbox
 point</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>VBox(children=(HBox(children=(FileUpload(value=(), accept='.csv, .txt', description='Upload'), Dropdown(descri…</pre>
 </div>
 </div>
 </div>
@@ -2194,13 +2088,13 @@ point</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
@@ -2226,70 +2120,6 @@ bc</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Error connecting to the server: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /opengeos/geospatial-data-catalogs/master/gee_catalog.json (Caused by NameResolutionError("&lt;urllib3.connection.HTTPSConnection object at 0x000002485DA32870&gt;: Failed to resolve 'raw.githubusercontent.com' ([Errno 11001] getaddrinfo failed)"))
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">skiba</span><span class="ansi-blue-intense-fg ansi-bold">.</span><span class="ansi-blue-intense-fg ansi-bold">buffer_coordinates</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-bold" style="color: rgb(0,135,0)">as</span><span style="color: rgb(188,188,188)"> </span><span class="ansi-blue-intense-fg ansi-bold">bc</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> bc = <span class="ansi-yellow-bg">bc</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">BufferCoordinates</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>.vbox
-<span class="ansi-green-fg">      4</span> bc
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~\Desktop\skiba\skiba\buffer_coordinates.py:33</span>, in <span class="ansi-cyan-fg">BufferCoordinates.__init__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-fg">     31</span> url = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">     32</span> data = <span style="color: rgb(0,135,0)">self</span>.fetch_geojson(url)
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">33</span> data_dict = <span class="ansi-yellow-bg">{</span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">title</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">id</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">for</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(175,0,255)">in</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">if</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-fg ansi-yellow-bg">title</span><span class="ansi-yellow-fg ansi-yellow-bg">"</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(175,0,255)">in</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">item</span><span class="ansi-yellow-bg">}</span>
-<span class="ansi-green-fg">     34</span> <span style="color: rgb(0,135,0)">self</span>.dropdown = widgets.Dropdown(
-<span class="ansi-green-fg">     35</span>     options=data_dict,  <span style="color: rgb(95,135,135)"># keys shown, values returned</span>
-<span class="ansi-green-fg">     36</span>     description=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Dataset:</span><span class="ansi-yellow-fg">"</span>,
-<span class="ansi-green-fg">     37</span>     disabled=<span class="ansi-bold" style="color: rgb(0,135,0)">False</span>,
-<span class="ansi-green-fg">     38</span> )
-<span class="ansi-green-fg">     39</span> <span style="color: rgb(0,135,0)">self</span>.dropdown.observe(<span style="color: rgb(0,135,0)">self</span>.on_dropdown_change, names=<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">value</span><span class="ansi-yellow-fg">"</span>)
-
-<span class="ansi-red-fg">TypeError</span>: 'NoneType' object is not iterable</pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
@@ -2302,8 +2132,8 @@ bc</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2334,44 +2164,6 @@ multiple</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>VBox(children=(HBox(children=(FileUpload(value=(), accept='.csv, .txt', description='Upload'), FloatText(value…</pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
@@ -2384,13 +2176,13 @@ multiple</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
@@ -2406,8 +2198,8 @@ multiple</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">skiba.interactive</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">interactive</span>
 
 <span class="nb">map</span> <span class="o">=</span> <span class="n">interactive</span><span class="o">.</span><span class="n">Map</span><span class="p">()</span>
-<span class="c1">#path = "../data/1000.0ft.csv"</span>
-<span class="c1">#map.add_points(path)</span>
+<span class="c1"># path = "../data/1000.0ft.csv"</span>
+<span class="c1"># map.add_points(path)</span>
 <span class="n">path1</span> <span class="o">=</span> <span class="s2">"../data/selected_coordinates.csv"</span>
 <span class="nb">map</span><span class="o">.</span><span class="n">add_points</span><span class="p">(</span><span class="n">path1</span><span class="p">)</span>
 <span class="nb">map</span>
@@ -2415,8 +2207,8 @@ multiple</div>
 <div class="clipboard-copy-txt" id="cell-8">import skiba.interactive as interactive
 
 map = interactive.Map()
-#path = "../data/1000.0ft.csv"
-#map.add_points(path)
+# path = "../data/1000.0ft.csv"
+# map.add_points(path)
 path1 = "../data/selected_coordinates.csv"
 map.add_points(path1)
 map</div>
@@ -2424,52 +2216,14 @@ map</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>Map(center=[37.5, -95], controls=(ZoomControl(options=['position', 'zoom_in_text', 'zoom_in_title', 'zoom_out_…</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71d5d05a">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
@@ -2491,41 +2245,9 @@ import ipyleaflet</div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4323eb6d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2535,13 +2257,13 @@ import ipyleaflet</div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
@@ -2555,24 +2277,24 @@ import ipyleaflet</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">gm</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">),</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="c1">#path = "../data/3000.0.geojson"</span>
-<span class="c1">#m.add_geojson(path)</span>
+<span class="c1"># path = "../data/3000.0.geojson"</span>
+<span class="c1"># m.add_geojson(path)</span>
 <span class="n">path1</span> <span class="o">=</span> <span class="s2">"../data/selected_coordinates.csv"</span>
 <span class="n">coordinates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path1</span><span class="p">)</span>
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-                <span class="n">coordinates</span><span class="p">,</span>
-                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-                <span class="n">crs</span><span class="o">=</span><span class="s2">"EPSG:4326"</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-            <span class="p">)</span>
+    <span class="n">coordinates</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">"EPSG:4326"</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
+<span class="p">)</span>
 
 <span class="n">point_style</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">"radius"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-            <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
-            <span class="s2">"dashArray"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
-            <span class="s2">"fillOpacity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="s2">"fillColor"</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span>
-            <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="p">}</span>  <span class="c1"># 'color': 'white',</span>
+    <span class="s2">"radius"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
+    <span class="s2">"dashArray"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
+    <span class="s2">"fillOpacity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"fillColor"</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span>
+    <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>  <span class="c1"># 'color': 'white',</span>
 
 <span class="n">geo_data</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span>
     <span class="n">geo_dataframe</span><span class="o">=</span><span class="n">gdf</span><span class="p">,</span>
@@ -2583,19 +2305,19 @@ import ipyleaflet</div>
 <span class="n">path2</span> <span class="o">=</span> <span class="s2">"../data/3000.0ft.csv"</span>
 <span class="n">coordinates2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path2</span><span class="p">)</span>
 <span class="n">gdf2</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
-                <span class="n">coordinates2</span><span class="p">,</span>
-                <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates2</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates2</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
-                <span class="n">crs</span><span class="o">=</span><span class="s2">"EPSG:4326"</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
-            <span class="p">)</span> 
+    <span class="n">coordinates2</span><span class="p">,</span>
+    <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">coordinates2</span><span class="o">.</span><span class="n">LON</span><span class="p">,</span> <span class="n">coordinates2</span><span class="o">.</span><span class="n">LAT</span><span class="p">),</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s2">"EPSG:4326"</span><span class="p">,</span>  <span class="c1"># Directly set CRS during creation</span>
+<span class="p">)</span>
 
 <span class="n">point_style</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">"radius"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
-            <span class="s2">"dashArray"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
-            <span class="s2">"fillOpacity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="s2">"fillColor"</span><span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
-            <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="p">}</span>  <span class="c1"># 'color': 'white',</span>
+    <span class="s2">"radius"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"color"</span><span class="p">:</span> <span class="s2">"black"</span><span class="p">,</span>
+    <span class="s2">"dashArray"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
+    <span class="s2">"fillOpacity"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"fillColor"</span><span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
+    <span class="s2">"weight"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">}</span>  <span class="c1"># 'color': 'white',</span>
 
 <span class="n">geo_data2</span> <span class="o">=</span> <span class="n">ipyleaflet</span><span class="o">.</span><span class="n">GeoData</span><span class="p">(</span>
     <span class="n">geo_dataframe</span><span class="o">=</span><span class="n">gdf2</span><span class="p">,</span>
@@ -2605,24 +2327,24 @@ import ipyleaflet</div>
 <span class="n">m</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-10">m = gm.Map(center=(45, -100), zoom=4)
-#path = "../data/3000.0.geojson"
-#m.add_geojson(path)
+# path = "../data/3000.0.geojson"
+# m.add_geojson(path)
 path1 = "../data/selected_coordinates.csv"
 coordinates = pd.read_csv(path1)
 gdf = gpd.GeoDataFrame(
-                coordinates,
-                geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            )
+    coordinates,
+    geometry=gpd.points_from_xy(coordinates.LON, coordinates.LAT),
+    crs="EPSG:4326",  # Directly set CRS during creation
+)
 
 point_style = {
-            "radius": 4,
-            "color": "black",
-            "dashArray": "2",
-            "fillOpacity": 1,
-            "fillColor": "red",
-            "weight": 1,
-        }  # 'color': 'white',
+    "radius": 4,
+    "color": "black",
+    "dashArray": "2",
+    "fillOpacity": 1,
+    "fillColor": "red",
+    "weight": 1,
+}  # 'color': 'white',
 
 geo_data = ipyleaflet.GeoData(
     geo_dataframe=gdf,
@@ -2633,19 +2355,19 @@ m.add(geo_data)
 path2 = "../data/3000.0ft.csv"
 coordinates2 = pd.read_csv(path2)
 gdf2 = gpd.GeoDataFrame(
-                coordinates2,
-                geometry=gpd.points_from_xy(coordinates2.LON, coordinates2.LAT),
-                crs="EPSG:4326",  # Directly set CRS during creation
-            ) 
+    coordinates2,
+    geometry=gpd.points_from_xy(coordinates2.LON, coordinates2.LAT),
+    crs="EPSG:4326",  # Directly set CRS during creation
+)
 
 point_style = {
-            "radius": 2,
-            "color": "black",
-            "dashArray": "2",
-            "fillOpacity": 1,
-            "fillColor": "blue",
-            "weight": 1,
-        }  # 'color': 'white',
+    "radius": 2,
+    "color": "black",
+    "dashArray": "2",
+    "fillOpacity": 1,
+    "fillColor": "blue",
+    "weight": 1,
+}  # 'color': 'white',
 
 geo_data2 = ipyleaflet.GeoData(
     geo_dataframe=gdf2,
@@ -2653,44 +2375,6 @@ geo_data2 = ipyleaflet.GeoData(
 )
 m.add(geo_data2)
 m</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<style>
-                .geemap-dark {
-                    --jp-widgets-color: white;
-                    --jp-widgets-label-color: white;
-                    --jp-ui-font-color1: white;
-                    --jp-layout-color2: #454545;
-                    background-color: #383838;
-                }
-
-                .geemap-dark .jupyter-button {
-                    --jp-layout-color3: #383838;
-                }
-
-                .geemap-colab {
-                    background-color: var(--colab-primary-surface-color, white);
-                }
-
-                .geemap-colab .jupyter-button {
-                    --jp-layout-color3: var(--colab-primary-surface-color, white);
-                }
-            </style>
-</div>
-</div>
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>Map(center=[45, -100], controls=(WidgetControl(options=['position', 'transparent_bg'], position='topright', tr…</pre>
 </div>
 </div>
 </div>
@@ -2726,7 +2410,7 @@ m</div>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="February 3, 2026 15:30:41 UTC"><span class="timeago" datetime="2026-02-03T15:30:41+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="February 3, 2026 15:30:41 UTC">2026-02-03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="February 11, 2026 23:33:52 UTC"><span class="timeago" datetime="2026-02-11T23:33:52+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="February 11, 2026 23:33:52 UTC">2026-02-11</span>
   </span>
 
     
