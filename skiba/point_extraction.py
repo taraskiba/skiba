@@ -1,10 +1,11 @@
-import requests
 import ipywidgets as widgets
 import geopandas as gpd
 import pandas as pd
 import geemap as gm
 import ee
 import os
+
+from skiba.common import get_gee_catalog_as_dict, get_dataset_url, get_dataset_type
 
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
@@ -17,10 +18,8 @@ class PointExtraction:
             accept=".csv, .txt",  # Accepted file extension e.g. '.txt', '.pdf', 'image/*', 'image/*,.pdf'
             multiple=False,  # True to accept multiple files upload else False
         )
-        # Dropdown
-        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = PointExtraction.fetch_geojson(url)
-        data_dict = {item["title"]: item["id"] for item in data if "title" in item}
+        # Dropdown - uses cached GEE catalog
+        data_dict = get_gee_catalog_as_dict()
         self.dropdown = widgets.Dropdown(
             options=data_dict,  # keys shown, values returned
             description="Dataset:",
@@ -53,12 +52,9 @@ class PointExtraction:
         if change["new"]:
             with self.output:
                 self.output.clear_output()
-                catalog = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-                data = PointExtraction.fetch_geojson(catalog)
-                data_dict = {item["id"]: item["url"] for item in data if "id" in item}
-                change_value = str(change["new"])
-                url = data_dict.get(change_value)
-                print(f"Selected dataset: {change['new']}")
+                dataset_id = str(change["new"])
+                url = get_dataset_url(dataset_id)
+                print(f"Selected dataset: {dataset_id}")
                 print(f"URL: {url}")
 
     def on_button_clicked(self, b):
@@ -154,36 +150,16 @@ class PointExtraction:
         sampled_data = gm.extract_values_to_points(fc, geeimage, out_path)
         return sampled_data
 
-    def fetch_geojson(url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raises an exception for HTTP errors
-            geojson_data = response.json()  # Parse the JSON response
-            return geojson_data
-        except requests.exceptions.HTTPError as http_err:
-            print(f"HTTP error occurred: {http_err}")
-        except requests.exceptions.ConnectionError as conn_err:
-            print(f"Error connecting to the server: {conn_err}")
-        except Exception as err:
-            print(f"An error occurred: {err}")
-        return None
-
     def create_dropdown():
         """
-        Creates an ipywidgets dropdown menu from a GeoJSON catalog.
-
-        Args:
-            url (str, optional): URL to the GeoJSON catalog. Defaults to the Opengeos catalog.
+        Creates an ipywidgets dropdown menu from the cached GEE catalog.
 
         Returns:
-            ipywidgets.Dropdown: A dropdown widget with the names from the catalog.
+            ipywidgets.Dropdown: A dropdown widget with dataset names from the catalog.
         """
-
-        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        data = PointExtraction.fetch_geojson(url)
-        data_dict = {item["title"]: item["id"] for item in data if "title" in item}
+        data_dict = get_gee_catalog_as_dict()
         dropdown = widgets.Dropdown(
-            options=data_dict,  # keys shown, values returned
+            options=data_dict,
             description="Dataset:",
             disabled=False,
         )
@@ -206,38 +182,21 @@ class PointExtraction:
         Returns:
             ee.Image: The resulting image.
         """
-        url = "https://raw.githubusercontent.com/opengeos/geospatial-data-catalogs/master/gee_catalog.json"
-        response = requests.get(url)
-        response.raise_for_status()  # Raises an exception for HTTP errors
-        geojson_data = response.json()
-        data_type = [item["type"] for item in geojson_data if item["id"] == dataset_id]
-        data_str = " ".join(data_type)
+        data_type = get_dataset_type(dataset_id)
         start_date = str(start_date)
         end_date = str(end_date)
-        # Try loading as Image
-        if data_str == "image":
+
+        if data_type == "image":
             img = ee.Image(dataset_id)
-            # If .getInfo() doesn't throw, it's an Image
             img.getInfo()
             return img
-        elif data_str == "image_collection":
+        elif data_type == "image_collection":
             col = ee.ImageCollection(dataset_id)
             # If date filters are provided, apply them
-            if start_date is None and end_date is None:
+            if start_date is not None and end_date is not None:
                 col = col.filterDate(start_date, end_date)
-            else:
-                pass
             # Reduce to a single image (e.g., median composite)
             img = col.median()
             return img
-        # Try loading as FeatureCollection (convert to raster)
         else:
-            # fc_temp = ee.FeatureCollection(dataset_id)
-            # if start_date is None and end_date is None:
-            #         fc_temp = fc_temp.filterDate(start_date, end_date)
-            # # Convert to raster: burn a value of 1 into a new image
-            # img = fc_temp.reduceToImage(properties=[], reducer=ee.Reducer.median())
-            # img.getInfo()
-            # return img
-            # or print(f"Dataset must be either an Image or Image Collection")
             raise ValueError("Dataset ID is not a valid Image or ImageCollection.")
