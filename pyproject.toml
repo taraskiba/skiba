@@ -1,6 +1,6 @@
 [project]
 name = "skiba"
-version = "2.4.3"
+version = "2.5.0"
 dynamic = [
     "dependencies",
 ]
@@ -51,7 +51,7 @@ universal = true
 
 
 [tool.bumpversion]
-current_version = "2.4.3"
+current_version = "2.5.0"
 commit = true
 tag = true
 
