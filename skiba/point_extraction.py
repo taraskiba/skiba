@@ -225,8 +225,6 @@ class PointExtraction:
             # If date filters are provided, apply them
             if start_date is not None and end_date is not None:
                 col = col.filterDate(start_date, end_date)
-            else:
-                pass
             # Reduce to a single image (e.g., median composite)
             img = col.median()
             return img
