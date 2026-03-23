@@ -85,7 +85,7 @@ class Buffer:
         with self.output:
             self.output.clear_output()
             print(
-                f"GeoJSON file will be saved to Downloads folder under this name:{self.buffer_radius.value}ft.csv"
+                f"CSV file will be saved to Downloads folder under this name:{self.buffer_radius.value}ft.csv"
             )
 
             import io
