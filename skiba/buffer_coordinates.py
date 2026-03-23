@@ -72,7 +72,7 @@ class BufferCoordinates:
         with self.output:
             self.output.clear_output()
             print(
-                f"GeoJSON file will be saved to Downloads folder under this name:{self.buffer_radius.value}ft.csv"
+                f"CSV file will be saved to Downloads folder under this name:{self.buffer_radius.value}ft.csv"
             )
 
             import io
@@ -218,7 +218,7 @@ class BufferCoordinates:
         )
         # point_df = pd.DataFrame(gdf_circles)
         point_csv = df.to_csv()
-        with open(output_file, "w") as f:
+        with open(output_file, "w", newline="") as f:
             f.write(point_csv)
         print(f"CSV saved to {output_file}")
         return point_csv
