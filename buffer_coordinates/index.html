@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../files/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -1263,7 +1263,7 @@ BufferCoordinates        </code>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;GeoJSON file will be saved to Downloads folder under this name:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">ft.csv&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;CSV file will be saved to Downloads folder under this name:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">ft.csv&quot;</span>
             <span class="p">)</span>
 
             <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
@@ -1409,7 +1409,7 @@ BufferCoordinates        </code>
         <span class="p">)</span>
         <span class="c1"># point_df = pd.DataFrame(gdf_circles)</span>
         <span class="n">point_csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">point_csv</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSV saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">point_csv</span>
@@ -1740,7 +1740,7 @@ where the provided point is randomly located inside the circle (not at the cente
     <span class="p">)</span>
     <span class="c1"># point_df = pd.DataFrame(gdf_circles)</span>
     <span class="n">point_csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">point_csv</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSV saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">point_csv</span>
@@ -1774,7 +1774,7 @@ where the provided point is randomly located inside the circle (not at the cente
     <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;GeoJSON file will be saved to Downloads folder under this name:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">ft.csv&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;CSV file will be saved to Downloads folder under this name:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_radius</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">ft.csv&quot;</span>
         <span class="p">)</span>
 
         <span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
