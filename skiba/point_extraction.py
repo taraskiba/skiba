@@ -6,6 +6,8 @@ import geemap as gm
 import ee
 import os
 
+from skiba.common import validate_coordinates, validate_date_range
+
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
 
@@ -104,11 +106,29 @@ class PointExtraction:
                 points = points.rename(
                     columns={lat_col: "LAT", lon_col: "LON", id_col: "plot_ID"}
                 )
+
+                # Validate coordinates
+                coord_errors = validate_coordinates(points, "LAT", "LON")
+                if coord_errors:
+                    for error in coord_errors:
+                        print(f"Validation Error: {error}")
+                    return
+
             else:
                 print("Please upload a CSV file.")
+                return
+
             geedata = self.dropdown.value
             start_date = self.start_date.value
             end_date = self.end_date.value
+
+            # Validate date range
+            date_errors = validate_date_range(start_date, end_date)
+            if date_errors:
+                for error in date_errors:
+                    print(f"Validation Error: {error}")
+                return
+
             self.get_coordinate_data(
                 data=points, geedata=geedata, start_date=start_date, end_date=end_date
             )
