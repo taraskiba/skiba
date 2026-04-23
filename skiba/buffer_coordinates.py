@@ -10,6 +10,8 @@ import json
 import os
 import numpy as np
 
+from skiba.common import to_utm_crs
+
 # ee.Authenticate()
 # ee.Initialize(project="ee-forestplotvariables")
 
@@ -153,7 +155,7 @@ class BufferCoordinates:
         radius_m = radius_feet * 0.3048
 
         # Project to local UTM for accurate distance calculations
-        utm_crs = f"EPSG:326{int((point.x + 180) // 6) + 1}"
+        utm_crs = to_utm_crs(point)
         transformer_to_utm = Transformer.from_crs(crs, utm_crs, always_xy=True)
         transformer_to_latlon = Transformer.from_crs(utm_crs, crs, always_xy=True)
         x, y = transformer_to_utm.transform(point.x, point.y)
